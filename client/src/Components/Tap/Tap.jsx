@@ -1,38 +1,34 @@
 import "./Tap.css";
-import tabIcon1 from "../../assets/img/icon1.svg";
-import tabIcon2 from "../../assets/img/icon2.svg";
-import tabIcon3 from "../../assets/img/icon3.svg";
-import tabIcon4 from "../../assets/img/icon4.svg";
-import tabIcon5 from "../../assets/img/icon5.svg";
+import { Home, Location, QR, Stamp, Human } from "../../assets/img/Tab/Tab_image";
 
 function Tap() {
   return (
     <>
       <section className="tab">
-        <div className="tabBack">
-          <div className="tabMenu" id="tabScreen">
-            <div className="tabShot">
-              <img src={tabIcon5}></img>
+        <div className="tabInnerWrap">
+          <section className="tabScreenWrap">
+            <div className="tabScreen">
+              <img src={QR} alt="QR Code" />
             </div>
-          </div>
-        </div>
-        <div className="tabColor">
-          <div className="tabIcon">
-            <div className="tabMenu">
-              <img src={tabIcon1}></img>
+          </section>
+          <section className="tabIconWrap">
+            <div className="tabIcon">
+              <div>
+                <img src={Home} alt="Home Icon" />
+              </div>
+              <div>
+                <img src={Location} alt="Location Icon" />
+              </div>
             </div>
-            <div className="tabMenu">
-              <img src={tabIcon2}></img>
+            <div className="tabIcon">
+              <div>
+                <img src={Human} alt="Human Icon" />
+              </div>
+              <div>
+                <img src={Stamp} alt="Stamp Icon" />
+              </div>
             </div>
-          </div>
-          <div className="tabIcon">
-            <div className="tabMenu">
-              <img src={tabIcon3}></img>
-            </div>
-            <div className="tabMenu">
-              <img src={tabIcon4}></img>
-            </div>
-          </div>
+          </section>
         </div>
       </section>
     </>
