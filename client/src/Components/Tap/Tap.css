@@ -1,0 +1,41 @@
+.tab {
+  position: relative;
+  height: 115px;
+  background-color: white;
+}
+
+.tabBack {
+  height: 40px;
+  background-color: white;
+}
+
+.tabColor {
+  width: 100%;
+  background: linear-gradient(0deg, #2a557d, #42688b);
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  padding: 13px 28px;
+}
+
+.tabIcon {
+  display: flex;
+  gap: 45px;
+  padding: 7px 0px;
+}
+
+#tabScreen {
+  border: 5px solid #2a557d;
+  position: fixed;
+  height: 80px;
+  width: 80px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin: 0 auto;
+  border-radius: 100%;
+  background-color: white;
+}
+
+.tabShot {
+  transform: translate(20%, 30%);
+}
