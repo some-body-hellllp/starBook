@@ -1,0 +1,32 @@
+.mainHeaderBox {
+  height: 337px;
+  width: 100%;
+  background: linear-gradient(180deg, #2a557d, #42688b);
+  border: 1px solid black;
+  border-radius: 0 0 30px 30px;
+  padding: 168px 0 0 30px;
+  color: white;
+  position: relative;
+}
+
+.mainImg {
+  position: absolute;
+  top: 141px;
+  left: 46px;
+  z-index: 1;
+}
+
+.mainHeaderText {
+  font-size: 28px;
+  font-weight: 500px;
+}
+
+.mainStarColor {
+  color: #ffc267;
+}
+
+.mainHeaderSubText {
+  font-size: 18px;
+  font-weight: 300px;
+  padding-top: 23px;
+}
