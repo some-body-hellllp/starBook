@@ -1,5 +1,5 @@
-import HomeHeader from "./MainHeader/HomeHeader";
-import HomeBody from "./MainBody/HomeBody";
+import HomeHeader from "./HomeHeader/HomeHeader";
+import HomeBody from "./HomeBody/HomeBody";
 
 function Home() {
   return (

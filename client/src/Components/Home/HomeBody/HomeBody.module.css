@@ -1,0 +1,102 @@
+/* 레이아웃 및 기본 설정 */
+.homeBodyText {
+  display: flex;
+  padding: 36px 32px 20px 32px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.homeBodyText div {
+  display: flex;
+  align-items: center;
+}
+
+/* 텍스트 스타일 */
+.bookMarText {
+  font-size: 20px;
+  font-weight: 700;
+  color: #42688b;
+}
+
+.seeMore {
+  font-size: 16px;
+  color: #989898;
+  font-weight: 300;
+}
+
+/* 북마크 박스 컨테이너 */
+.bookMark {
+  display: flex;
+  width: 195px;
+  height: 271px;
+}
+
+.bookMarkBoxMom {
+  position: relative;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden; /* 자식 요소가 넘치지 않도록 */
+}
+
+/* 북마크 이미지 */
+.bookMarkSubImg {
+  width: 100%;
+  object-fit: contain; /* 이미지 비율 유지하며 전체 채우기 */
+  border-radius: 10px;
+}
+
+/* 북마크 오버레이 박스 */
+.bookMarkBox {
+  height: 100%;
+  background-image: linear-gradient(180deg, rgba(255, 194, 103, 0) 0%, rgba(255, 194, 103, 1) 80%), url("../../../assets/img/Main/backImg1.png");
+  border-radius: 10px;
+  color: black;
+  box-sizing: border-box;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.bookMarkBoxBox {
+  padding: 0 0 18px 15px;
+}
+
+.bookMarkBox li {
+  list-style: none;
+  margin-bottom: 4px;
+}
+
+/* 사용자 이미지 박스 */
+.userImgBox li {
+  margin-top: 9px;
+}
+
+.boxText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.userImg {
+  width: 111px; /* 부모 요소의 전체 너비 채우기 */
+  height: 30px; /* 부모 요소의 전체 높이 채우기 */
+  object-fit: cover;
+}
+
+/* .swiper-container {
+  width: 100%;
+  display: flex;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; 
+} */
