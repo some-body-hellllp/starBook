@@ -1,0 +1,23 @@
+.account_button {
+  border: 1px #42688b solid;
+  width: 312px;
+  height: 64px;
+  border-radius: 5px;
+  padding: 20px;
+  font-family: "Pretendard-Regular";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+}
+.blue_button {
+  color: #ffffff;
+  background-color: #42688b;
+}
+.blue_button:nth-of-type(1) {
+  margin-bottom: 14px;
+}
+.white_button {
+  color: #42688b;
+  background-color: #ffffff;
+  margin-top: 77px;
+}
