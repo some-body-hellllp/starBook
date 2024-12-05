@@ -1,13 +1,20 @@
-import { useState } from "react";
-import Tap from "./Components/Tap/Tap";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import "./App.css";
-import Main from "./Components/Main/Main";
+
+import StarBook from "./components/StarBook/Starbook";
+
 
 function App() {
   return (
     <>
-      <Main />
-      <Tap />
+
+      <Router>
+        <Routes>
+          <Route path="/" element={<StarBook></StarBook>} />
+        </Routes>
+      </Router>
+
     </>
   );
 }
