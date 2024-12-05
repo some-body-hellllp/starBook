@@ -9,7 +9,7 @@ function HomeHeader() {
       </div>
       <div className={styles.mainHeaderText}>
         독립서점에서 찾은
-        <br />특<span className={styles.mainStarColor}>별</span>한 책, 특<span className={styles.starColor}>별</span>한 순간
+        <br />특<span className={styles.mainStarColor}>별</span>한 책, 특<span className={styles.mainStarColor}>별</span>한 순간
       </div>
       <div className={styles.mainHeaderSubText}>QR 코드를 스캔하여 선물을 받으세요.</div>
     </section>
