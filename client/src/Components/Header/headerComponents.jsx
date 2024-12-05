@@ -1,29 +1,46 @@
 import { useContext } from "react";
 import { PageData } from "../../provider/PageProvider";
+import { BackIcon, WriteIcon, CancelIcon } from "../../assets/img/Header/Header_image";
 import styles from "./Header.module.css"; // CSS 모듈 import
 
 export const headerComponents = {
-  home: <HeaderComponent>별책부록</HeaderComponent>,
-  location: <HeaderComponent>지도</HeaderComponent>,
-  account: <HeaderComponent>마이페이지</HeaderComponent>,
-  stamp: <HeaderComponent>스탬프</HeaderComponent>,
+  home: (
+    <HeaderComponent>
+      <div className={styles.whiteFont}>별책부록</div>
+    </HeaderComponent>
+  ),
+  location: (
+    <HeaderComponent>
+      <div>지도</div>
+    </HeaderComponent>
+  ),
+  account: (
+    <HeaderComponent>
+      <div>마이페이지</div>
+    </HeaderComponent>
+  ),
+  stamp: (
+    <HeaderComponent>
+      <div>스탬프</div>
+    </HeaderComponent>
+  ),
   bookMark: (
     <HeaderComponent>
-      <div>뒤로가기 파란색</div>
+      <BackIcon color={"#42688B"} />
       <div>책갈피</div>
-      <div>글 작성</div>
+      <WriteIcon />
     </HeaderComponent>
   ),
   write: (
     <HeaderComponent>
-      <div>뒤로가기 흰색</div>
+      <BackIcon color={"#ffffff"} />
       <div>등록</div>
     </HeaderComponent>
   ),
   comment: (
     <HeaderComponent>
-      <div> X 파란색</div>
-      <div>공백</div>
+      <CancelIcon />
+      <div>&nbsp</div>
     </HeaderComponent>
   ),
 };
@@ -31,5 +48,15 @@ export const headerComponents = {
 function HeaderComponent({ children }) {
   const { page } = useContext(PageData);
 
-  return <div className={`${styles.headerContents} ${page === "home" ? styles.home : ""}`}>{children}</div>;
+  return (
+    <div
+      className={`${
+        page === "home" || page === "location" || page === "stamp" || page === "account"
+          ? styles.headerContent
+          : styles.headerContents
+      }`}
+    >
+      {children}
+    </div>
+  );
 }

@@ -1,3 +1,17 @@
+@font-face {
+  font-family: "HakgyoansimChilpanjiugaeTTF-B";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimChilpanjiugaeTTF-B.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
 .header {
   position: fixed;
   top: 42px;
@@ -5,10 +19,22 @@
   width: 100%;
   z-index: 2;
 }
-
+.headerContent {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  font-family: "Pretendard-Regular";
+  font-weight: 700;
+  font-size: 20px;
+}
 .headerContents {
   height: 100%;
-  /* background-color: #ffffff; */
   display: flex;
   justify-content: space-between;
+}
+.whiteFont {
+  color: white;
+  font-family: "HakgyoansimChilpanjiugaeTTF-B";
+  font-weight: 300;
+  font-size: 30px;
 }
