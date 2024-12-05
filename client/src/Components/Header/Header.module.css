@@ -1,0 +1,17 @@
+.header {
+  position: fixed;
+  top: 42px;
+  height: 57px;
+  width: 100%;
+}
+
+.headerContents {
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+}
+
+.home {
+  background-color: #42688b;
+}
