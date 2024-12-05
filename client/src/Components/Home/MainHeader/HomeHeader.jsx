@@ -1,7 +1,7 @@
-import styles from "./MainHeader.module.css"; // CSS 모듈을 불러옵니다.
+import styles from "./HomeHeader.module.css"; // CSS 모듈을 불러옵니다.
 import StarBook from "../../../assets/img/Main/mainimg.svg";
 
-function MainHeader() {
+function HomeHeader() {
   return (
     <section className={styles.mainHeaderBox}>
       <div>
@@ -16,4 +16,4 @@ function MainHeader() {
   );
 }
 
-export default MainHeader;
+export default HomeHeader;

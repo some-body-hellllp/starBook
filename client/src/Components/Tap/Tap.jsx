@@ -7,6 +7,7 @@ function Tap() {
   const { setPage } = useContext(PageData);
 
   function pageHandler(word) {
+    console.log(word);
     setPage(word);
   }
 
