@@ -1,14 +1,21 @@
 import styles from "./Tap.module.css";
-import { Home, Location, QR, Stamp, Human } from "../../assets/img/Tab/Tab_image";
-import { useContext } from "react";
+import { HomeIcon, LocationIcon, QRIcon, StampIcon, HumanIcon } from "../../assets/img/Tab/Tab_image";
+import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { PageData } from "../../provider/PageProvider";
 
 function Tap() {
-  const { setPage } = useContext(PageData);
+  const { page, setPage } = useContext(PageData);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (page) {
+      navigate(page === "home" ? "/" : `/${page}`);
+    }
+  }, [page, navigate]);
 
   function pageHandler(word) {
-    console.log(word);
-    setPage(word);
+    setPage(word); // 상태 변경만 수행
   }
 
   return (
@@ -16,24 +23,24 @@ function Tap() {
       <div className={styles.tabInnerWrap}>
         <section className={styles.tabScreenWrap}>
           <div className={styles.tabScreen}>
-            <img src={QR} alt="QR Code" />
+            <QRIcon />
           </div>
         </section>
         <section className={styles.tabIconWrap}>
           <div className={styles.tabIcon}>
             <div onClick={() => pageHandler("home")}>
-              <img src={Home} alt="Home Icon" />
+              <HomeIcon page={page} />
             </div>
             <div onClick={() => pageHandler("location")}>
-              <img src={Location} alt="Location Icon" />
+              <LocationIcon page={page} />
             </div>
           </div>
           <div className={styles.tabIcon}>
             <div onClick={() => pageHandler("stamp")}>
-              <img src={Stamp} alt="Stamp Icon" />
+              <StampIcon page={page} />
             </div>
             <div onClick={() => pageHandler("account")}>
-              <img src={Human} alt="Account Icon" />
+              <HumanIcon page={page} />
             </div>
           </div>
         </section>

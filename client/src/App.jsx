@@ -8,14 +8,16 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <StarBook>
-                <Home />{" "}
-              </StarBook>
-            }
-          />
+          <Route element={<StarBook />}>
+            <Route index element={<Home />} />
+            <Route path="location" element={<div>location</div>} />
+            <Route path="stamp" element={<div>stamp</div>} />
+            <Route path="account" element={<div>account</div>} />
+            <Route path="bookmark" element={<div>bookmark</div>} />
+            <Route path="write" element={<div>write</div>} />
+            <Route path="login" element={<div>login</div>} />
+            <Route path="modify" element={<div>modify</div>} />
+          </Route>
         </Routes>
       </Router>
     </>
