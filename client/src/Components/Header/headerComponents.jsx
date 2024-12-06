@@ -4,6 +4,27 @@ import { useNavigate } from "react-router-dom";
 import { BackIcon, WriteIcon, CancelIcon } from "../../assets/img/Header/Header_image";
 import styles from "./Header.module.css"; // CSS 모듈 import
 
+function HeaderComponent({ children }) {
+  // 뒤로가기 구현중
+  const { page } = useContext(PageData);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (page) {
+      navigate(page === "home" ? "/" : `/${page}`);
+    }
+  }, [page, navigate]);
+
+  function pageHandler(word) {
+    setPage(word); // 상태 변경만 수행
+  }
+
+  const validPages = new Set(["home", "location", "stamp", "account"]); // 헤더의 요소가 하나만 들어가는 key를 배열에 넣어서 사용 (굉장히 편함)
+
+  // 헤더에 요소가 하나만 들어가는 key는 중앙정렬 아니라면 space-beetwen을 적용하게 만듬
+  return <div className={validPages.has(page) ? styles.headerContent : styles.headerContents}>{children}</div>;
+}
+
 export const headerComponents = {
   // 홈
   home: (
@@ -82,24 +103,3 @@ export const headerComponents = {
     </HeaderComponent>
   ),
 };
-
-function HeaderComponent({ children }) {
-  // 뒤로가기 구현중 안되면 그냥 절대값으로 갈듯
-  const { page } = useContext(PageData);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (page) {
-      navigate(page === "home" ? "/" : `/${page}`);
-    }
-  }, [page, navigate]);
-
-  function pageHandler(word) {
-    setPage(word); // 상태 변경만 수행
-  }
-
-  const validPages = new Set(["home", "location", "stamp", "account"]); // 헤더의 요소가 하나만 들어가는 key를 배열에 넣어서 사용 (굉장히 편함)
-
-  // 헤더에 요소가 하나만 들어가는 key는 중앙정렬 아니라면 space-beetwen을 적용하게 만듬
-  return <div className={validPages.has(page) ? styles.headerContent : styles.headerContents}>{children}</div>;
-}

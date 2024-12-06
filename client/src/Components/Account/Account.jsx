@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { PageData } from "../../provider/PageProvider";
 import { useNavigate } from "react-router-dom";
 // 이미지
@@ -12,17 +12,27 @@ import styles from "./Account.module.css";
 
 export default function Account() {
   const { islogin, setIslogin, page, setPage } = useContext(PageData);
+  const [resolveCallback, setResolveCallback] = useState(null);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (page) {
-      navigate(page === "home" ? "/" : `/${page}`);
+    if (page && resolveCallback) {
+      // 상태 변경 후 resolve 호출
+      resolveCallback();
+      setResolveCallback(null); // 콜백 초기화
     }
-  }, [page, navigate]);
+  }, [page, resolveCallback]);
 
   function pageHandler(word) {
-    setPage(word); // 상태 변경만 수행
+    return new Promise((resolve) => {
+      setPage(word); // 상태 업데이트
+      setResolveCallback(() => resolve); // resolve를 저장
+      console.log("헤더 로딩 끝");
+    }).then(() => {
+      // navigate는 상태 업데이트 후에 실행
+      navigate(word === "home" ? "/" : `/${word}`);
+    });
   }
 
   useEffect(() => {
