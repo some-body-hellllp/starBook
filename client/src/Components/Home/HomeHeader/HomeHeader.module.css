@@ -6,6 +6,7 @@
   padding: 168px 0 0 30px;
   color: white;
   position: relative;
+  overflow: hidden;
 }
 
 .mainImg {
