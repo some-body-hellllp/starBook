@@ -7,23 +7,18 @@ import KAKAO from "../../assets/img/Login/KAKAO.png";
 import NAVER from "../../assets/img/Login/NAVER.png";
 import Icon from "../../assets/img/Login/Icon.png";
 
+// 컴포넌트
+import Header from "../Header/Header";
+
 // 스타일
 import style from "./Login.module.css";
+
 export default function Login() {
-  const { page, setPage } = useContext(PageData);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (page) {
-      navigate(page === "home" ? "/" : `/${page}`);
-    }
-  }, [page, navigate]);
-
-  function pageHandler(word) {
-    setPage(word); // 상태 변경만 수행
-  }
+  const { setIslogin } = useContext(PageData);
   return (
     <>
+      <Header showBackButton={true}></Header>
       <section className={style.Login}>
         <div className={style.Icon_wrap}>
           <img className={style.Icon} src={Icon} alt="Icon" />
@@ -35,10 +30,17 @@ export default function Login() {
 
         <section className={style.social_login}>
           <div className={style.social_wrap}>
-            <img src={KAKAO} alt="KAKAO" />
+            <img
+              src={KAKAO}
+              alt="KAKAO"
+              onClick={() => {
+                setIslogin("islogin");
+                navigate("/account");
+              }}
+            />
           </div>
           <div>
-            <img src={NAVER} alt="NAVER" />
+            <img src={NAVER} alt="NAVER" onClick={() => navigate("/signup")} />
           </div>
         </section>
       </section>

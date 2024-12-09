@@ -1,4 +1,4 @@
-export function BackIcon({ color, onClick }) {
+export function BackIcon({ color = "#42688B", onClick }) {
   return (
     <svg
       width="16"
@@ -7,7 +7,7 @@ export function BackIcon({ color, onClick }) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       onClick={onClick}
-      style={{ cursor: "pointer" }}
+      style={{ cursor: "pointer", margin: "10px 16px" }}
     >
       <path
         fillRule="evenodd"
@@ -19,9 +19,17 @@ export function BackIcon({ color, onClick }) {
   );
 }
 
-export function CancelIcon() {
+export function CancelIcon({ onClick }) {
   return (
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 28 28"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      onClick={onClick}
+      style={{ cursor: "pointer", margin: "10px " }}
+    >
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
@@ -32,9 +40,17 @@ export function CancelIcon() {
   );
 }
 
-export function WriteIcon() {
+export function WriteIcon({ onClick }) {
   return (
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="28"
+      height="28"
+      viewBox="0 0 28 28"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      onClick={onClick}
+      style={{ cursor: "pointer", margin: "10px " }}
+    >
       <path
         fill-rule="evenodd"
         clip-rule="evenodd"
