@@ -4,7 +4,16 @@ import { useLocation } from "react-router-dom";
 import { Outlet } from "react-router";
 export default function StarBook() {
   const location = useLocation();
-  const hideFooter = ["/write", "account", "modify", "/login", "/signup"].includes(location.pathname);
+  const hideFooter = [
+    "/bookmark", // 북마크
+    "comment", // 북마크 댓글
+    "/write", // 북마크 글 작성
+    "account", // 회원 정보
+    "account_detail", // 회원정보 수정
+    "/login", // 로그인
+    "/signup", // 회원가입
+    "/coupon", // 쿠폰함
+  ].includes(location.pathname);
   return (
     <>
       <PageProvider>
