@@ -12,6 +12,7 @@ export default function Header({
   submitFunction = null, // 제출 버튼에 들어갈 함수
   write = null, // 글 작성 헤더에 사용 true로 설정하면 흰색 글자로 출력
   color = "#42688B", // 글자색을 푸른색으로 기본 설정
+  backgroundColor = null, // 배경색이 필요하면 사용
   backButtonColor = "#42688B", // 뒤로가기 버튼을 푸른색으로 기본 설정
 }) {
   const location = useLocation();
@@ -20,7 +21,7 @@ export default function Header({
   // 클래스 구분을 위한 url
   const page = location.pathname; // 현재 경로
 
-  // 배열에 들어간 url들은 헤더에 문장 하나만 들어있음
+  // 배열에 들어간 url들은 헤더에 하나의 요소(타이틀)만 들어있음
   const validPages = new Set(["/", "/location", "/stamp", "/account"]);
 
   // 헤더 클래스 조건부 설정
@@ -34,15 +35,15 @@ export default function Header({
   return (
     <div className={headerClass}>
       {showCancleButton && <CancelIcon onClick={handleBackClick} />}
-      {showBackButton && <BackIcon color={color} onClick={handleBackClick} />}
+      {showBackButton && <BackIcon color={backButtonColor} onClick={handleBackClick} />}
       {children}
       {showSubmitButton && (
         <button
-          // 괄호 안 넣으면 실행 안 됨
+          // 함수에 괄호 안 넣으면 실행 안 됨
           onClick={() => submitFunction()}
           type="submit"
           className={`submit ${write ? styles.submit_white : ""}`}
-          style={{ color: backButtonColor }}
+          style={{ color: color, background: backgroundColor }}
           // 이거 글자색이야!!!
         >
           {buttonText}

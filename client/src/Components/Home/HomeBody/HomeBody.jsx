@@ -3,7 +3,10 @@ import bookMark from "../../../assets/img/Main/bookmark.svg";
 import arrow from "../../../assets/img/Main/arrow.svg";
 import user from "../../../assets/img/Main/user.svg";
 
+import { useNavigate } from "react-router-dom";
+
 function HomeBody() {
+  const navigate = useNavigate();
   return (
     <section>
       <div className={styles.homeBodyText}>
@@ -12,7 +15,9 @@ function HomeBody() {
           <li className={styles.bookMarText}>책갈피</li>
         </div>
         <div>
-          <li className={styles.seeMore}>더보기</li>
+          <li className={styles.seeMore} onClick={() => navigate("/bookmark")}>
+            더보기
+          </li>
           <img className={styles.arrow} src={arrow} alt="화살표" />
         </div>
       </div>
