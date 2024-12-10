@@ -1,3 +1,4 @@
+
 .header_content {
   position: fixed;
   top: 42px;
@@ -25,13 +26,15 @@
   font-weight: 700;
   font-size: 20px;
 }
-button {
+
+.submit {
   border: none;
   background-color: transparent;
   font-weight: 600;
   font-size: 16px;
   margin-right: 3px;
 }
+
 .white_font {
   color: white;
   font-family: "HakgyoansimChilpanjiugaeTTF-B";
