@@ -16,27 +16,24 @@ import Coupon from "./Components/Coupon/Coupon";
 function App() {
   return (
     <>
-      <div>
-        {/* <Account_detail /> */}
-        <Coupon />
-      </div>
-      {/* <Router>
+      <div></div>
+      <Router>
         <Routes>
           <Route element={<StarBook />}>
             <Route index element={<Home />} />
             <Route path="location" element={<div>location</div>} />
             <Route path="stamp" element={<div>stamp</div>} />
             <Route path="account" element={<Account />} />
-            <Route path="account_detail" element={<div>account_detail</div>} />
+            <Route path="account_detail" element={<Account_detail />} />
             <Route path="bookmark" element={<div>bookmark</div>} />
             <Route path="write" element={<div>write</div>} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="modify" element={<div>modify</div>} />
-            <Route path="coupon" element={<div>coupon</div>} />
+            <Route path="coupon" element={<Coupon />} />
           </Route>
         </Routes>
-      </Router> */}
+      </Router>
     </>
   );
 }

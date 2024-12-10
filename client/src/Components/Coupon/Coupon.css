@@ -12,11 +12,14 @@
   border: 1px solid black;
 }
 
+.eventCouponBox {
+  padding: 0 15px 0 15px;
+}
+
 .eventCoupon {
   width: 100%;
   position: absolute;
   top: 202px;
-  margin: 0 15px 0 15px;
   padding: 20px;
   border: 1px solid #d2d2d2;
   position: relative;

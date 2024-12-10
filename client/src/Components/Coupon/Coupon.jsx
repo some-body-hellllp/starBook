@@ -11,7 +11,7 @@ export default function Coupon() {
           만료 쿠폰
         </div>
       </div>
-      <div>
+      <div className="eventCouponBox">
         <div className="eventCoupon">
           <div>
             <div className="percent">5%</div>
