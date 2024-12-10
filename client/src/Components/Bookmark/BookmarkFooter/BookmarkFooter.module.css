@@ -12,6 +12,8 @@
 .icon_wrap {
   padding: 10px;
   line-height: 0;
+  background-color: transparent;
+  border: none;
 }
 .icon_innerWrap {
   width: 24px;

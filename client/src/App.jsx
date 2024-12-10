@@ -16,7 +16,6 @@ import Coupon from "./Components/Coupon/Coupon";
 
 import Bookmark from "./Components/Bookmark/Bookmark";
 
-
 function App() {
   return (
     <>
@@ -30,7 +29,7 @@ function App() {
             <Route path="account" element={<Account />} />
 
             <Route path="account_detail" element={<Account_detail />} />
-            <Route path="bookmark" element={<div>bookmark</div>} />
+            <Route path="bookmark" element={<Bookmark />} />
 
             <Route path="write" element={<div>write</div>} />
             <Route path="comment" element={<div>comment</div>} />
@@ -39,7 +38,6 @@ function App() {
 
             <Route path="modify" element={<div>modify</div>} />
             <Route path="coupon" element={<Coupon />} />
-
           </Route>
         </Routes>
       </Router>
