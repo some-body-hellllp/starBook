@@ -1,0 +1,55 @@
+.couponBox {
+  position: relative;
+}
+
+.couponSelect {
+  display: flex;
+  position: absolute;
+  top: 108px;
+}
+
+.couponTab {
+  border: 1px solid black;
+}
+
+.eventCoupon {
+  width: 100%;
+  position: absolute;
+  top: 202px;
+  margin: 0 15px 0 15px;
+  padding: 20px;
+  border: 1px solid #d2d2d2;
+  position: relative;
+  display: flex;
+  align-items: center; /* 수직 중앙 */
+  justify-content: space-between;
+  height: 119px;
+}
+
+.percent {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f5f99;
+}
+
+.stamp {
+  font-size: 14px;
+  font-weight: 700;
+  color: black;
+  padding-top: 12px;
+}
+
+.maximum {
+  font-size: 14px;
+  font-weight: 400;
+  color: #989898;
+}
+
+.eventButton {
+  height: 37px;
+  width: 69px;
+  border-radius: 10px;
+  color: white;
+  background-color: #1f5f99;
+  border: none;
+}

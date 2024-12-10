@@ -10,11 +10,17 @@ import Home from "./Components/Home/Home";
 import Account from "./Components/Account/Account";
 import Login from "./Components/Login/Login";
 import SignUp from "./Components/SignUp/SignUp";
+import Account_detail from "./Components/Account_detail/Account_detail";
+import Coupon from "./Components/Coupon/Coupon";
 
 function App() {
   return (
     <>
-      <Router>
+      <div>
+        {/* <Account_detail /> */}
+        <Coupon />
+      </div>
+      {/* <Router>
         <Routes>
           <Route element={<StarBook />}>
             <Route index element={<Home />} />
@@ -30,7 +36,7 @@ function App() {
             <Route path="coupon" element={<div>coupon</div>} />
           </Route>
         </Routes>
-      </Router>
+      </Router> */}
     </>
   );
 }
