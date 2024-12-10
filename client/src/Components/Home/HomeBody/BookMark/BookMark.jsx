@@ -1,10 +1,12 @@
 import styles from "./BookMark.module.css";
 import Card from "./Card/Card";
 
+import { useNavigate } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 export default function BookMark() {
+  const navigate = useNavigate();
   return (
     <div className={styles.bookMark}>
       <Swiper
@@ -21,7 +23,9 @@ export default function BookMark() {
                 <br />
                 이야기를 담은 공간
               </div>
-              <div className={styles.bookMark_sub2}>보러가기</div>
+              <div onClick={() => navigate("/bookmark")} className={styles.bookMark_sub2}>
+                보러가기
+              </div>
             </div>
           </div>
         </SwiperSlide>

@@ -33,7 +33,7 @@ export default function Header({
   };
 
   return (
-    <div className={headerClass}>
+    <div className={headerClass} style={{ background: backgroundColor }}>
       {showCancleButton && <CancelIcon onClick={handleBackClick} />}
       {showBackButton && <BackIcon color={backButtonColor} onClick={handleBackClick} />}
       {children}
@@ -43,7 +43,7 @@ export default function Header({
           onClick={() => submitFunction()}
           type="submit"
           className={`submit ${write ? styles.submit_white : ""}`}
-          style={{ color: color, background: backgroundColor }}
+          style={{ color: color }}
           // 이거 글자색이야!!!
         >
           {buttonText}
