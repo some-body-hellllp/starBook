@@ -16,8 +16,12 @@ import Home from "./Components/Home/Home";
 // 로그인과 회원가입
 import Login from "./Components/Login/Login";
 import SignUp from "./Components/SignUp/SignUp";
+
+import Stamp from "./Components/Stamp/Stamp";
+
 // 마이페이지, 회원정보, 쿠폰
 import Account from "./Components/Account/Account";
+
 import Account_detail from "./Components/Account_detail/Account_detail";
 import Coupon from "./Components/Coupon/Coupon";
 // 북마크 피드, 게시글 작성, 댓글 작성
@@ -35,7 +39,7 @@ function App() {
             <Route path="qr" element={<Qr />} />
             <Route path="splash" element={<Splash />} />
             <Route path="location" element={<div>location</div>} />
-            <Route path="stamp" element={<div>stamp</div>} />
+            <Route path="stamp" element={<Stamp />} />
             <Route path="account" element={<Account />} />
             <Route path="account_detail" element={<Account_detail />} />
             <Route path="bookmark" element={<Bookmark />} />
