@@ -12,15 +12,20 @@ import Header from "../Header/Header";
 import styles from "./Account.module.css";
 
 export default function Account() {
-  const { islogin, setIslogin } = useContext(PageData);
+  const { userData, setUserData } = useContext(PageData);
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!islogin) {
-      setIslogin(true); // 렌더링 후 상태 변경
-    }
-  }, [islogin, setIslogin]);
+  // 상태를 초기화하는 함수
+  const resetUserData = () => {
+    setUserData({
+      profile: null,
+      nickName: null,
+      stamp: null,
+      stampCount: null,
+      islogin: "logout",
+    });
+  };
 
   return (
     <>
@@ -31,14 +36,16 @@ export default function Account() {
           <img src={emptyImg} alt="profileImg" />
         </div>
         {/* 프로필 타이틀 */}
-        {islogin === "islogin" ? (
-          <AccountTitle classValue={`${styles.account_title} ${islogin === "islogin" ? styles.islogin : ""}`} />
+        {userData.islogin === "login" ? (
+          <AccountTitle />
         ) : (
           <div className={styles.account_title}>로그인이 필요합니다</div>
         )}
         {/* 버튼 들어갈 자리 */}
-        <div className={`${styles.account_button_wrap} ${islogin === "islogin" ? styles.islogin : styles.logout}`}>
-          {islogin === "islogin" ? (
+        <div
+          className={`${styles.account_button_wrap} ${userData.islogin === "login" ? styles.userData : styles.logout}`}
+        >
+          {userData.islogin === "login" ? (
             <>
               <AccountBtn className={styles.account_button} onClick={() => navigate("/account_detail")}>
                 회원 정보
@@ -49,7 +56,7 @@ export default function Account() {
               <AccountBtn
                 className={`${styles.account_button} ${styles.white_button}`}
                 buttontype="logout"
-                onClick={() => setIslogin("logout")}
+                onClick={() => resetUserData()}
               >
                 로그아웃
               </AccountBtn>

@@ -15,7 +15,16 @@ import style from "./Login.module.css";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { setIslogin } = useContext(PageData);
+  const { setUserData } = useContext(PageData);
+
+  // 범용 업데이트 함수
+  const updateUserData = (field, value) => {
+    setUserData((prevData) => ({
+      ...prevData,
+      [field]: value,
+    }));
+  };
+
   return (
     <>
       <Header showBackButton={true}></Header>
@@ -34,7 +43,7 @@ export default function Login() {
               src={KAKAO}
               alt="KAKAO"
               onClick={() => {
-                setIslogin("islogin");
+                updateUserData("islogin", "login");
                 navigate("/account");
               }}
             />

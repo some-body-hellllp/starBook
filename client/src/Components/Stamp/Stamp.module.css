@@ -4,7 +4,7 @@
 }
 
 .stampBox {
-  padding: 26px 19px 26px 19px;
+  padding: 20px 19px 18px 19px;
   width: 100%;
   height: auto;
   margin-top: 144px;
@@ -33,7 +33,7 @@
   color: #1f5f99;
   font-size: 14px;
   font-weight: 600;
-  padding: 30px 0 10px 0;
+  padding: 30px 0 6px 0;
   text-align: center;
 }
 
@@ -48,7 +48,9 @@
 .stampGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 4개의 열로 나눔 */
-  gap: 29px; /* 이미지 간의 간격 */
+
+  row-gap: 16px; /* 행 간격 */
+  column-gap: 29px; /* 열 간격 */
   padding-bottom: 38px;
   border-bottom: 2px solid #004484;
 }
@@ -63,6 +65,9 @@
   color: white;
   font-weight: 400;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 .stampText {
@@ -70,6 +75,5 @@
 }
 
 .stampText p {
-  padding: 3px 0;
   font-size: 14px;
 }
