@@ -5,25 +5,25 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
 
 // 컴포넌트
-//QR
-import Qr from "./Components/Qr/Qr";
 // 스플레시
 import Splash from "./Components/Splash/Splash";
 // 레이아웃 컴포넌트 (푸터 출력을 여기서 설정)
 import StarBook from "./components/StarBook/Starbook";
 // 메인
 import Home from "./Components/Home/Home";
+// 지도
+
+//QR
+import Qr from "./Components/Qr/Qr";
+// 스탬프
+import Stamp from "./Components/Stamp/Stamp";
+// 마이페이지, 회원정보, 쿠폰
+import Account from "./Components/Account/Account";
+import Account_detail from "./Components/Account_detail/Account_detail";
+import Coupon from "./Components/Coupon/Coupon";
 // 로그인과 회원가입
 import Login from "./Components/Login/Login";
 import SignUp from "./Components/SignUp/SignUp";
-
-import Stamp from "./Components/Stamp/Stamp";
-
-// 마이페이지, 회원정보, 쿠폰
-import Account from "./Components/Account/Account";
-
-import Account_detail from "./Components/Account_detail/Account_detail";
-import Coupon from "./Components/Coupon/Coupon";
 // 북마크 피드, 게시글 작성, 댓글 작성
 import Bookmark from "./Components/Bookmark/Bookmark";
 import Write from "./Components/Write/Write";
