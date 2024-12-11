@@ -28,6 +28,7 @@ import SignUp from "./Components/SignUp/SignUp";
 import Bookmark from "./Components/Bookmark/Bookmark";
 import Write from "./Components/Write/Write";
 import Comment from "./Components/Comment/Comment";
+import Location from "./Components/Location/Location";
 
 function App() {
   return (
@@ -38,7 +39,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="qr" element={<Qr />} />
             <Route path="splash" element={<Splash />} />
-            <Route path="location" element={<div>location</div>} />
+            <Route path="location" element={<Location />} />
             <Route path="stamp" element={<Stamp />} />
             <Route path="account" element={<Account />} />
             <Route path="account_detail" element={<Account_detail />} />
