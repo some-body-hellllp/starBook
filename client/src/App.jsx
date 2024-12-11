@@ -12,7 +12,7 @@ import StarBook from "./components/StarBook/Starbook";
 // 메인
 import Home from "./Components/Home/Home";
 // 지도
-
+import Location from "./Components/Location/Location";
 //QR
 import Qr from "./Components/Qr/Qr";
 // 스탬프
@@ -28,7 +28,6 @@ import SignUp from "./Components/SignUp/SignUp";
 import Bookmark from "./Components/Bookmark/Bookmark";
 import Write from "./Components/Write/Write";
 import Comment from "./Components/Comment/Comment";
-import Location from "./Components/Location/Location";
 
 function App() {
   return (

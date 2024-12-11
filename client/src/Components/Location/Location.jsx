@@ -1,5 +1,7 @@
 import { useEffect } from "react";
+import Header from "../Header/Header";
 
+import "./Location.css";
 export default function Location() {
   useEffect(() => {
     // 카카오맵 그리기
@@ -16,5 +18,12 @@ export default function Location() {
     var map = new window.kakao.maps.Map(container, options);
   }
 
-  return <div id="map" style={{ width: "100%", height: "1000px" }}></div>;
+  return (
+    <>
+      <Header backgroundColor="#ffffff">지도</Header>
+      <section className="location">
+        <div id="map" style={{ width: "100%", height: "1000px" }}></div>
+      </section>
+    </>
+  );
 }
