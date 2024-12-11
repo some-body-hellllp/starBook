@@ -58,7 +58,13 @@
 
 /* 별3: 로고 아래쪽에 배치 */
 .star3 {
-  right: 17%; /* 로고 바로 아래쪽에 배치 */
+  right: 22%; /* 로고 바로 아래쪽에 배치 */
   top: 50%; /* 세로 중앙보다 아래에 배치 */
   transform: translateX(-50%); /* 가로 중앙 정렬 */
+}
+.star1,
+.star2,
+.star3 {
+  opacity: 0;
+  transform: scale(0);
 }

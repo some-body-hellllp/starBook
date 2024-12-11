@@ -7,73 +7,79 @@ import { gsap } from "gsap";
 
 export default function Splash() {
   useEffect(() => {
-    // 문구 애니메이션: 서서히 나타나게
+    // 별들의 초기 상태를 완전히 숨김
+    gsap.set([`.${styles.star1}`, `.${styles.star2}`, `.${styles.star3}`], {
+      opacity: 0,
+      scale: 0,
+    });
+
+    // 문구 애니메이션
     gsap.to(`.${styles.splash_text}`, {
       opacity: 1,
-      duration: 3,
+      duration: 2,
       ease: "power3.out",
     });
 
-    // 로고 애니메이션: 서서히 나타나게
+    // 로고 애니메이션
     gsap.to(`.${styles.logo}`, {
       opacity: 1,
-      duration: 1.5,
-      delay: 0.5, // 문구가 나타난 후 0.5초 뒤에 로고 등장
+      duration: 1,
+      delay: 0.3,
       ease: "power3.out",
+      onComplete: () => {
+        // 로고 애니메이션 완료 후 별들 빠르게 순차적으로 나타나기
+        gsap
+          .timeline()
+          .to(`.${styles.star1}`, {
+            opacity: 1,
+            scale: 1,
+            duration: 0, // 빠르게 나타나게 설정
+          })
+          .to(`.${styles.star2}`, {
+            opacity: 1,
+            scale: 1,
+            duration: 0.1,
+          })
+          .to(`.${styles.star3}`, {
+            opacity: 1,
+            scale: 1,
+            duration: 0.2,
+          })
+          .then(() => {
+            // 각 별마다 더 자연스러운 반짝임 효과
+            [`.${styles.star1}`, `.${styles.star2}`, `.${styles.star3}`].forEach((starClass, index) => {
+              // 반짝이는 애니메이션
+              gsap
+                .timeline({
+                  repeat: -1,
+                  delay: index * 0.4, // 각 별에 조금씩 지연을 추가
+                })
+                // 반짝임: 커지고 불투명도 증가
+                .to(starClass, {
+                  scale: 1.05, // 크기 변화 범위 줄임
+                  opacity: 1, // 선명해짐
+                  duration: 0.5,
+                  ease: "power1.inOut",
+                })
+                // 크기 줄어들면서 흐려짐
+                .to(starClass, {
+                  scale: 0.95, // 작아짐 범위 줄임
+                  opacity: 0.5, // 흐려짐
+                  duration: 0.3,
+                  ease: "power1.inOut",
+                })
+                // 원래 크기로 돌아오면서 다시 밝아짐
+                .to(starClass, {
+                  scale: 1, // 원래 크기로 돌아옴
+                  opacity: 1, // 다시 선명해짐
+                  duration: 0.5,
+                  ease: "elastic.out(1, 0.3)",
+                });
+            });
+          });
+      },
     });
-
-    // 별 애니메이션: 각 별이 차례로 반짝이는 효과
-    gsap.fromTo(
-      `.${styles.star1}`,
-      {
-        opacity: 1, // 처음부터 보이도록
-        scale: 1,
-      },
-      {
-        opacity: 1,
-        scale: 1.2, // 반짝이는 효과
-        duration: 1,
-        repeat: -1,
-        yoyo: true,
-        ease: "power1.inOut",
-        delay: 1, // 첫 번째 별이 나타난 후 일정 시간 뒤에 시작
-      }
-    );
-
-    gsap.fromTo(
-      `.${styles.star2}`,
-      {
-        opacity: 1, // 처음부터 보이도록
-        scale: 1,
-      },
-      {
-        opacity: 1,
-        scale: 1.2, // 반짝이는 효과
-        duration: 1,
-        repeat: -1,
-        yoyo: true,
-        ease: "power1.inOut",
-        delay: 1.5, // 두 번째 별은 첫 번째 별보다 약간 늦게 시작
-      }
-    );
-
-    gsap.fromTo(
-      `.${styles.star3}`,
-      {
-        opacity: 1, // 처음부터 보이도록
-        scale: 1,
-      },
-      {
-        opacity: 1,
-        scale: 1.2, // 반짝이는 효과
-        duration: 1,
-        repeat: -1,
-        yoyo: true,
-        ease: "power1.inOut",
-        delay: 2, // 세 번째 별은 두 번째 별보다 늦게 시작
-      }
-    );
-  }, []); // 빈 배열을 사용하여 컴포넌트가 렌더링될 때 한 번만 실행
+  }, []);
 
   return (
     <div className={styles.splash_container}>
@@ -87,7 +93,7 @@ export default function Splash() {
         </div>
       </div>
 
-      {/* 별 */}
+      {/* 별들 */}
       <div className={styles.star1}>
         <img src={star1} alt="Star" />
       </div>
