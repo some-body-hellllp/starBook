@@ -19,6 +19,7 @@ router.post("/api/v1/auth/user", controllers.join);
 
 router.post("/api/v1/auth/login", controllers.login); // 토큰 발금
 
+// 여기서 부터 시퀄라이즈로 바꿔야 함
 // 미들웨어
 router.post("/api/v1/auth/auth", controllers.auth); // 토큰 필요함
 
