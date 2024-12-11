@@ -34,7 +34,7 @@ export default function Header({
 
   return (
     <header className={headerClass} style={{ background: backgroundColor }}>
-      {showCancleButton && <CancelIcon onClick={handleBackClick} />}
+      {showCancleButton && <CancelIcon onClick={() => navigate("/bookmark")} />}
       {showBackButton && <BackIcon color={backButtonColor} onClick={handleBackClick} />}
       {children}
       {showSubmitButton && (
