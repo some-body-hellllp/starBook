@@ -1,0 +1,64 @@
+.splash_container {
+  background: linear-gradient(180deg, #004484, #1f5f99);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.logo_warp {
+  text-align: center;
+}
+
+/* 로고 텍스트 */
+.splash_text {
+  font-size: 14px;
+  color: white;
+  text-align: center;
+  margin-bottom: 10px;
+  opacity: 0; /* 처음에는 보이지 않도록 설정 */
+}
+
+.splash_text span {
+  color: #ffc267;
+}
+
+/* 로고 스타일 */
+.logo {
+  margin-top: 20px; /* 텍스트와 로고 간의 여백 */
+  opacity: 0; /* 처음에는 보이지 않도록 설정 */
+}
+
+/* 별 스타일 */
+.star1,
+.star2,
+.star3 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  opacity: 1; /* 처음부터 보이도록 설정 */
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* 별1: 로고 왼쪽에 배치 */
+.star1 {
+  left: 23%; /* 로고의 왼쪽에 배치 */
+  top: 48%; /* 세로 중앙보다 약간 위에 위치 */
+  transform: translateY(-50%);
+}
+
+/* 별2: 로고 오른쪽에 배치 */
+.star2 {
+  right: 20%; /* 로고의 오른쪽에 배치 */
+  top: 49%; /* 세로 중앙보다 약간 위에 위치 */
+  transform: translateY(-50%);
+}
+
+/* 별3: 로고 아래쪽에 배치 */
+.star3 {
+  right: 17%; /* 로고 바로 아래쪽에 배치 */
+  top: 50%; /* 세로 중앙보다 아래에 배치 */
+  transform: translateX(-50%); /* 가로 중앙 정렬 */
+}

@@ -10,6 +10,7 @@ import Home from "./Components/Home/Home";
 import Account from "./Components/Account/Account";
 import Login from "./Components/Login/Login";
 import SignUp from "./Components/SignUp/SignUp";
+import Splash from "./Components/Splash/Splash";
 
 import Account_detail from "./Components/Account_detail/Account_detail";
 import Coupon from "./Components/Coupon/Coupon";
@@ -19,8 +20,10 @@ import Bookmark from "./Components/Bookmark/Bookmark";
 function App() {
   return (
     <>
-      <div></div>
-      <Router>
+      <div>
+        <Splash />
+      </div>
+      {/* <Router>
         <Routes>
           <Route element={<StarBook />}>
             <Route index element={<Home />} />
@@ -40,7 +43,7 @@ function App() {
             <Route path="coupon" element={<Coupon />} />
           </Route>
         </Routes>
-      </Router>
+      </Router> */}
     </>
   );
 }
