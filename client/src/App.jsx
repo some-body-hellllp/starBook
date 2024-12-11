@@ -5,21 +5,25 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
 
 // 컴포넌트
+// 레이아웃 컴포넌트 (푸터 출력을 여기서 설정)
 import StarBook from "./components/StarBook/Starbook";
+// 메인
 import Home from "./Components/Home/Home";
-import Account from "./Components/Account/Account";
+// 로그인과 회원가입
 import Login from "./Components/Login/Login";
 import SignUp from "./Components/SignUp/SignUp";
-
+// 마이페이지, 회원정보, 쿠폰
+import Account from "./Components/Account/Account";
 import Account_detail from "./Components/Account_detail/Account_detail";
 import Coupon from "./Components/Coupon/Coupon";
-
+// 북마크 피드, 게시글 작성, 댓글 작성
 import Bookmark from "./Components/Bookmark/Bookmark";
+import Write from "./Components/Write/Write";
+import Comment from "./Components/Comment/Comment";
 
 function App() {
   return (
     <>
-      <div></div>
       <Router>
         <Routes>
           <Route element={<StarBook />}>
@@ -27,16 +31,12 @@ function App() {
             <Route path="location" element={<div>location</div>} />
             <Route path="stamp" element={<div>stamp</div>} />
             <Route path="account" element={<Account />} />
-
             <Route path="account_detail" element={<Account_detail />} />
             <Route path="bookmark" element={<Bookmark />} />
-
-            <Route path="write" element={<div>write</div>} />
-            <Route path="comment" element={<div>comment</div>} />
+            <Route path="write" element={<Write />} />
+            <Route path="comment" element={<Comment />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
-
-            <Route path="modify" element={<div>modify</div>} />
             <Route path="coupon" element={<Coupon />} />
           </Route>
         </Routes>
