@@ -3,16 +3,15 @@ import { createContext, useState } from "react";
 export const PageData = createContext();
 
 const PageProvider = ({ children }) => {
-  const [islogin, setIslogin] = useState("islogin");
   const [userData, setUserData] = useState({
-    profile: "",
-    nickName: "",
-    name: "",
-    greeting: "",
-    favorite: [],
+    profile: null,
+    nickName: null,
+    stamp: null,
+    stampCount: null,
+    islogin: "logout",
   });
 
-  return <PageData.Provider value={{ islogin, setIslogin }}>{children}</PageData.Provider>;
+  return <PageData.Provider value={{ userData, setUserData }}>{children}</PageData.Provider>;
 };
 
 export default PageProvider;

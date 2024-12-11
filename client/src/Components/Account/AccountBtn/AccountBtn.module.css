@@ -1,5 +1,5 @@
 .account_button {
-  border: 1px #42688b solid;
+  border: 1px #1f5f99 solid;
   width: 312px;
   height: 64px;
   border-radius: 5px;
@@ -11,13 +11,13 @@
 }
 .blue_button {
   color: #ffffff;
-  background-color: #42688b;
+  background-color: #1f5f99;
 }
 .blue_button:nth-of-type(1) {
   margin-bottom: 14px;
 }
 .white_button {
-  color: #42688b;
+  color: #1f5f99;
   background-color: #ffffff;
   margin-top: 77px;
 }
