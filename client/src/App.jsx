@@ -10,7 +10,7 @@ import Home from "./Components/Home/Home";
 import Account from "./Components/Account/Account";
 import Login from "./Components/Login/Login";
 import SignUp from "./Components/SignUp/SignUp";
-
+import Stamp from "./Components/Stamp/Stamp";
 import Account_detail from "./Components/Account_detail/Account_detail";
 import Coupon from "./Components/Coupon/Coupon";
 
@@ -25,7 +25,7 @@ function App() {
           <Route element={<StarBook />}>
             <Route index element={<Home />} />
             <Route path="location" element={<div>location</div>} />
-            <Route path="stamp" element={<div>stamp</div>} />
+            <Route path="stamp" element={<Stamp />} />
             <Route path="account" element={<Account />} />
 
             <Route path="account_detail" element={<Account_detail />} />
