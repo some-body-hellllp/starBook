@@ -10,7 +10,7 @@ export default function BookMark() {
   return (
     <div className={styles.bookMark}>
       <Swiper
-        spaceBetween={0} // 슬라이드 간의 간격
+        spaceBetween={10} // 슬라이드 간의 간격
         slidesPerView={2.3} // 한 번에 보이는 슬라이드 개수
         pagination={{ clickable: true }} // 페이지네이션 클릭 가능
       >
