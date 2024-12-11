@@ -33,7 +33,7 @@ export default function Header({
   };
 
   return (
-    <div className={headerClass} style={{ background: backgroundColor }}>
+    <header className={headerClass} style={{ background: backgroundColor }}>
       {showCancleButton && <CancelIcon onClick={handleBackClick} />}
       {showBackButton && <BackIcon color={backButtonColor} onClick={handleBackClick} />}
       {children}
@@ -42,7 +42,7 @@ export default function Header({
           // 함수에 괄호 안 넣으면 실행 안 됨
           onClick={() => submitFunction()}
           type="submit"
-          className={`submit ${write ? styles.submit_white : ""}`}
+          className={`${styles.submit}${write ? styles.submit_white : ""}`}
           style={{ color: color }}
           // 이거 글자색이야!!!
         >
@@ -50,7 +50,7 @@ export default function Header({
         </button>
       )}
 
-      {showWriteButton && <WriteIcon />}
-    </div>
+      {showWriteButton && <WriteIcon onClick={() => navigate("/write")} />}
+    </header>
   );
 }
