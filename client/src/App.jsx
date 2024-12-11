@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
 
 // 컴포넌트
+// 스플레시
+import Splash from "./Components/Splash/Splash";
 // 레이아웃 컴포넌트 (푸터 출력을 여기서 설정)
 import StarBook from "./components/StarBook/Starbook";
 // 메인
@@ -28,6 +30,7 @@ function App() {
         <Routes>
           <Route element={<StarBook />}>
             <Route index element={<Home />} />
+            <Route path="splash" element={<Splash />} />
             <Route path="location" element={<div>location</div>} />
             <Route path="stamp" element={<div>stamp</div>} />
             <Route path="account" element={<Account />} />
@@ -40,7 +43,7 @@ function App() {
             <Route path="coupon" element={<Coupon />} />
           </Route>
         </Routes>
-      </Router>
+      </Router> 
     </>
   );
 }
