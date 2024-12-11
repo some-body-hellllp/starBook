@@ -1,0 +1,24 @@
+/* 댓글 프레임 */
+.comment_content {
+  display: flex;
+  gap: 10px;
+  padding: 0 27px;
+  border-bottom: 1px solid #d2d2d2;
+  margin-bottom: 30px;
+}
+.comment_details {
+  width: 100%;
+}
+
+/* 댓글 헤더 */
+.comment_header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+/* 댓글 내용 */
+.comment_body {
+  width: 100%;
+  height: 49px;
+}

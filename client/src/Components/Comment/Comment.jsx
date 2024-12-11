@@ -1,21 +1,26 @@
+// 컴포넌트
 import Header from "../Header/Header";
-
+import CommentItem from "./CommentItem/CommentItem";
+import CommentForm from "./CommentForm/CommentForm";
+// 스타일
 import styles from "./Comment.module.css";
+
+// className={styles.}
 
 export default function Comment() {
   return (
     <>
-      <Header />
+      <Header showCancleButton={true} backgroundColor="#ffffff" />
       <section className={styles.comment}>
-        <div>
-          <figure></figure>
-          <div>
-            <div>타이틀</div>
-            <div>내용</div>
-          </div>
-          <div>2일전</div>
-        </div>
-        <form action=""></form>
+        <CommentItem />
+        <CommentItem />
+        <CommentItem />
+        <CommentItem />
+        <CommentItem />
+        <CommentItem />
+        <CommentItem />
+        <CommentItem />
+        <CommentForm />
       </section>
     </>
   );
