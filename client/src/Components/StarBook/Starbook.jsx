@@ -6,10 +6,10 @@ export default function StarBook() {
   const location = useLocation();
   const hideFooter = [
     "/bookmark", // 북마크
-    "comment", // 북마크 댓글
+    "/comment", // 북마크 댓글
     "/write", // 북마크 글 작성
-    "account", // 회원 정보
-    "account_detail", // 회원정보 수정
+    "/account", // 회원 정보
+    "/account_detail", // 회원정보 수정
     "/login", // 로그인
     "/signup", // 회원가입
     "/coupon", // 쿠폰함
