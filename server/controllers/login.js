@@ -1,42 +1,61 @@
-const User = require("../models/user"); // User 모델 가져오기
+const db = require("../config/db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
+// ID , PW
 const login = async (req, res) => {
-  const loginId = req.body.user_login_id;
-  const loginPw = req.body.user_login_pw;
+  const loginId = req.body.id;
+  const loginPw = req.body.pw;
 
   // 유효성 검사
+  // ID와 PW가 들어오지 않으면 에러를 송신
+  // 400번 에러 BAD REQUEST
   if (!loginId || !loginPw) {
-    return res.status(400).json({ status: "error", message: "id, pw는 필수입니다", data: null });
+    return res.status(400).json({ status: "error", message: "id,pw는 필수입니다", data: null });
   }
 
-  try {
-    // 시퀄라이즈의 findOne 메서드를 사용하여 사용자 검색
-    const user = await User.findOne({ where: { user_login_id: loginId } });
+  const QUERY1 = `
+    SELECT
+        user_id,
+        user_login_id,
+        user_login_pw,
+        user_name
+    FROM
+        USERS
+    WHERE
+        user_login_id=?`;
+  const user = await db.execute(QUERY1, [loginId]).then((result) => result[0][0]);
 
-    // 사용자 존재 여부 확인
-    if (!user) {
-      return res.status(404).json({ status: "error", message: "id, pw가 틀립니다", data: null });
-    }
-    console.log("입력된 비밀번호:", loginPw);
-    console.log("저장된 해시된 비밀번호:", user.user_login_pw);
-
-    // 비밀번호 비교
-    const isMatch = await bcrypt.compare(loginPw, user.user_login_pw);
-    if (!isMatch) {
-      return res.status(401).json({ status: "error", message: "비밀번호가 일치하지 않습니다", data: null });
-    }
-
-    // JWT 토큰 발급
-    const secretKey = process.env.JWT_SECRET;
-    const token = jwt.sign({ id: user.user_id }, secretKey, { expiresIn: "10d" });
-
-    return res.status(200).json({ status: "success", message: "로그인 성공", data: { token } });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ status: "error", message: "서버 오류", data: null });
+  // 404 NOT FOUND
+  if (!user) {
+    return res.status(404).json({ status: "error", message: "id,pw가 틀립니다", data: null });
   }
+
+  // PW 확인(비밀번호 비교)
+  const isMatch = await bcrypt.compare(loginPw, user.user_login_pw);
+  if (!isMatch) {
+    // UnAuthorize
+    res.status(401).json({ status: "error", message: "비밀번호가 일치하지 않습니다", data: null });
+  }
+
+  // 서버는 보통 -> 상태 없이 (Stateless) 설계
+  // 로그인 - 인증서 발급 형태
+  // sessin - cookie같은
+  // JWT token
+  // - access token (8시간)
+  // - refresh token (일주일)
+  // 엑세스 토큰이 만료되면 db에 남아있는 리프래쉬 토큰으로 재발급
+
+  // 우리는 토큰 하나만 쓴다!
+  // 로컬 스토리지나 쿠키에 토큰을 저장하여 사용함
+  // 토큰이 만료가 된다면 로그인 창으로 이동시켜 다시 로그인을 하게 함
+
+  // 정상적으로 로그인 되었습니다.
+  // 첫번째 : 넣을 값 (객체) , 두번째 (암호키), 세번째 만료일(객체) - 옵션
+  const secretKey = process.env.JWT_SECRET;
+  const token = jwt.sign({ id: user.user_id }, secretKey, { expiresIn: "10d" });
+
+  res.status(200).json({ status: "success", message: "로그인 성공", data: { token: token } });
+  // 같은 이름은 변수만 넣어도 됨 (token)
 };
 
 module.exports = login;

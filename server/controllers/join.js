@@ -1,33 +1,60 @@
-const User = require("../models/user.js");
+const db = require("../config/db");
 const bcrypt = require("bcrypt");
-
+const { CurrentTime } = require("../config/date");
 async function join(req, res) {
-  try {
-    const { user_login_id, user_login_pw, user_name } = req.body;
+  // body
+  const loginId = req.body.id;
+  const loginPw = req.body.pw;
+  const name = req.body.name;
 
-    // ID와 PW가 들어오지 않으면 에러를 송신
-    // 400번 에러 BAD REQUEST
-    if (!user_login_id || !user_login_pw) {
-      return res.status(400).json({ status: "error", message: "id,pw는 필수입니다", data: null });
-    }
-
-    // id 중복 확인
-    const existingUser = await User.findOne({ where: { user_login_id } });
-    if (existingUser) {
-      return res.status(400).json({ error: "이미 사용 중인 id입니다." });
-    }
-
-    // 비밀번호 암호화
-    const encryptPw = await bcrypt.hash(user_login_pw, 10);
-
-    // 새로운 사용자 생성
-    const newUser = await User.create({ user_login_id, user_login_pw: encryptPw, user_name });
-    console.log("새 사용자 추가됨:", newUser);
-    res.status(201).json(newUser);
-  } catch (error) {
-    console.error("사용자 생성 중 오류 발생:", error);
-    res.status(500).json({ error: "사용자를 생성하지 못했습니다." });
+  // 서버 유효성검사 (필수), 클라이언트(react, html) 유효성검사 (선택)
+  if (!loginId || !loginPw) {
+    // 400 - Bad Request
+    return res.status(400).json({ status: "error", message: "id, pw는 필수 입니다.", data: null });
   }
+
+  // 중복 검사 loginId
+  let QUERY1 = `
+        SELECT 
+            user_id, user_login_id, user_login_pw, user_name
+        FROM 
+ 	        USERS
+        WHERE
+            user_login_id = ?`;
+
+  const user = await db.execute(QUERY1, [loginId]).then((result) => result[0][0]);
+  if (user) {
+    return res.status(409).json({ status: "error", message: "이미 존재하는 id입니다.", data: null });
+  }
+
+  if (name) {
+    return res.status(409).json({ status: "error", message: "이름은 필수입력 입니다.", data: null });
+  }
+
+  // 비밀번호 암호화
+  const encryptPw = await bcrypt.hash(loginPw, 10);
+  const time = CurrentTime();
+  // 데이터베이스 사용자 정보 저장
+  const QUERY2 = `
+        INSERT INTO USERS
+        (
+	        user_login_id,
+	        user_login_pw,
+	        user_name,
+          create_at
+        )
+        VALUES
+        (
+            ?,
+            ?,
+            ?,
+            ?
+        )`;
+
+  await db.execute(QUERY2, [loginId, encryptPw, name, time]);
+
+  // 성공 응답
+  return res.status(200).json({ status: "success", message: "회원가입 성공", data: null });
 }
 
 module.exports = join;
