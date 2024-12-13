@@ -14,6 +14,7 @@ export default function Header({
   color = "#42688B", // 글자색을 푸른색으로 기본 설정
   backgroundColor = null, // 배경색이 필요하면 사용
   backButtonColor = "#42688B", // 뒤로가기 버튼을 푸른색으로 기본 설정
+  backButtonFunction = -1, // 뒤로가기 버튼 함수
 }) {
   const location = useLocation();
   const navigate = useNavigate();
@@ -28,14 +29,14 @@ export default function Header({
   const headerClass = validPages.has(page) ? styles.header_content : styles.header_contents;
 
   // 뒤로 가기 버튼 클릭 처리
-  const handleBackClick = () => {
-    navigate(-1); // 이전 페이지로 이동
+  const handleBackClick = (path) => {
+    navigate(path); // 페이지로 이동
   };
 
   return (
     <header className={headerClass} style={{ background: backgroundColor }}>
       {showCancleButton && <CancelIcon onClick={() => navigate("/bookmark")} />}
-      {showBackButton && <BackIcon color={backButtonColor} onClick={handleBackClick} />}
+      {showBackButton && <BackIcon color={backButtonColor} onClick={() => handleBackClick(backButtonFunction)} />}
       {children}
       {showSubmitButton && (
         <button

@@ -28,6 +28,8 @@ import SignUp from "./Components/SignUp/SignUp";
 import Bookmark from "./Components/Bookmark/Bookmark";
 import Write from "./Components/Write/Write";
 import Comment from "./Components/Comment/Comment";
+// 카카오 로그인 리다이렉트 URL
+import Auth from "./Components/Auth/Auth";
 
 function App() {
   return (
@@ -48,6 +50,7 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="coupon" element={<Coupon />} />
+            <Route path="auth" element={<Auth />} />
           </Route>
         </Routes>
       </Router>

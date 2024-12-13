@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import axios from "axios";
+import { useEffect, useContext } from "react";
 import styles from "./Splash.module.css";
 import logo from "../../assets/img/splash/logo.svg";
 import star1 from "../../assets/img/splash/star1.svg";
@@ -6,6 +7,8 @@ import star2 from "../../assets/img/splash/star2.svg";
 import { gsap } from "gsap";
 
 export default function Splash() {
+  const { setUserData } = useContext(PageData);
+  const tokken = getItem("tokken");
   useEffect(() => {
     // 별들의 초기 상태를 완전히 숨김
     gsap.set([`.${styles.star1}`, `.${styles.star2}`, `.${styles.star3}`], {
@@ -79,6 +82,26 @@ export default function Splash() {
           });
       },
     });
+
+    axios
+      .post(`${postUrl}/auth/login`, {
+        tokken: tokken,
+      })
+      .then(function (response) {
+        console.log(response); // 성공 시 응답 로그
+
+        setUserData({
+          userId: null, // 유저 아이디
+          profile: null, // 유저 프로필 사진 (미구현)
+          nickName: null, // 유저 닉네임
+          stamp: null, // 스탬프 현황
+          stampCount: null, // 누적 스탬프 갯수
+          islogin: false, // 로그인 확인
+        });
+      })
+      .catch(function (error) {
+        console.log(error); // 실패 시 에러 로그
+      });
   }, []);
 
   return (
