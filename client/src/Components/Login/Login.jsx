@@ -15,14 +15,14 @@ import style from "./Login.module.css";
 
 export default function Login() {
   const navigate = useNavigate();
-  const { setUserData } = useContext(PageData);
 
-  // 범용 업데이트 함수
-  const updateUserData = (field, value) => {
-    setUserData((prevData) => ({
-      ...prevData,
-      [field]: value,
-    }));
+  const Rest_api_key = import.meta.env.VITE_KAKAO_LOGIN_REST_API; //REST API KEY
+  const redirect_uri = import.meta.env.VITE_KAKAO_REDIRECT_URL; //Redirect URI
+  // oauth 요청 URL
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
+
+  const handleLogin = () => {
+    window.location.href = kakaoURL;
   };
 
   return (
@@ -43,10 +43,17 @@ export default function Login() {
               src={KAKAO}
               alt="KAKAO"
               onClick={() => {
+                handleLogin();
+              }}
+            />
+            {/* <img
+              src={KAKAO}
+              alt="KAKAO"
+              onClick={() => {
                 updateUserData("islogin", "login");
                 navigate("/account");
               }}
-            />
+            /> */}
           </div>
           <div>
             <img src={NAVER} alt="NAVER" onClick={() => navigate("/signup")} />

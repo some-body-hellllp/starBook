@@ -23,7 +23,7 @@ export default function Account() {
       nickName: null,
       stamp: null,
       stampCount: null,
-      islogin: "logout",
+      islogin: false,
     });
   };
 
