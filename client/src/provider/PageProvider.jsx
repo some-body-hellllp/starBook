@@ -4,6 +4,7 @@ export const PageData = createContext();
 
 const PageProvider = ({ children }) => {
   const [userData, setUserData] = useState({
+    userId: null,
     profile: null,
     nickName: null,
     stamp: null,

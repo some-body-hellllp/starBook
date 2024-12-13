@@ -17,7 +17,7 @@ const visit = async (req, res) => {
         course_longitude,
         course_QR
     FROM
-        course
+         COURSES
     WHERE
         course_QR=?`;
   const course = await db.execute(QUERY1, [courseQr]).then((result) => result[0][0]);
@@ -26,13 +26,12 @@ const visit = async (req, res) => {
   }
 
   // 방문 했으면 방문한 코스입니다 라는 메세지 발송
-
   // 유저 코스에서 유저 아이디와 코스 아이디가 포함되어 있는 행의 유저 코스 아이디를 가져옴
   const QUERY2 = `
     SELECT
         user_course_id
     FROM
-        user_course
+        USER_COURSES
     WHERE
         user_id = ?
     AND
@@ -46,7 +45,7 @@ const visit = async (req, res) => {
 
   // 방문 이력이 없으면 방문 처리
   const QUERY3 = `
-    INSERT INTO user_course
+    INSERT INTO USER_COURSES
     (
         user_id,
         course_id

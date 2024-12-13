@@ -1,26 +1,18 @@
-const { Sequelize } = require("sequelize");
-require("dotenv").config();
+require("dotenv").config;
+const mysql = require("mysql2");
 
-console.log("Connecting to MySQL with the following settings:");
-console.log(`DB_HOST: ${process.env.DB_HOST}`);
-console.log(`DB_USER: ${process.env.DB_USER}`);
-console.log(`DB_NAME: ${process.env.DB_NAME}`);
-
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+const pool = mysql.createPool({
   host: process.env.DB_HOST,
-  dialect: "mysql",
-  port: process.env.DB_PORT || 3306, // MySQL 포트가 설정되지 않았다면 기본값 3306 사용
-  logging: false,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
 });
+console.log("데이터베이스 호스트:", process.env.DB_HOST);
+console.log("데이터베이스 포트:", process.env.DB_PORT);
+console.log("데이터베이스 이름:", process.env.DB_NAME);
+console.log("데이터베이스 사용자:", process.env.DB_USER);
 
-const connectDB = async () => {
-  try {
-    await sequelize.authenticate();
-    console.log("MySQL 연결 성공!");
-  } catch (error) {
-    console.error("MySQL 연결 실패:", error);
-    process.exit(1);
-  }
-};
+const db = pool.promise();
 
-module.exports = { sequelize, connectDB };
+module.exports = db;

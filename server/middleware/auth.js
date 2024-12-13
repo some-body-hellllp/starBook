@@ -41,12 +41,14 @@ const auth = async (req, res, next) => {
         user_login_pw,
         user_name
     FROM
-        user
+        USERS
     WHERE
         user_id= ?`;
 
   const user = await db.execute(QUERY1, [userId]).then((result) => result[0][0]);
   req.user = user;
+  // 토큰 인증 성공
+  console.log("토근 인증 성공!");
   next();
 };
 module.exports = auth;
