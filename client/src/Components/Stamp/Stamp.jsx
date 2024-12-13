@@ -1,7 +1,7 @@
 import styles from "./Stamp.module.css"; // CSS 모듈 파일 임포트
 import stampCheck from "../../assets/img/stamp/stampcheck.svg";
 import stampNoneCheck from "../../assets/img/stamp/stampdoncheck.svg";
-import StampInfo from "./stampinfo";
+import StampInfo from "./StampInfo/StampInfo";
 import Header from "../Header/Header";
 
 export default function Stamp() {
