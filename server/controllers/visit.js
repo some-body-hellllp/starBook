@@ -1,5 +1,5 @@
 const db = require("../config/db");
-
+const { CurrentTime } = require("../config/date");
 const visit = async (req, res) => {
   const loginUserId = req.user.user_id;
   const courseQr = req.body.qr;
@@ -56,7 +56,32 @@ const visit = async (req, res) => {
     ?
     )
   `;
+  // 방문한 코스 등록
   await db.execute(QUERY3, [loginUserId, course.course_id]);
+
+  // 생성 시간 설정
+  const time = CurrentTime();
+
+  // 스탬프 테이블에 컬럼 추가
+  const QUERY4 = `
+    INSERT INTO STAMPS
+    (
+        user_id,
+        stamp_location,
+        stamp_type,
+        create_at
+
+    )
+    VALUES
+    (
+    ?,
+    ?,
+    ?,
+    ?
+    )
+  `;
+  // 스탬프 테이블에 스탬프 등록
+  await db.execute(QUERY4, [loginUserId, course.course_name, "visit", time]);
 
   return res.json({ status: "success", message: "QR 인증이 완료되었습니다.", data: null });
 };

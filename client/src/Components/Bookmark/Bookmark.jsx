@@ -8,7 +8,7 @@ import styles from "./Bookmark.module.css";
 export default function Bookmark() {
   return (
     <>
-      <Header showBackButton={true} showWriteButton={true} backgroundColor={"#ffffff"}>
+      <Header showBackButton={true} showWriteButton={true} backgroundColor={"#ffffff"} backButtonFunction={"/"}>
         책갈피
       </Header>
       <section className={styles.bookmark}>
