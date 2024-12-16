@@ -6,30 +6,30 @@ import "./index.css";
 
 // 컴포넌트
 // 레이아웃 컴포넌트 (푸터 출력을 여기서 설정)
-import StarBook from "@components/StarBook/StarBook.jsx";
+import StarBook from "./Components/StarBook/StarBook.jsx";
 // 스플레시
-import Splash from "@components/Splash/Splash.jsx";
+import Splash from "./Components/Splash/Splash.jsx";
 // 메인
-import Home from "@components/Home/Home.jsx";
+import Home from "./Components/Home/Home.jsx";
 // 지도
-import Location from "@components/Location/Location.jsx";
+import Location from "./Components/Location/Location.jsx";
 //QR
-import Qr from "@components/Qr/Qr.jsx";
+import Qr from "./Components/Qr/Qr.jsx";
 // 스탬프
-import Stamp from "@components/Stamp/Stamp.jsx";
+import Stamp from "./Components/Stamp/Stamp.jsx";
 // 마이페이지, 회원정보, 쿠폰
-import Account from "@components/Account/Account.jsx";
-import Account_detail from "@components/Account_detail/Account_detail.jsx";
-import Coupon from "@components/Coupon/Coupon.jsx";
+import Account from "./Components/Account/Account.jsx";
+import Account_detail from "./Components/Account_detail/Account_detail.jsx";
+import Coupon from "./Components/Coupon/Coupon.jsx";
 // 로그인과 회원가입
-import Login from "@components/Login/Login.jsx";
-import SignUp from "@components/SignUp/SignUp.jsx";
+import Login from "./Components/Login/Login.jsx";
+import SignUp from "./Components/SignUp/SignUp.jsx";
 // 북마크 피드, 게시글 작성, 댓글 작성
-import Bookmark from "@components/Bookmark/Bookmark.jsx";
-import Write from "@components/Write/Write.jsx";
-import Comment from "@components/Comment/Comment.jsx";
+import Bookmark from "./Components/Bookmark/Bookmark.jsx";
+import Write from "./Components/Write/Write.jsx";
+import Comment from "./Components/Comment/Comment.jsx";
 // 카카오 로그인 리다이렉트 URL
-import Auth from "@components/Auth/Auth.jsx";
+import Auth from "./Components/Auth/Auth.jsx";
 
 function App() {
   return (
