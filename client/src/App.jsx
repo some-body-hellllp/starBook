@@ -5,10 +5,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./index.css";
 
 // 컴포넌트
-// 스플레시
-import Splash from "./components/Splash/Splash.jsx";
 // 레이아웃 컴포넌트 (푸터 출력을 여기서 설정)
 import StarBook from "./components/StarBook/StarBook.jsx";
+// 스플레시
+import Splash from "./components/Splash/Splash.jsx";
 // 메인
 import Home from "./components/Home/Home.jsx";
 // 지도
