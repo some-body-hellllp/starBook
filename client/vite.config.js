@@ -1,10 +1,10 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   build: {
+    outDir: "dist", // 이 설정이 필요한지 확인
     rollupOptions: {
       output: {
         format: "es",
@@ -14,7 +14,6 @@ export default defineConfig({
       },
     },
   },
-  // 새로 고침 하면 인덱스로 보낸다는데 잘 모르곘음
   server: {
     historyApiFallback: true,
   },
