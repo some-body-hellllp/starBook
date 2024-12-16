@@ -1,0 +1,15 @@
+/* 상단 */
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+.title_innerWrap {
+  display: flex;
+}
+.user_name {
+  padding-right: 11px;
+}
+.info {
+  color: #989898;
+  font-weight: 300;
+}

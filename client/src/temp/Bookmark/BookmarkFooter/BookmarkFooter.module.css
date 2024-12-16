@@ -1,0 +1,27 @@
+/* 하단 */
+
+.bookmark_footer {
+  display: flex;
+  justify-content: space-between;
+}
+.icons {
+  display: flex;
+  align-items: center;
+}
+
+.icon_wrap {
+  padding: 10px;
+  line-height: 0;
+  background-color: transparent;
+  border: none;
+}
+.icon_innerWrap {
+  width: 24px;
+  height: 24px;
+}
+
+.reactions {
+  display: flex;
+
+  align-items: center;
+}

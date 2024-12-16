@@ -1,0 +1,79 @@
+.stampSection {
+  width: 100%;
+  padding: 0 16px 0 16px;
+}
+
+.stampBox {
+  padding: 20px 19px 18px 19px;
+  width: 100%;
+  height: auto;
+  margin: 144px 0 45px 0;
+  border: solid 1px #d2d2d2;
+  border-radius: 5px;
+}
+
+.stampBoxHeader {
+  font-size: 22px;
+  font-weight: 400;
+  color: #555;
+}
+
+.stampName {
+  color: black;
+  font-size: 26px;
+}
+
+.stampBoxBody {
+  font-size: 14px;
+  font-weight: 400;
+  padding-top: 15px;
+}
+
+.stampCardName {
+  color: #1f5f99;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 30px 0 6px 0;
+  text-align: center;
+}
+
+.stampCard {
+  border-radius: 10px;
+  background: linear-gradient(180deg, #004484, #1f5f99);
+  height: auto;
+  width: 100%;
+  padding: 35px 26px 10px 26px;
+}
+
+.stampGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4개의 열로 나눔 */
+
+  row-gap: 16px; /* 행 간격 */
+  column-gap: 29px; /* 열 간격 */
+  padding-bottom: 38px;
+  border-bottom: 2px solid #004484;
+}
+
+.stampGrid img {
+  width: 100%; /* 각 이미지를 부모 컨테이너에 맞게 크기 조정 */
+  height: auto; /* 비율에 맞춰 자동으로 높이 조정 */
+  border-radius: 5px;
+}
+
+.stampText {
+  color: white;
+  font-weight: 400;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.stampText {
+  padding: 20px 0;
+}
+
+.stampText p {
+  font-size: 14px;
+}

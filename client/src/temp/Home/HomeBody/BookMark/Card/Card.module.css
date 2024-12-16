@@ -1,0 +1,35 @@
+.card {
+  /* width: 158px; */
+  height: 230px;
+  border-radius: 10px;
+  background-color: white;
+  border: 1px solid #ffc267;
+}
+.card_img {
+  width: 100%;
+  height: 140px;
+}
+.card_img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+.card_textWarp {
+  padding: 10px;
+}
+
+.card_text {
+  font-size: 14px;
+  line-height: 17px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 줄 수 (예: 3줄로 제한) */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card_userName {
+  font-size: 16px;
+  font-weight: 500;
+  padding-top: 10px;
+}

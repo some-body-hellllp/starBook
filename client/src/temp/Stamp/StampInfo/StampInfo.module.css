@@ -1,0 +1,29 @@
+.stampInfoBox {
+  padding: 20px;
+  border: 1px solid #d2d2d2;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.stampFlex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stampInfoHeader {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.stampInfoSide {
+  color: #42688b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.stampInfoText {
+  color: #333;
+  font-size: 20px;
+  font-weight: 300;
+  padding-top: 11px;
+}

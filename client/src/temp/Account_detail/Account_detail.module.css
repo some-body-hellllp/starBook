@@ -1,0 +1,80 @@
+.account_detailBox {
+  margin: 0 18px 0 18px;
+  position: relative;
+}
+
+.proFile {
+  border: 1px solid #d2d2d2;
+  height: 274px;
+  width: 100%;
+  position: relative; /* 부모 요소 기준 */
+  top: 144px;
+  border-radius: 5px;
+  position: absolute;
+}
+
+.proFileImgPosition {
+  position: absolute;
+  top: 50%; /* 부모 높이의 50% */
+  left: 50%; /* 부모 너비의 50% */
+  transform: translate(-50%, -50%); /* 본인의 크기만큼 이동 */
+}
+
+.proFileImg {
+  height: 124px;
+  width: 124px;
+  border: 1px solid black;
+  border-radius: 100px;
+  display: flex;
+  justify-content: center; /* 수평 중앙 */
+  align-items: center; /* 수직 중앙 */
+}
+
+.proFileButtonBox {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.proFileButton {
+  position: fixed;
+  top: 355px;
+  border: none;
+  width: 65px;
+  height: 37px;
+  background-color: #1f5f99;
+  border-radius: 10px;
+  color: white;
+}
+
+.nickName {
+  border: 1px solid #d2d2d2;
+  width: 100%;
+  height: 131px;
+  position: absolute;
+  top: 427px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.account_detailBox_Name {
+  padding: 25px 0 0 23px;
+  font-weight: 700;
+  font-size: 18px;
+  color: #1f5f99;
+}
+
+.myNickName {
+  text-align: center;
+}
+.input {
+  width: 188px;
+  height: 26px;
+  margin-top: 20px;
+  font-size: 22px;
+  text-align: center;
+  border: none;
+}
+.input:focus {
+  outline: none;
+}
