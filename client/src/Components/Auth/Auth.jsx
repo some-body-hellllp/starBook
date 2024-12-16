@@ -73,6 +73,7 @@ export default function Auth() {
           const userId = res.data.data.user.id;
           const name = res.data.data.user.name;
           const stamp = res.data.data.stamps;
+          console.log(stamp.length);
           setUserData({
             userId: userId, // 유저 아이디
             profile: null, // 유저 프로필 사진 (미구현)

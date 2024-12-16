@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useContext } from "react";
+import { PageData } from "../../provider/PageProvider";
 import styles from "./Splash.module.css";
 import logo from "../../assets/img/splash/logo.svg";
 import star1 from "../../assets/img/splash/star1.svg";
@@ -8,7 +9,8 @@ import { gsap } from "gsap";
 
 export default function Splash() {
   const { setUserData } = useContext(PageData);
-  const tokken = getItem("tokken");
+  const postUrl = import.meta.env.VITE_POST_URL;
+  const token = window.localStorage.getItem("token");
   useEffect(() => {
     // 별들의 초기 상태를 완전히 숨김
     gsap.set([`.${styles.star1}`, `.${styles.star2}`, `.${styles.star3}`], {
@@ -85,18 +87,21 @@ export default function Splash() {
 
     axios
       .post(`${postUrl}/auth/login`, {
-        tokken: tokken,
+        token: token,
       })
       .then(function (response) {
         console.log(response); // 성공 시 응답 로그
-
+        const userId = response.data.data.user.id;
+        const name = response.data.data.user.name;
+        const stamp = response.data.data.stamps;
+        console.log(stamp.length);
         setUserData({
-          userId: null, // 유저 아이디
+          userId: userId, // 유저 아이디
           profile: null, // 유저 프로필 사진 (미구현)
-          nickName: null, // 유저 닉네임
-          stamp: null, // 스탬프 현황
-          stampCount: null, // 누적 스탬프 갯수
-          islogin: false, // 로그인 확인
+          nickName: name, // 유저 닉네임
+          stamp: stamp, // 스탬프 현황
+          stampCount: stamp.length, // 누적 스탬프 갯수
+          islogin: true, // 로그인 확인
         });
       })
       .catch(function (error) {

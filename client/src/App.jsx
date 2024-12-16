@@ -10,7 +10,7 @@ import Splash from "./Components/Splash/Splash.jsx";
 // 레이아웃 컴포넌트 (푸터 출력을 여기서 설정)
 import StarBook from "./Components/StarBook/StarBook.jsx";
 // 메인
-import Home from "./Components/Home/Home";
+import Home from "./Components/Home/Home.jsx";
 // 지도
 import Location from "./Components/Location/Location.jsx";
 //QR
