@@ -3,3 +3,8 @@
 
 [build.environment]
   NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/*"  # 클라이언트 라우팅 처리
+  to = "/index.html"
+  status = 200
