@@ -16,18 +16,24 @@ import style from "./Login.module.css";
 export default function Login() {
   const navigate = useNavigate();
 
-  const Rest_api_key = import.meta.env.VITE_KAKAO_LOGIN_REST_API; //REST API KEY
-  const redirect_uri = import.meta.env.VITE_KAKAO_REDIRECT_URL; //Redirect URI
+  const kakao_Rest_api_key = import.meta.env.VITE_KAKAO_LOGIN_REST_API; //REST API KEY
+  const kakao_Redirect_uri = import.meta.env.VITE_KAKAO_REDIRECT_URL; //Redirect URI
+  const naver_client_api_key = import.meta.env.VITE_NAVER_LOGIN_CLIENT_API; //REST API KEY
+  const naver_Redirect_uri = import.meta.env.VITE_NAVER_REDIRECT_URL; //Redirect URI
   // oauth 요청 URL
-  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
-
-  const handleLogin = () => {
-    window.location.href = kakaoURL;
+  const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${kakao_Rest_api_key}&redirect_uri=${kakao_Redirect_uri}&response_type=code`;
+  const naverURL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${naver_client_api_key}&state=test&redirect_uri=${naver_Redirect_uri}`;
+  const handleLogin = (social) => {
+    if (social === "kakao") {
+      window.location.href = kakaoURL;
+    } else {
+      window.location.href = naverURL;
+    }
   };
 
   return (
     <>
-      <Header showBackButton={true}></Header>
+      <Header showBackButton={true} backButtonFunction={"/account"}></Header>
       <section className={style.Login}>
         <div className={style.Icon_wrap}>
           <img className={style.Icon} src={Icon} alt="Icon" />
@@ -43,20 +49,12 @@ export default function Login() {
               src={KAKAO}
               alt="KAKAO"
               onClick={() => {
-                handleLogin();
+                handleLogin("kakao");
               }}
             />
-            {/* <img
-              src={KAKAO}
-              alt="KAKAO"
-              onClick={() => {
-                updateUserData("islogin", "login");
-                navigate("/account");
-              }}
-            /> */}
           </div>
           <div>
-            <img src={NAVER} alt="NAVER" onClick={() => navigate("/signup")} />
+            <img src={NAVER} alt="NAVER" onClick={() => handleLogin("naver")} />
           </div>
         </section>
       </section>
