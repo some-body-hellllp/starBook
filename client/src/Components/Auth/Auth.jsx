@@ -15,9 +15,10 @@ export default function Auth() {
     // `code` 값이 없으면 잘못된 접근으로 리디렉션
     if (code === null) {
       alert("잘못된 접근입니다");
-      return navigate(`/`);
+      setTimeout(() => {
+        navigate(`/`);
+      }, 0);
     }
-
     // 카카오 토큰을 요청하는 함수
     const getKakaoToken = () => {
       axios
