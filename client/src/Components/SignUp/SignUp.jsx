@@ -21,7 +21,7 @@ export default function SignUp() {
     // axios로 서버에 데이터 전송
     axios
       .post(`${postUrl}/auth/user`, {
-        kakaoCode: code, // 카카오 인증 코드
+        code: code, //  인증 코드
         nickName: nickName, // 닉네임
       })
       .then(function (response) {
