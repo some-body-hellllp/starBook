@@ -9,8 +9,6 @@ export default function Auth() {
   const code = new URL(window.location.href).searchParams.get("code") || null;
 
   useEffect(() => {
-    // console.log(code);
-    // console.log(social);
     // `code` 값이 없으면 잘못된 접근으로 리디렉션
     if (code === null) {
       alert("잘못된 접근입니다");
