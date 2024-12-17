@@ -1,11 +1,13 @@
 import styles from "./HomeHeader.module.css"; // CSS 모듈을 불러옵니다.
 import StarBook from "../../../assets/img/Main/mainimg.svg";
+import titleText from "../../../assets/img/Header/titleText.png";
 
 function HomeHeader() {
   return (
     <div className={styles.mainHeaderBox}>
       <div>
         <img className={styles.mainImg} src={StarBook} alt="메인이미지" />
+        <img className={styles.headerImg} src={titleText} alt="이미지" />
       </div>
       <div className={styles.header_text_warp}>
         <div className={styles.mainHeaderText}>

@@ -1,5 +1,5 @@
 .mainHeaderBox {
-  height: 337px;
+  height: 300px;
   width: 100%;
   background: linear-gradient(180deg, #004484, #1f5f99);
   border-radius: 0 0 30px 30px;
@@ -17,6 +17,13 @@
   top: 141px;
   left: 46px;
   z-index: 1;
+}
+
+.headerImg {
+  position: absolute;
+  left: 50%;
+  top: 25px;
+  transform: translate(-50%, 0%); /* 요소를 정확히 중앙에 배치 */
 }
 
 .mainHeaderText {
