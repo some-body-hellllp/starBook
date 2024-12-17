@@ -1,11 +1,9 @@
-import { useEffect, useContext } from "react";
-import { PageData } from "../../provider/PageProvider";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import getKakaoLogin from "../../function/getKakaoLogin";
 
 export default function Auth() {
   const navigate = useNavigate();
-  const { setUserData } = useContext(PageData);
   const code = new URL(window.location.href).searchParams.get("code") || null;
 
   useEffect(() => {
