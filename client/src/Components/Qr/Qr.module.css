@@ -1,0 +1,40 @@
+.qrScannerContainer {
+  max-width: 24rem; /* max-w-sm */
+  margin: 0 auto; /* mx-auto */
+  width: 100%; /* w-full */
+}
+
+.qr-scanner-header {
+  display: flex; /* flex */
+  justify-content: space-between; /* justify-between */
+  width: 100%; /* w-full */
+}
+
+.qr-scanner-icons {
+  display: flex; /* flex */
+  gap: 1rem; /* gap-4 */
+}
+
+.qrScannerTitle {
+  font-weight: bold; /* font-bold */
+  color: #1f2937; /* text-gray-900 */
+  padding: 1rem 0; /* py-4 */
+  text-align: center; /* text-center */
+  border-bottom: 1px solid #9ca3af; /* border-b border-gray-400 */
+}
+
+.qrScannerVideoWrapper {
+  position: relative; /* relative */
+  width: 100%; /* w-full */
+  height: 500px; /* h-[500px] */
+  border: 1px solid #9ca3af; /* border border-gray-400 */
+}
+
+.qrScannerVideo,
+.qrScannerCanvas {
+  position: absolute; /* absolute */
+  top: 0; /* top-0 */
+  left: 0; /* left-0 */
+  width: 100%; /* w-full */
+  height: 100%; /* h-full */
+}

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import jsQR from "jsqr";
+import styles from "./Qr.module.css"; // CSS 모듈 import
 
 function Qr() {
   const [userLocation, setUserLocation] = useState({});
@@ -11,7 +12,6 @@ function Qr() {
   const canvasRef = useRef(null);
 
   // 카메라 실행시키는 코드
-
   useEffect(() => {
     const requestCameraPermission = async () => {
       try {
@@ -45,7 +45,6 @@ function Qr() {
   }, [permissionGranted, videoStream]);
 
   // QR 인식을 하게되면 반응하여 코드 출력 (여기서 QR코드 전송)
-
   useEffect(() => {
     if (qrData) {
       alert(`성공! QR CODE : ${qrData}`);
@@ -53,7 +52,6 @@ function Qr() {
   }, [qrData]);
 
   // 카메라 촬영
-
   useEffect(() => {
     if (videoStream) {
       const video = videoRef.current;
@@ -102,11 +100,11 @@ function Qr() {
   console.log(userLocation);
 
   return (
-    <div className="qr-scanner-container">
-      <h1 className="qr-scanner-title">QR Scanner</h1>
-      <div className="qr-scanner-video-wrapper">
-        <video className="qr-scanner-video" id="videoElement" ref={videoRef} autoPlay={true} playsInline></video>
-        <canvas className="qr-scanner-canvas" id="canvasElement" ref={canvasRef}></canvas>
+    <div className={styles.qrScannerContainer}>
+      <h1 className={styles.qrScannerTitle}>QR Scanner</h1>
+      <div className={styles.qrScannerVideoWrapper}>
+        <video className={styles.qrScannerVideo} id="videoElement" ref={videoRef} autoPlay={true} playsInline></video>
+        <canvas className={styles.qrScannerCanvas} id="canvasElement" ref={canvasRef}></canvas>
       </div>
     </div>
   );
