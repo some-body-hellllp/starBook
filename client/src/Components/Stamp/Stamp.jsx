@@ -35,9 +35,10 @@ export default function Stamp() {
             </div>
           </div>
         </div>
-        <StampInfo />
-        <StampInfo />
-        <StampInfo />
+        <section className={styles.stampWrap}>
+          <StampInfo />
+          <StampInfo />
+        </section>
       </section>
     </>
   );

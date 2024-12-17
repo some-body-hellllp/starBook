@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import jsQR from "jsqr";
 import styles from "./Qr.module.css"; // CSS 모듈 import
+import qrplus from "../../assets/img/qr/qrplus.svg";
 
 function Qr() {
   const [userLocation, setUserLocation] = useState({});
@@ -101,10 +102,17 @@ function Qr() {
 
   return (
     <div className={styles.qrScannerContainer}>
-      <h1 className={styles.qrScannerTitle}>QR Scanner</h1>
-      <div className={styles.qrScannerVideoWrapper}>
-        <video className={styles.qrScannerVideo} id="videoElement" ref={videoRef} autoPlay={true} playsInline></video>
-        <canvas className={styles.qrScannerCanvas} id="canvasElement" ref={canvasRef}></canvas>
+      <h1 className={styles.qrScannerTitle}>
+        독립서점에 있는
+        <br />
+        <span className={styles.titleColor}>QR코드</span>를 촬영해주세요
+      </h1>
+      <div className={styles.qrScreen}>
+        <div className={styles.qrScannerVideoWrapper}>
+          <img className={styles.qrImg} src={qrplus} />
+          <video className={styles.qrScannerVideo} id="videoElement" ref={videoRef} autoPlay={true} playsInline></video>
+          <canvas className={styles.qrScannerCanvas} id="canvasElement" ref={canvasRef}></canvas>
+        </div>
       </div>
     </div>
   );

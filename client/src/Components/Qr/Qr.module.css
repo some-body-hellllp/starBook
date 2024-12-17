@@ -1,7 +1,8 @@
 .qrScannerContainer {
-  max-width: 24rem; /* max-w-sm */
   margin: 0 auto; /* mx-auto */
   width: 100%; /* w-full */
+  background: linear-gradient(180deg, #004484, #1f5f99);
+  height: 100vh;
 }
 
 .qr-scanner-header {
@@ -17,17 +18,35 @@
 
 .qrScannerTitle {
   font-weight: bold; /* font-bold */
-  color: #1f2937; /* text-gray-900 */
-  padding: 1rem 0; /* py-4 */
   text-align: center; /* text-center */
-  border-bottom: 1px solid #9ca3af; /* border-b border-gray-400 */
+  padding-top: 186px;
+  padding-bottom: 36px;
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.titleColor {
+  color: #ffc267;
+}
+
+.qrScreen {
+  display: flex;
+  justify-content: center;
 }
 
 .qrScannerVideoWrapper {
   position: relative; /* relative */
-  width: 100%; /* w-full */
-  height: 500px; /* h-[500px] */
-  border: 1px solid #9ca3af; /* border border-gray-400 */
+  width: 260px; /* w-full */
+  height: 260px; /* h-[500px] */
+  background-color: black;
+}
+
+.qrImg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .qrScannerVideo,

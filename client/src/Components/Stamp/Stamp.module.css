@@ -7,7 +7,7 @@
   padding: 20px 19px 18px 19px;
   width: 100%;
   height: auto;
-  margin: 144px 0 45px 0;
+  margin: 45px 0 45px 0;
   border: solid 1px #d2d2d2;
   border-radius: 5px;
 }
@@ -76,4 +76,8 @@
 
 .stampText p {
   font-size: 14px;
+}
+
+.stampWrap {
+  padding-bottom: 92px;
 }
