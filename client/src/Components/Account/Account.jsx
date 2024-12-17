@@ -37,7 +37,11 @@ export default function Account() {
           <img src={emptyImg} alt="profileImg" onClick={() => console.log(userData)} />
         </div>
         {/* 프로필 타이틀 */}
-        {userData.islogin === true ? <AccountTitle /> : <div className={styles.account_title}>로그인이 필요합니다</div>}
+        {userData.islogin === true ? (
+          <AccountTitle nickName={userData.nickName} />
+        ) : (
+          <div className={styles.account_title}>로그인이 필요합니다</div>
+        )}
         {/* 버튼 들어갈 자리 */}
         <div className={`${styles.account_button_wrap} ${userData.islogin === true ? styles.userData : styles.logout}`}>
           {userData.islogin === true ? (

@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./AccountTitle.module.css";
 
-export default function AccountTitle({ classValue, nickName = "코딩몬스터", stamp = "0" }) {
+export default function AccountTitle({ nickName = "코딩몬스터", stamp = "0" }) {
   return (
     <div className={styles.account_title}>
       <div>
