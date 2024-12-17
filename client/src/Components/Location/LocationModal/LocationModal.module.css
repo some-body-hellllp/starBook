@@ -1,19 +1,29 @@
 .LocationModalBox {
-  border: 1px solid black;
-  width: auto;
-  height: 183px;
+  width: 196px;
+  height: auto;
   border-radius: 10px;
-  background-color: white;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .LocationModalImg {
-  width: auto;
-  max-width: 200px;
+  width: 196px;
   height: 89px;
+  overflow: hidden;
+}
+
+.LocationModalImg img {
+  width: 100%; /* 이미지를 박스 크기에 맞게 조정 */
+  height: 100%; /* 이미지를 박스 크기에 맞게 조정 */
+  object-fit: cover; /* 이미지를 잘라서 박스에 맞게 크기 조정 */
+  border-radius: 10px 10px 0 0;
 }
 
 .LocationModalText {
-  padding: 10px;
+  padding: 15px;
+  height: auto;
+  width: 196px;
+  overflow: hidden; /* 추가 */
 }
 
 .LocationModalTitle {
@@ -25,6 +35,11 @@
   font-size: 14px;
   font-weight: 300;
   padding-top: 7px;
+  word-break: none;
+  overflow-wrap: break-word;
+  width: 100%; /* 추가 */
+  display: inline-block; /* 추가 */
+  white-space: normal; /* 텍스트 줄바꿈 허용 */
 }
 
 .LocationModalNumber {

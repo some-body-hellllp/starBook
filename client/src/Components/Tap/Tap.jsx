@@ -33,7 +33,7 @@ function Tap() {
               <LocationIcon page={page} />
             </div>
             <div>
-              <QRIcon />
+              <QRIcon onClick={() => pageHandler("qr")} />
             </div>
             <div onClick={() => pageHandler("stamp")}>
               <StampIcon page={page} />
