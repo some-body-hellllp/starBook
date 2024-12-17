@@ -14,7 +14,7 @@ export default function Auth() {
         navigate(`/`);
       }, 0);
     }
-    getKakaoLogin(); // 카카오 로그인 함수 호출
+    getKakaoLogin(code); // 카카오 로그인 함수 호출
   }, []);
 
   return <div>처리 중...</div>;
