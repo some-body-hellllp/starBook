@@ -25,21 +25,50 @@ export default function NaverAuth() {
         // console.log(tokenResponse);
         console.log("id :", tokenResponse.data.data.response.id);
 
-        // 3. 사용자 정보 처리 및 로컬 저장
+        // 네이버 토큰으로 조회한 유저 아이디
         const id = tokenResponse.data.data.response.id;
 
-        // 사용자 정보 상태 업데이트
-        // setUserData({
-        //   userId: naverId, // 네이버 사용자 ID
-        //   nickName: userName, // 사용자 이  름
-        //   email: userEmail, // 이메일
-        //   isLogin: true, // 로그인 여부
-        // });
+        try {
+          // 로그인 요청
+          const login = await axios.post(`${postUrl}/auth/login`, {
+            id: id,
+          });
+          console.log(login);
+
+          // 3. 사용자 정보 처리 및 로컬 저장
+          window.localStorage.setItem("token", login.data.data.token);
+          const userId = login.data.data.user.id;
+          const name = login.data.data.user.name;
+          const stamp = login.data.data.stamps;
+          console.log("스탬프 개수 :", stamp.length);
+
+          setUserData({
+            userId: userId,
+            profile: null, // 프로필 사진 미구현
+            nickName: name,
+            stamp: stamp,
+            stampCount: stamp.length,
+            islogin: true,
+          });
+
+          // 로그인 후 account 페이지로 이동
+          navigate("/account");
+        } catch (error) {
+          console.error("로그인 오류:", error);
+
+          if (error.response && error.response.status === 404) {
+            // 사용자가 없을 경우 회원가입 페이지로 리다이렉트
+            navigate(`/signup?code=${id}`);
+          } else if (error.code === "ERR_NETWORK") {
+            alert("네트워크에 문제가 발생했습니다. 메인으로 이동합니다.");
+            navigate("/");
+          }
+        }
       } catch (error) {
         console.error("에러 :", error);
       }
     };
     getNaverLogin();
   }, []);
-  return <></>;
+  return <>처리중..</>;
 }

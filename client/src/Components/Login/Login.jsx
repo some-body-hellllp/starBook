@@ -15,14 +15,19 @@ import style from "./Login.module.css";
 
 export default function Login() {
   const navigate = useNavigate();
-
+  // 카카오
   const kakao_Rest_api_key = import.meta.env.VITE_KAKAO_LOGIN_REST_API; //REST API KEY
   const kakao_Redirect_uri = import.meta.env.VITE_KAKAO_REDIRECT_URL; //Redirect URI
+  // 네이버
   const naver_client_api_key = import.meta.env.VITE_NAVER_LOGIN_CLIENT_API; //REST API KEY
   const naver_Redirect_uri = import.meta.env.VITE_NAVER_REDIRECT_URL; //Redirect URI
+
+  console.log(kakao_Redirect_uri);
+  console.log(kakao_Rest_api_key);
   // oauth 요청 URL
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${kakao_Rest_api_key}&redirect_uri=${kakao_Redirect_uri}&response_type=code`;
   const naverURL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${naver_client_api_key}&state=test&redirect_uri=${naver_Redirect_uri}`;
+  console.log(kakaoURL);
   const handleLogin = (social) => {
     if (social === "kakao") {
       window.location.href = kakaoURL;
