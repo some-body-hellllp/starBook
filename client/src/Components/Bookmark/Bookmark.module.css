@@ -1,5 +1,8 @@
 .bookmark {
-  margin-top: 144px;
+  margin-top: 111px;
   padding: 0 27px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }

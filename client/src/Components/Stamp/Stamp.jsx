@@ -38,6 +38,7 @@ export default function Stamp() {
         <section className={styles.stampWrap}>
           <StampInfo />
           <StampInfo />
+          <StampInfo />
         </section>
       </section>
     </>
