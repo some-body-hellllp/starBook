@@ -1,12 +1,11 @@
-import { useEffect, useContext } from "react";
-import { PageData } from "../../provider/PageProvider";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import getKakaoLogin from "../../function/getKakaoLogin";
+import { useKakaoLogin } from "../../function/getKakaoLogin";
 
 export default function Auth() {
   const navigate = useNavigate();
-  const { setUserData } = useContext(PageData);
   const code = new URL(window.location.href).searchParams.get("code") || null;
+  const getKakaoToken = useKakaoLogin();
 
   useEffect(() => {
     // `code` 값이 없으면 잘못된 접근으로 리디렉션
@@ -16,7 +15,7 @@ export default function Auth() {
         navigate(`/`);
       }, 0);
     }
-    getKakaoLogin(); // 카카오 로그인 함수 호출
+    getKakaoToken(code); // 카카오 로그인 함수 호출
   }, []);
 
   return <div>처리 중...</div>;
