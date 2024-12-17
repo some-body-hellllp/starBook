@@ -2,6 +2,10 @@
 /* 책갈피 보러가기 버튼 */
 /* ===================== */
 
+.bookMark {
+  padding-bottom: 92px;
+}
+
 .bookMark_Btn {
   /* width: 158px; */
   height: 230px;
