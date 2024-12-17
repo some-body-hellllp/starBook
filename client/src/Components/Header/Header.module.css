@@ -1,4 +1,6 @@
 .header_content {
+  position: fixed;
+  top: 0; /* 화면 상단에 고정 */
   height: 57px;
   width: 100%;
   z-index: 2;
@@ -8,7 +10,14 @@
   font-family: "Pretendard-Regular";
   font-weight: 700;
   font-size: 20px;
+  background-color: white;
 }
+
+/* stampSection은 header_content 아래로 오도록 padding-top을 추가 */
+.stampSection {
+  padding-top: 57px; /* 헤더의 높이만큼 여백을 추가하여 겹침을 방지 */
+}
+
 .header_contents {
   position: fixed;
   top: 0px;

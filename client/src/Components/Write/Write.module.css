@@ -1,6 +1,6 @@
 .Write {
   background-color: #1f5f99;
-  padding: 144px 27px 23px 27px;
+  padding: 111px 27px 23px 27px;
   height: 100vh; /* 화면 전체 높이 */
 }
 
@@ -60,12 +60,20 @@
   width: 70px;
   border-radius: 5px;
   background-color: #353535;
+  position: relative;
+}
+
+.photo_upload img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .photo_uploaded {
   flex-grow: 1;
   height: 70px;
   border-radius: 5px;
-  background-color: #353535;
+  background-color: #7a99b6;
   object-fit: cover;
 }
