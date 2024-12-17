@@ -78,3 +78,6 @@
 .input:focus {
   outline: none;
 }
+.input.editable {
+  text-decoration: underline;
+}
