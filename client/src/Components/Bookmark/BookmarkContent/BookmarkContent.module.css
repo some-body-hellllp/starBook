@@ -6,4 +6,19 @@
 }
 .thumnail {
   margin: 0;
+  width: 100%; /* 전체 너비를 부모 컨테이너에 맞춤 */
+}
+
+.imgBoxWrap {
+  width: 100%; /* 전체 너비를 100%로 */
+  max-width: 286px; /* 최대 너비 제한 */
+  height: auto; /* 높이를 자동으로 */
+}
+
+.imgBox {
+  width: 100%; /* 가로를 100%로 */
+  height: auto; /* 높이를 자동으로 */
+  object-fit: contain; /* 비율 유지하며 박스에 맞춤 */
+
+  border-radius: 10px;
 }
