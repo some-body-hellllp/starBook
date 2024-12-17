@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const { CurrentTime } = require("../config/date");
 async function join(req, res) {
   // body
-  const loginId = req.body.kakaoCode?.trim();
+  const loginId = req.body.code?.trim();
   const loginName = req.body.nickName?.trim();
 
   // 중복 검사 loginId

@@ -30,7 +30,8 @@ import Write from "./Components/Write/Write";
 import Comment from "./Components/Comment/Comment";
 // 카카오 로그인 리다이렉트 URL
 import Auth from "./Components/Auth/Auth";
-
+// 네이버 로그인 리다이렉트 URL
+import NaverAuth from "./Components/Auth/NaverAuth";
 function App() {
   return (
     <>
@@ -51,6 +52,7 @@ function App() {
             <Route path="signup" element={<SignUp />} />
             <Route path="coupon" element={<Coupon />} />
             <Route path="auth" element={<Auth />} />
+            <Route path="naver_auth" element={<NaverAuth />} />
           </Route>
         </Routes>
       </Router>
