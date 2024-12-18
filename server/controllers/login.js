@@ -34,9 +34,23 @@ const login = async (req, res) => {
         user_id = ?`;
     const user = await db.execute(QUERY, [decoded.id]).then((result) => result[0][0]);
 
+    // 유저의 누적 스탬프 확인
+    const QUERY2 = `
+    SELECT
+        stamp_location,
+        stamp_type,
+        create_at
+    FROM
+        STAMPS
+    WHERE
+        user_id = ?`;
+    const stamps = await db.execute(QUERY2, [user.user_id]).then((result) => result[0]);
+
+    console.log("스탬프 : ", stamps);
+
     // 사용자 정보 반환
     console.log("토큰 로그인 성공");
-    return res.status(200).json({ status: "success", message: "로그인 성공", data: { user } });
+    return res.status(200).json({ status: "success", message: "로그인 성공", data: { user, stamps } });
   }
 
   // 토큰 만료 시 로그인 처리

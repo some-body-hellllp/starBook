@@ -94,9 +94,10 @@ export default function Splash() {
           token: token,
         });
         console.log(response); // 성공 시 응답 로그
-        const userId = response.data.data.user.id;
-        const name = response.data.data.user.name;
+        const userId = response.data.data.user.user_id;
+        const name = response.data.data.user.user_name;
         const stamp = response.data.data.stamps;
+        console.log(stamp);
         console.log(stamp.length);
         setUserData({
           userId: userId, // 유저 아이디
