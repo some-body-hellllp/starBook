@@ -4,18 +4,19 @@ const jwt = require("jsonwebtoken");
 const login = async (req, res) => {
   const loginId = req.body.id;
   const loginPw = String(req.body.id); // 비밀번호는 클라이언트에서 받는 값 사용
-  const userTokken = req.body.tokken || null; // 토큰 받아오기
+  const userToken = req.body.token || null; // 토큰 받아오기
+  console.log("토큰 :", userToken);
   console.log("로그인 ID:", loginId);
   console.log("로그인 PW:", loginPw);
 
   // 토큰이 있다면 유효성 검사 후 로그인 처리
-  if (userTokken) {
+  if (userToken) {
     const secretKey = process.env.JWT_SECRET;
 
     let decoded;
     try {
       // 토큰 유효성 검사 및 디코딩
-      decoded = jwt.verify(userTokken, secretKey);
+      decoded = jwt.verify(userToken, secretKey);
     } catch (error) {
       // 토큰이 유효하지 않다면 오류 반환
       return res.status(401).json({ status: "error", message: "토큰이 유효하지 않아 로그아웃 됩니다.", data: null });
