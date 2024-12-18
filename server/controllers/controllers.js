@@ -6,5 +6,6 @@ const course = require("./course");
 const visit = require("./visit");
 const naverLogin = require("./naverLogin");
 const naverUser = require("./naverUser");
+const userModify = require("./userModify");
 
-module.exports = { users, join, login, auth, course, visit, naverLogin, naverUser };
+module.exports = { users, join, login, auth, course, visit, naverLogin, naverUser, userModify };

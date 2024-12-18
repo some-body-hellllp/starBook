@@ -41,7 +41,7 @@ export default function Header({
       {showSubmitButton && (
         <button
           // 함수에 괄호 안 넣으면 실행 안 됨
-          onClick={() => submitFunction()}
+          onClick={(e) => submitFunction(e)}
           type="submit"
           className={`${styles.submit}${write ? styles.submit_white : ""}`}
           style={{ color: color }}

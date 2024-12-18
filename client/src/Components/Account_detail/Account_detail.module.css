@@ -23,7 +23,6 @@
 .proFileImg {
   height: 124px;
   width: 124px;
-  border: 1px solid black;
   border-radius: 100px;
   display: flex;
   justify-content: center; /* 수평 중앙 */

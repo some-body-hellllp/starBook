@@ -14,7 +14,7 @@ export default function SignUp() {
     setNickname(e.target.value); // 입력값을 상태로 설정
   };
 
-  const postUrl = import.meta.env.VITE_POST_URL;
+  const postUrl = import.meta.env.VITE_API_URL;
 
   // 폼 제출 처리 함수
   function formHandler(e) {

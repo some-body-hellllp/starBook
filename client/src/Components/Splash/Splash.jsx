@@ -9,7 +9,7 @@ import { gsap } from "gsap";
 
 export default function Splash() {
   const { setUserData } = useContext(PageData);
-  const postUrl = import.meta.env.VITE_POST_URL;
+  const postUrl = import.meta.env.VITE_API_URL;
   const token = window.localStorage.getItem("token");
   useEffect(() => {
     // 별들의 초기 상태를 완전히 숨김
