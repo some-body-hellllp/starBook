@@ -6,7 +6,13 @@ import pirture from "../../assets/img/Bookmark/picture.png";
 export default function Write() {
   return (
     <>
-      <Header showBackButton={true} backButtonColor="#FFFFFF" showSubmitButton={true} buttonText={"등록"} color="#FFFFFF" />
+      <Header
+        showBackButton={true}
+        backButtonColor="#FFFFFF"
+        showSubmitButton={true}
+        buttonText={"등록"}
+        color="#FFFFFF"
+      />
       <section className={styles.Write}>
         <form className={styles.Write_form} action="">
           <div className={styles.tag}>
@@ -14,7 +20,7 @@ export default function Write() {
             <input type="text" placeholder="독립서점의 이름을 적어주세요" />
           </div>
           <div className={styles.text}>
-            <textarea type="text" placeholder="내용을 적어주세요" />
+            <textarea type="text" placeholder="내용을 적어주세요" autoFocus />
           </div>
           {/* 사진 등록 할 위치  */}
           <div className={styles.photo}>

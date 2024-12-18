@@ -4,7 +4,7 @@ function CurrentTime() {
 
   const koreanTime = new Date(now.toLocaleString("en-US", options));
 
-  console.log(koreanTime.getHours());
+  console.log("현재 시간 :", koreanTime.getHours(), "시");
 
   const year = koreanTime.getFullYear();
   const month = String(koreanTime.getMonth() + 1).padStart(2, "0"); // Months are 0-indexed
