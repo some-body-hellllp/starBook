@@ -2,11 +2,14 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 240px;
+  justify-content: center;
+  height: 100vh;
 }
+
 .Icon_wrap {
   width: 88px;
 }
+
 .text {
   margin-top: 31.8px;
   margin-bottom: 76px;
@@ -15,10 +18,12 @@
   font-style: normal;
   font-weight: 400;
 }
+
 .social_login {
   display: flex;
   gap: 42px;
 }
+
 .social_wrap {
   width: 72px;
 }
