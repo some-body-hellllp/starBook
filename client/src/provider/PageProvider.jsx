@@ -9,7 +9,7 @@ const PageProvider = ({ children }) => {
     nickName: null, // 유저 닉네임
     stamp: null, // 스탬프 현황
     stampCount: null, // 누적 스탬프 갯수
-    islogin: false, // 로그인 확인
+    isLogin: false, // 로그인 확인
   });
 
   return <PageData.Provider value={{ userData, setUserData }}>{children}</PageData.Provider>;

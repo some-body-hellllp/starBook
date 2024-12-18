@@ -24,7 +24,7 @@ export default function Account() {
       nickName: null,
       stamp: null,
       stampCount: null,
-      islogin: false,
+      isLogin: false,
     });
     window.localStorage.removeItem("token");
   };
@@ -35,20 +35,20 @@ export default function Account() {
       <section className={styles.account}>
         <div className={styles.prifile_img}>
           <img
-            src={userData.islogin === true ? dummyImg : emptyImg}
+            src={userData.isLogin === true ? dummyImg : emptyImg}
             alt="profileImg"
             onClick={() => console.log(userData)}
           />
         </div>
         {/* 프로필 타이틀 */}
-        {userData.islogin === true ? (
+        {userData.isLogin === true ? (
           <AccountTitle nickName={userData.nickName} />
         ) : (
           <div className={styles.account_title}>로그인이 필요합니다</div>
         )}
         {/* 버튼 들어갈 자리 */}
-        <div className={`${styles.account_button_wrap} ${userData.islogin === true ? styles.userData : styles.logout}`}>
-          {userData.islogin === true ? (
+        <div className={`${styles.account_button_wrap} ${userData.isLogin === true ? styles.userData : styles.logout}`}>
+          {userData.isLogin === true ? (
             <>
               <AccountBtn className={styles.account_button} onClick={() => navigate("/account_detail")}>
                 회원 정보

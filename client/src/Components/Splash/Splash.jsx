@@ -101,7 +101,7 @@ export default function Splash() {
           nickName: name, // 유저 닉네임
           stamp: stamp, // 스탬프 현황
           stampCount: stamp.length, // 누적 스탬프 갯수
-          islogin: true, // 로그인 확인
+          isLogin: true, // 로그인 확인
         });
       })
       .catch(function (error) {

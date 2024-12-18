@@ -16,7 +16,7 @@ export default function AccountDetail() {
   const postUrl = import.meta.env.VITE_API_URL;
 
   const toggleReadOnly = () => {
-    if (!userData.userId && userData.islogin === false) {
+    if (!userData.userId && userData.isLogin === false) {
       return alert("로그인 후 사용 가능합니다");
     }
     setIsReadOnly((prev) => !prev); // 상태를 토글
@@ -29,7 +29,7 @@ export default function AccountDetail() {
   // 닉네임 변경 함수
   function formHandler(e) {
     e.preventDefault(); // preventDefault로 수정
-    if (!userData.userId && userData.islogin === false) {
+    if (!userData.userId && userData.isLogin === false) {
       return alert("로그인 후 사용 가능합니다");
     }
     if (userData.nickName === nickName) {
@@ -79,7 +79,7 @@ export default function AccountDetail() {
             <div className={styles.proFileImgPosition}>
               <div className={styles.proFileImg}>
                 <img
-                  src={userData.islogin === true ? accountdetailimg : dummyImg}
+                  src={userData.isLogin === true ? accountdetailimg : dummyImg}
                   alt="emptyImg"
                   onClick={() => console.log(userData)}
                 />
