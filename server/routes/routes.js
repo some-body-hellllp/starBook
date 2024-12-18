@@ -14,19 +14,22 @@ router.post("/api/v1/auth/login", controllers.login); // 토큰 발금
 // 사용자 정보 수정
 router.put("/api/v1/auth/user", controllers.userModify);
 
-// 북마크
-
-// 북마크 게시글 조회  게시글에 표시되는 댓글 숫자는 join같은거 끼워서 쓰면 될거같음(게시글 번호가 같은 행의 댓글 번호? 이런거)
-router.get("/api/v1/bookmark");
-// 북마크 댓글 조회
-router.get("/api/v1/bookmark/comment");
-// 북마크 게시글 작성
-router.post("/api/v1/bookmark");
-// 북마크 댓글 작성
-router.post("/api/v1/bookmark/comment");
-
 // 미들웨어
 router.post("/api/v1/auth/auth", controllers.auth); // 토큰 필요함
+
+// 북마크
+
+// 북마크 게시글 조회, 북마크 게시글 작성
+router.get("/api/v1/bookmark", controllers.posts);
+router.post("/api/v1/bookmark", controllers.createPost);
+
+// 북마크 댓글 조회, 북마크 댓글 작성
+router.get("/api/v1/bookmark/comment", controllers.comments);
+router.post("/api/v1/bookmark/comment", controllers.createComment);
+
+// 좋아요 추가, 좋아요 제거
+router.post("/api/v1/bookmark/like", controllers.createLike);
+router.delete("/api/v1/bookmark/like", controllers.removeLike);
 
 // 코스 리스트 (인증이 필요한 enpoint 주소)
 // 방문한 코스와 방문하지 않은 코스를 구분하여 모두 불러옴

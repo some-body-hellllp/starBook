@@ -34,6 +34,7 @@ const login = async (req, res) => {
     const user = await db.execute(QUERY, [decoded.id]).then((result) => result[0][0]);
 
     // 사용자 정보 반환
+    console.log("토큰 로그인 성공");
     return res.status(200).json({ status: "success", message: "로그인 성공", data: { user } });
   }
 

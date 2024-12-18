@@ -42,7 +42,9 @@
   padding: 15px 0 0 12px;
   resize: none;
 }
-
+.text textarea:focus {
+  outline: none;
+}
 .tag input::placeholder,
 .text textarea::placeholder {
   color: #d2d2d2;
