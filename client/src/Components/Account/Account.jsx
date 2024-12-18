@@ -3,6 +3,7 @@ import { PageData } from "../../provider/PageProvider";
 import { useNavigate } from "react-router-dom";
 // 이미지
 import emptyImg from "../../assets/img/Account/Generic avatar.svg";
+import dummyImg from "../../assets/img/Account/accountdetailimg.svg";
 // 컴포넌트
 import AccountTitle from "./AccountTitle/AccountTitle";
 import AccountBtn from "./AccountBtn/AccountBtn";
@@ -33,7 +34,11 @@ export default function Account() {
       <Header>마이페이지</Header>
       <section className={styles.account}>
         <div className={styles.prifile_img}>
-          <img src={emptyImg} alt="profileImg" onClick={() => console.log(userData)} />
+          <img
+            src={userData.islogin === true ? dummyImg : emptyImg}
+            alt="profileImg"
+            onClick={() => console.log(userData)}
+          />
         </div>
         {/* 프로필 타이틀 */}
         {userData.islogin === true ? (

@@ -1,8 +1,7 @@
 import Header from "../Header/Header";
 import styles from "./Account_detail.module.css";
 
-import emptyImg from "../../assets/img/Account/Generic avatar.svg";
-
+import dummyImg from "../../assets/img/Account/Generic avatar.svg";
 
 import accountdetailimg from "../../assets/img/Account/accountdetailimg.svg";
 
@@ -79,11 +78,11 @@ export default function AccountDetail() {
             <div className={styles.account_detailBox_Name}>프로필사진</div>
             <div className={styles.proFileImgPosition}>
               <div className={styles.proFileImg}>
-
-                <img src={emptyImg} alt="emptyImg" onClick={() => console.log(userData)} />
-
-//                 <img src={accountdetailimg} alt="프로필 사진" />
-
+                <img
+                  src={userData.islogin === true ? accountdetailimg : dummyImg}
+                  alt="emptyImg"
+                  onClick={() => console.log(userData)}
+                />
               </div>
             </div>
             <div className={styles.proFileButtonBox}>
