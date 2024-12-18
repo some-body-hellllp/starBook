@@ -12,7 +12,7 @@ export default function StarBook() {
     "/login", // 로그인
     "/signup", // 회원가입
     "/coupon", // 쿠폰함
-    "/splash", // 스플레시 (테스트용 링크)
+    "/", // 스플레시 (테스트용 링크)
   ].includes(location.pathname);
   return (
     <>
