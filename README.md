@@ -1,7 +1,7 @@
 
 # 📚 대구 독립서점 탐방 하이브리드 앱  '별책부록' ⭐
 
-![목업](https://github.com/user-attachments/assets/d413a1a6-822d-4672-8940-dda9ff94c2a7)
+![목업](https://github.com/user-attachments/assets/3659fab1-98e3-4e28-8fbe-ead12d215f21)
 
 [  [별책부록 URL]()  ] [  [별책부록 PPT]()  ]  [  [별책부록 시연영상]()  ]
 
@@ -36,19 +36,16 @@
       <td align="center"><b>김환</b> 팀장</td>
        <td align="center"><b>김동규</b> 팀원</td>
        <td align="center"><b>박정선</b> 팀원</td>
-      
     </tr>
     <tr>
       <td align="center"><a href="https://github.com/ghks6455"><img src="https://avatars.githubusercontent.com/u/175993241?v=4" width="150px" alt=""/><br />@ghks6455</a></td>
       <td align="center"><a href="https://github.com/KimDongGyu-hub"><img src="https://avatars.githubusercontent.com/u/175993259?v=4" width="150px" alt=""/><br />@KimDongGyu-hub</a></td>
       <td align="center"><a href="https://github.com/jeongsun-park"><img src="https://avatars.githubusercontent.com/u/175993255?v=4" width="150px" alt=""/><br />@jeongsun-park</a></td>
-    
      <tr/>
        <tr>
          <td align="center">백 엔드<br/>웹 퍼블리싱</td>
          <td align="center">프론트 엔드<br/>웹 퍼블리싱</td>
          <td align="center">UI/UX 설계 및 디자인<br/>웹 퍼블리싱</td>
-         
        </tr>
   </tbody>
 </table>
