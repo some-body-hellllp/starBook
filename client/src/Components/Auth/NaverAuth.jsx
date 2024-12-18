@@ -14,7 +14,7 @@ export default function NaverAuth() {
       // const client_id = import.meta.env.VITE_NAVER_LOGIN_CLIENT_API;
       // const client_secret = import.meta.env.VITE_NAVER_LOGIN_SECRET_API;
       const redirect_uri = import.meta.env.VITE_NAVER_REDIRECT_URL;
-      const postUrl = import.meta.env.VITE_POST_URL;
+      const postUrl = import.meta.env.VITE_API_URL;
       try {
         // 1. 네이버 로그인 요청
         const tokenResponse = await axios.post(`${postUrl}/auth/naverLogin`, {
@@ -66,6 +66,10 @@ export default function NaverAuth() {
         }
       } catch (error) {
         console.error("에러 :", error);
+        if (error.code === "ERR_NETWORK") {
+          alert("네트워크에 문제가 발생했습니다. 메인으로 이동합니다.");
+          navigate("/");
+        }
       }
     };
     getNaverLogin();

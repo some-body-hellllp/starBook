@@ -11,6 +11,8 @@ router.post("/api/v1/auth/user", controllers.join);
 router.post("/api/v1/auth/naverLogin", controllers.naverLogin, controllers.naverUser);
 // 로그인
 router.post("/api/v1/auth/login", controllers.login); // 토큰 발금
+// 사용자 정보 수정
+router.put("/api/v1/auth/user", controllers.userModify);
 
 // 북마크
 

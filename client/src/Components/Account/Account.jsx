@@ -32,7 +32,6 @@ export default function Account() {
     <>
       <Header>마이페이지</Header>
       <section className={styles.account}>
-        {/* 프로필 이미지 현재는 테스트를 하기 위해서 이미지 클릭 시 로그인 화면으로 이동 */}
         <div className={styles.prifile_img}>
           <img src={emptyImg} alt="profileImg" onClick={() => console.log(userData)} />
         </div>
