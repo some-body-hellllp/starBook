@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import ReactDOMServer from "react-dom/server"; // React 컴포넌트를 문자열로 변환하기 위한 라이브러리
 import Header from "../Header/Header";
 import locationImg from "../../assets/img/Location/locationImg.svg";
+import bagicmarker from "../../assets/img/Location/bagicmarker.png";
 import "./Location.css";
 import LocationModal from "./LocationModal/LocationModal";
 import areteinliterature from "../../assets/img/Location/areteinliterature.jpg";
@@ -53,6 +54,7 @@ export default function Location() {
     };
     var map = new window.kakao.maps.Map(container, options);
 
+    var bagicmarkertest = bagicmarker;
     var positions = [
       {
         title: "담담책방",
@@ -159,6 +161,12 @@ export default function Location() {
         latlng: new kakao.maps.LatLng(35.85124, 128.5832),
         img: chaegbangdadog,
       },
+      {
+        title: "현재위치",
+        latlng: new kakao.maps.LatLng(latitude, longitude),
+        img: chaegbangdadog,
+        imgsrc: bagicmarkertest,
+      },
     ];
 
     var imageSrc = locationImg;
@@ -166,18 +174,25 @@ export default function Location() {
     var currentOverlay = null; // 현재 열려 있는 오버레이를 추적하는 변수
 
     positions.forEach(function (position) {
-      // 마커 이미지의 이미지 크기입니다
+      // 마커 이미지 크기와 소스 설정
       var imageSize = new window.kakao.maps.Size(30, 30);
+      var imageSize2 = new window.kakao.maps.Size(30, 45);
+      var markerImage;
 
-      // 마커 이미지를 생성합니다
-      var markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
+      // 현재 위치 마커인 경우 bagicmarker 사용
+      if (position.title === "현재위치") {
+        markerImage = new window.kakao.maps.MarkerImage(position.imgsrc, imageSize2);
+      } else {
+        // 다른 마커들은 기존대로 locationImg 사용
+        markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
+      }
 
-      // 마커를 생성합니다
+      // 마커 생성 로직 (기존과 동일)
       var marker = new window.kakao.maps.Marker({
-        map: map, // 마커를 표시할 지도
-        position: position.latlng, // 마커를 표시할 위치
-        title: position.title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-        image: markerImage, // 마커 이미지
+        map: map,
+        position: position.latlng,
+        title: position.title,
+        image: markerImage, // 조건에 따라 다른 마커 이미지 사용
       });
 
       // React 컴포넌트를 문자열로 변환하여 인포윈도우의 content로 설정
