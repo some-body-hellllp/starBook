@@ -48,7 +48,7 @@ export default function NaverAuth() {
             nickName: name,
             stamp: stamp,
             stampCount: stamp.length,
-            islogin: true,
+            isLogin: true,
           });
 
           // 로그인 후 account 페이지로 이동

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useKakaoLogin } from "../../function/getKakaoLogin";
+import { useKakaoLogin } from "../../hook/getKakaoLogin";
 
 export default function Auth() {
   const navigate = useNavigate();

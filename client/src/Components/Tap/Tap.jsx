@@ -1,10 +1,11 @@
 import styles from "./Tap.module.css";
 import { HomeIcon, LocationIcon, QRIcon, StampIcon, HumanIcon } from "../../assets/img/Tab/Tab_image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-
+import { PageData } from "../../provider/PageProvider";
 function Tap() {
   const [page, setPage] = useState("home"); // 초기 페이지는 home
+  const { userData } = useContext(PageData);
   const navigate = useNavigate();
   const location = useLocation(); // 현재 경로를 추적
 
@@ -29,11 +30,25 @@ function Tap() {
             <div onClick={() => pageHandler("home")}>
               <HomeIcon page={page} />
             </div>
-            <div onClick={() => pageHandler("location")}>
+            <div
+              onClick={() => {
+                if (userData.isLogin === false) {
+                  return alert("로그인이 필요한 기능입니다 로그인해주세요");
+                }
+                pageHandler("location");
+              }}
+            >
               <LocationIcon page={page} />
             </div>
             <div>
-              <QRIcon onClick={() => pageHandler("qr")} />
+              <QRIcon
+                onClick={() => {
+                  if (userData.isLogin === false) {
+                    return alert("로그인이 필요한 기능입니다 로그인해주세요");
+                  }
+                  pageHandler("qr");
+                }}
+              />
             </div>
             <div onClick={() => pageHandler("stamp")}>
               <StampIcon page={page} />

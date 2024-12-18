@@ -69,7 +69,7 @@ export function useKakaoLogin() {
         nickName: name,
         stamp: stamp,
         stampCount: stamp.length,
-        islogin: true,
+        isLogin: true,
       });
 
       // 계정 페이지로 이동
