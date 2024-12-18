@@ -1,6 +1,10 @@
 import Header from "../Header/Header";
 import styles from "./Account_detail.module.css";
+
 import emptyImg from "../../assets/img/Account/Generic avatar.svg";
+
+
+import accountdetailimg from "../../assets/img/Account/accountdetailimg.svg";
 
 import { useContext, useState } from "react";
 import { PageData } from "../../provider/PageProvider";
@@ -75,13 +79,20 @@ export default function AccountDetail() {
             <div className={styles.account_detailBox_Name}>프로필사진</div>
             <div className={styles.proFileImgPosition}>
               <div className={styles.proFileImg}>
+
                 <img src={emptyImg} alt="emptyImg" onClick={() => console.log(userData)} />
+
+//                 <img src={accountdetailimg} alt="프로필 사진" />
+
               </div>
             </div>
             <div className={styles.proFileButtonBox}>
-              <button type="button" className={styles.proFileButton}>
-                등록
-              </button>
+              {/* 닉네임 수정이 아니라면 '등록' 버튼을 숨김 */}
+              {!isReadOnly && (
+                <button type="button" className={styles.proFileButton}>
+                  등록
+                </button>
+              )}
             </div>
           </div>
           {/* 닉네임 */}
