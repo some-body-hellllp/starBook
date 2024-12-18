@@ -3,8 +3,36 @@ import stampCheck from "../../assets/img/stamp/stampcheck.svg";
 import stampNoneCheck from "../../assets/img/stamp/stampdoncheck.svg";
 import StampInfo from "./StampInfo/StampInfo";
 import Header from "../Header/Header";
+import { useContext, useState } from "react";
+import { PageData } from "../../provider/PageProvider";
 
 export default function Stamp() {
+  const { userData } = useContext(PageData);
+  const [stampCount, setStampCount] = useState(0); // 현재 스탬프 개수
+  const [stampInfoList, setStampInfoList] = useState([]); // StampInfo 컴포넌트를 관리하는 상태
+
+  // 스탬프 이미지 배열 생성
+  const stampImages = Array.from({ length: 8 }, (_, index) => (index < stampCount ? stampCheck : stampNoneCheck));
+
+  // 스탬프를 추가하는 함수
+  const addStamp = () => {
+    if (stampCount < 8) {
+      const newStampCount = stampCount + 1;
+
+      // stampCount가 3, 5, 8일 때만 StampInfo를 추가
+      if (newStampCount === 3 || newStampCount === 5 || newStampCount === 8) {
+        setStampInfoList((prev) => [...prev, <StampInfo key={prev.length} />]);
+      }
+
+      // stampCount가 8에 도달하면 0으로 리셋
+      if (newStampCount === 8) {
+        setStampCount(0);
+      } else {
+        setStampCount(newStampCount);
+      }
+    }
+  };
+
   return (
     <>
       <Header>스탬프</Header>
@@ -19,14 +47,9 @@ export default function Stamp() {
           <div className={styles.stampCardName}>Stamp Card</div>
           <div className={styles.stampCard}>
             <div className={styles.stampGrid}>
-              <img src={stampCheck} alt="Stamp" />
-              <img src={stampCheck} alt="Stamp" />
-              <img src={stampCheck} alt="Stamp" />
-              <img src={stampNoneCheck} alt="Stamp" />
-              <img src={stampNoneCheck} alt="Stamp" />
-              <img src={stampNoneCheck} alt="Stamp" />
-              <img src={stampNoneCheck} alt="Stamp" />
-              <img src={stampNoneCheck} alt="Stamp" />
+              {stampImages.map((stamp, index) => (
+                <img key={index} src={stamp} alt={`Stamp ${index + 1}`} />
+              ))}
             </div>
             <div className={styles.stampText}>
               <p>스탬프 3개를 완료하면 5%쿠폰</p>
@@ -35,11 +58,12 @@ export default function Stamp() {
             </div>
           </div>
         </div>
-        <section className={styles.stampWrap}>
-          <StampInfo />
-          <StampInfo />
-          <StampInfo />
-        </section>
+
+        <button onClick={addStamp} className={styles.addStampButton}>
+          스탬프 추가
+        </button>
+
+        <section className={styles.stampWrap}>{stampInfoList}</section>
       </section>
     </>
   );
