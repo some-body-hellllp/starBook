@@ -21,15 +21,27 @@ import travelerbook from "../../assets/img/Location/travelerbook.jpg";
 import sasohanchaegbang from "../../assets/img/Location/sasohanchaegbang.jpg";
 
 export default function Location() {
-  // 위치기반을 끄려면 이 부분을 수정
+  // 위도, 경도 가져온 후 카카오맵 함수로 넘김
   useEffect(() => {
-    // 위치 기반을 사용하지 않도록 코드 제거
-    // 기존에는 위치를 가져왔지만, 이제는 그냥 고정된 좌표로 맵을 그리게 변경
-    const defaultLatitude = 35.87; // 예시로 대구의 중심 위치
-    const defaultLongitude = 128.6;
-
-    // 카카오맵 그리기
-    printKakaomap(defaultLatitude, defaultLongitude);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          // 카카오맵 그리기
+          printKakaomap(latitude, longitude);
+        },
+        (error) => {
+          console.log(error);
+        },
+        {
+          enableHighAccuracy: true, // 정확한 위치 정보를 요청
+          timeout: 10000, // 위치 정보 요청 시간 제한 (10초)
+          maximumAge: 0, // 캐시된 위치 정보를 사용하지 않음
+        }
+      );
+    } else {
+      console.error("브라우저가 Geolocation API를 지원하지 않습니다. ");
+    }
   }, []);
 
   // 카카오맵 그리기
