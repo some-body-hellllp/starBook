@@ -48,7 +48,7 @@ function Qr() {
   // QR 인식을 하게되면 반응하여 코드 출력 (여기서 QR코드 전송)
   useEffect(() => {
     if (qrData) {
-      alert(`성공! QR CODE : ${qrData}`);
+      alert(`스탬프 적립 성공!`);
     }
   }, [qrData]);
 

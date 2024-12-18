@@ -30,24 +30,17 @@ export default function Coupon() {
       </Header>
       <section className={styles.couponBox}>
         <div className={styles.couponSelect}>
-          <div
-            className={`${styles.couponTab} ${selectedTab === "myCoupon" ? styles.active : ""}`}
-            id="myCoupon"
-            onClick={() => handleTabClick("myCoupon")}
-          >
+          <div className={`${styles.couponTab} ${selectedTab === "myCoupon" ? styles.active : ""}`} id="myCoupon" onClick={() => handleTabClick("myCoupon")}>
             내 쿠폰
           </div>
-          <div
-            className={`${styles.couponTab} ${selectedTab === "expiration" ? styles.active : ""}`}
-            id="expiration"
-            onClick={() => handleTabClick("expiration")}
-          >
+          <div className={`${styles.couponTab} ${selectedTab === "expiration" ? styles.active : ""}`} id="expiration" onClick={() => handleTabClick("expiration")}>
             만료 쿠폰
           </div>
         </div>
 
+        {/* 이벤트 쿠폰 */}
         <div className={styles.eventCouponBox}>
-          <div className={styles.eventCoupon}>
+          <div className={`${styles.eventCoupon} ${selectedTab === "expiration" ? styles.expiredCoupon : ""}`}>
             <div>
               <div className={styles.percent}>5%</div>
               <div className={styles.stamp}>스탬프 3개 완료</div>
@@ -55,9 +48,12 @@ export default function Coupon() {
             </div>
             <div>
               <div className={styles.eventButtonBox}>
-                {/* '사용하기' 버튼 클릭 시 모달 열기 */}
-                <button className={styles.eventButton} onClick={openModal}>
-                  사용하기
+                <button
+                  className={`${styles.eventButton} ${selectedTab === "expiration" ? styles.disabledButton : ""}`}
+                  onClick={openModal}
+                  disabled={selectedTab === "expiration"} // 만료 쿠폰일 때 비활성화
+                >
+                  {selectedTab === "expiration" ? "사용완료" : "사용하기"}
                 </button>
               </div>
             </div>
