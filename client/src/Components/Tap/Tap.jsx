@@ -11,7 +11,7 @@ function Tap() {
 
   function pageHandler(location) {
     setPage(location);
-    const path = location === "home" ? "/" : `/${location}`;
+    const path = `/${location}`;
     navigate(path, { state: { from: location } }); // 네비게이션 시 스테이트에 경로 저장?
   }
 

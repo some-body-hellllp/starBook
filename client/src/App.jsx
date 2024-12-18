@@ -38,9 +38,9 @@ function App() {
       <Router>
         <Routes>
           <Route element={<StarBook />}>
-            <Route index element={<Home />} />
+            <Route index element={<Splash />} />
             <Route path="qr" element={<Qr />} />
-            <Route path="splash" element={<Splash />} />
+            <Route path="home" element={<Home />} />
             <Route path="location" element={<Location />} />
             <Route path="stamp" element={<Stamp />} />
             <Route path="account" element={<Account />} />

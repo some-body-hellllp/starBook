@@ -6,11 +6,14 @@ import logo from "../../assets/img/splash/logo.svg";
 import star1 from "../../assets/img/splash/star1.svg";
 import star2 from "../../assets/img/splash/star2.svg";
 import { gsap } from "gsap";
+import { useNavigate } from "react-router-dom";
 
 export default function Splash() {
   const { setUserData } = useContext(PageData);
+  const navigate = useNavigate();
   const postUrl = import.meta.env.VITE_API_URL;
   const token = window.localStorage.getItem("token");
+
   useEffect(() => {
     // 별들의 초기 상태를 완전히 숨김
     gsap.set([`.${styles.star1}`, `.${styles.star2}`, `.${styles.star3}`], {
@@ -85,11 +88,11 @@ export default function Splash() {
       },
     });
 
-    axios
-      .post(`${postUrl}/auth/login`, {
-        token: token,
-      })
-      .then(function (response) {
+    const fetchData = async () => {
+      try {
+        const response = await axios.post(`${postUrl}/auth/login`, {
+          token: token,
+        });
         console.log(response); // 성공 시 응답 로그
         const userId = response.data.data.user.id;
         const name = response.data.data.user.name;
@@ -103,10 +106,14 @@ export default function Splash() {
           stampCount: stamp.length, // 누적 스탬프 갯수
           isLogin: true, // 로그인 확인
         });
-      })
-      .catch(function (error) {
+        navigate("/home"); // 로그인 후 홈으로 이동
+      } catch (error) {
         console.log(error); // 실패 시 에러 로그
-      });
+        navigate("/home"); // 로그인 후 홈으로 이동
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
