@@ -95,13 +95,14 @@ export default function Splash() {
         });
         console.log(response); // 성공 시 응답 로그
         const userId = response.data.data.user.user_id;
+        const profile = response.data.data.user.profile;
         const name = response.data.data.user.user_name;
         const stamp = response.data.data.stamps;
         console.log(stamp);
         console.log(stamp.length);
         setUserData({
           userId: userId, // 유저 아이디
-          profile: null, // 유저 프로필 사진 (미구현)
+          profile: profile, // 유저 프로필 사진
           nickName: name, // 유저 닉네임
           stamp: stamp, // 스탬프 현황
           stampCount: stamp.length, // 누적 스탬프 갯수
