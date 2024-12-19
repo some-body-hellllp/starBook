@@ -24,6 +24,7 @@ export default function NaverAuth() {
         });
         // console.log(tokenResponse);
         console.log("id :", tokenResponse.data.data.response.id);
+        console.log(tokenResponse.data.data);
 
         // 네이버 토큰으로 조회한 유저 아이디
         const id = tokenResponse.data.data.response.id;
