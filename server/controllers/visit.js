@@ -56,6 +56,7 @@ const visit = async (req, res) => {
   const [visitResult] = await db.execute(QUERY2, [loginUserId, course.course_name, courseQrType]);
 
   if (visitResult.length > 0) {
+    console.log("이미 방문한 서점입니다.");
     return res.status(409).json({ status: "error", message: "이미 방문한 서점입니다.", data: null });
   }
 
