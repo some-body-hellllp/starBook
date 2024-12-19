@@ -5,6 +5,7 @@ async function join(req, res) {
   // body
   const loginId = req.body.code?.trim();
   const loginName = req.body.nickName?.trim();
+  const loginProfile = req.body.profile?.trim();
 
   // 중복 검사 loginId
   const QUERY1 = `
@@ -50,6 +51,7 @@ async function join(req, res) {
 	        user_login_id,
 	        user_login_pw,
 	        user_name,
+          user_profile,
           create_at
         )
         VALUES
@@ -57,10 +59,11 @@ async function join(req, res) {
             ?,
             ?,
             ?,
+            ?,
             ?
         )`;
 
-  await db.execute(QUERY2, [loginId, encryptPw, loginName, time]);
+  await db.execute(QUERY2, [loginId, encryptPw, loginName, loginProfile, time]);
 
   // 성공 응답
   return res.status(200).json({ status: "success", message: "회원가입 성공", data: null });

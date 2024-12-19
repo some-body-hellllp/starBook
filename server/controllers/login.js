@@ -27,7 +27,8 @@ const login = async (req, res) => {
       SELECT 
         user_id,
         user_login_pw,
-        user_name
+        user_name,
+        user_profile
       FROM
         USERS
       WHERE
@@ -66,7 +67,8 @@ const login = async (req, res) => {
         user_id,
         user_login_id,
         user_login_pw,
-        user_name
+        user_name,
+        user_profile
     FROM 
         USERS
     WHERE 
@@ -116,7 +118,7 @@ const login = async (req, res) => {
       user: {
         id: user.user_id,
         name: user.user_name,
-        loginId: user.user_login_id,
+        profile: user.user_profile,
       },
       stamps: stamps,
     },

@@ -2,10 +2,13 @@ const db = require("../config/db");
 const { CurrentTime } = require("../config/date");
 const visit = async (req, res) => {
   const loginUserId = req.user.user_id;
-  const courseQr = req.body.qr;
+  const courseQr = req.body.location;
+  const courseQrType = req.body.qrType;
+  // 생성 시간 설정
+  const time = CurrentTime();
 
-  if (!courseQr) {
-    return res.status(400).json({ status: "error", message: "qr 코드 정보는 필수입니다", data: null });
+  if (!loginUserId || !courseQr || !courseQrType) {
+    return res.status(400).json({ status: "error", message: "id,qr,type 정보는 필수입니다", data: null });
   }
 
   // QR 정보 유효성 확인
@@ -25,45 +28,62 @@ const visit = async (req, res) => {
     return res.status(404).json({ status: "error", message: "코스 정보가 없습니다.", data: null });
   }
 
-  // 방문 했으면 방문한 코스입니다 라는 메세지 발송
-  // 유저 코스에서 유저 아이디와 코스 아이디가 포함되어 있는 행의 유저 코스 아이디를 가져옴
+  // 당일 방문한 코스인지 확인
   const QUERY2 = `
-    SELECT
-        user_course_id
-    FROM
-        USER_COURSES
-    WHERE
-        user_id = ?
-    AND
-        course_id = ? `;
-  const isVisited = await db.execute(QUERY2, [loginUserId, course.course_id]).then((result) => result[0][0]);
+  SELECT
+        user_id,
+        stamp_location,
+        stamp_type,
+        create_at
+  FROM
+        STAMPS
+  WHERE
+        user_id = ? 
+        AND
+        stamp_location = ? 
+        AND 
+        stamp_type = ?
+        AND
+        DATE(REPLACE(REPLACE(create_at, '(', ''), ')', '')) = CURDATE() -- 괄호 제거 후 날짜 비교
+  ORDER BY
+        REPLACE(REPLACE(create_at, '(', ''), ')', '') DESC -- 괄호 제거 후 최신 순 정렬
+  LIMIT 1;
+`;
+  const visit = await db.execute(QUERY2, [loginUserId, course.course_name, courseQrType, time]);
 
-  // 만약 방문했다면
-  if (isVisited) {
-    return res.status(400).json({ status: "error", message: "이미 방문한 코스입니다.", data: null });
+  console.log(visit);
+
+  if (visit.length > 0) {
+    // visit에서 create_at 값 추출
+    const visitTimeString = visit[0].create_at; // "2024-12-18 11:27:38"
+
+    // 1. 문자열에서 괄호와 공백 제거
+    const cleanedTime = time.replace(/[()]/g, "").trim(); // "2024-12-19 11:27:38"
+    const cleanedVisitTime = visitTimeString.replace(/[()]/g, "").trim(); // "2024-12-18 11:27:38"
+
+    // 2. 날짜만 추출 (시각을 제외)
+    const currentDate = cleanedTime.split(" ")[0]; // "2024-12-19"
+    const visitDate = cleanedVisitTime.split(" ")[0]; // "2024-12-18"
+
+    // 3. Date 객체로 변환 (시각은 무시하고 날짜만 비교)
+    const visitDateObj = new Date(visitDate);
+    const currentDateObj = new Date(currentDate);
+
+    // 4. 날짜 차이 계산
+    const timeDifferenceInMilliseconds = currentDateObj - visitDateObj;
+    const oneDayInMilliseconds = 24 * 60 * 60 * 1000; // 하루를 밀리초로 변환
+
+    // 5. 하루 차이 여부 확인
+    const isOneDayDifferent = Math.abs(timeDifferenceInMilliseconds) >= oneDayInMilliseconds;
+
+    console.log(isOneDayDifferent); // true 또는 false
+    if (!isOneDayDifferent) {
+      return res.status(409).json({ status: "error", message: "이미 방문한 서점입니다.", data: null });
+    }
   }
 
-  // 방문 이력이 없으면 방문 처리
-  const QUERY3 = `
-    INSERT INTO USER_COURSES
-    (
-        user_id,
-        course_id
-    )
-    VALUES
-    (
-    ?,
-    ?
-    )
-  `;
-  // 방문한 코스 등록
-  await db.execute(QUERY3, [loginUserId, course.course_id]);
-
-  // 생성 시간 설정
-  const time = CurrentTime();
-
   // 스탬프 테이블에 컬럼 추가
-  const QUERY4 = `
+  const QUERY3 = `
     INSERT INTO STAMPS
     (
         user_id,
@@ -80,8 +100,9 @@ const visit = async (req, res) => {
     ?
     )
   `;
-  // 스탬프 테이블에 스탬프 등록
-  await db.execute(QUERY4, [loginUserId, course.course_name, "visit", time]);
+
+  // 방문한 코스 등록
+  await db.execute(QUERY3, [loginUserId, course.course_name, courseQrType, time]);
 
   return res.json({ status: "success", message: "QR 인증이 완료되었습니다.", data: null });
 };

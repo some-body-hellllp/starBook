@@ -46,14 +46,14 @@ const createLike = async (req, res) => {
     });
   }
 
-  // 게시글 작성 쿼리
+  // 좋아요 처리 쿼리
   const QUERY2 = `
     INSERT INTO LIKES (post_id,user_id)
     VALUES (?,?);
   `;
 
   try {
-    // 게시글 작성
+    // 좋아요 처리
     const [result] = await db.execute(QUERY2, [postId, userId]);
     console.log(result);
     return res.status(201).json({

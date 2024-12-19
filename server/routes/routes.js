@@ -36,7 +36,7 @@ router.delete("/api/v1/bookmark/like", controllers.removeLike);
 router.get("/api/v1/auth/course", controllers.auth, controllers.course); // 스탬프 페이지로 들어갈때 사용하면 될듯?
 
 // QR인증!!
-// QR인증 시 방문 한 코스와 방문하지 않은 코스를 구별하여 방문 한 코스라면 실패 방문하지 않았다면 user_course에 방문이력을 저장
+// QR인증 시 방문 한 코스와 방문하지 않은 코스를 구별
 router.post("/api/v1/auth/visit", controllers.auth, controllers.visit);
 
 module.exports = router;
