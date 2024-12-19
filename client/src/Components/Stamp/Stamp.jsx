@@ -3,7 +3,7 @@ import stampCheck from "../../assets/img/stamp/stampcheck.svg";
 import stampNoneCheck from "../../assets/img/stamp/stampdoncheck.svg";
 import StampInfo from "./StampInfo/StampInfo";
 import Header from "../Header/Header";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { PageData } from "../../provider/PageProvider";
 import axios from "axios";
 
@@ -21,7 +21,7 @@ export default function Stamp() {
     // 나머지 만큼 stampCheck, 나머지는 stampNoneCheck
     return Array.from({ length: 8 }, (_, index) => (index < remainder ? stampCheck : stampNoneCheck));
   };
-
+  const prevStampCount = useRef(userData.stampCount);
   useEffect(() => {
     const fetchStamp = async () => {
       const headers = {
@@ -45,14 +45,13 @@ export default function Stamp() {
         console.error("Error fetching stamp:", error);
       }
     };
-
     fetchStamp();
-  }, [userData.rendering]);
+  }, [prevStampCount.current !== userData.stampCount]);
 
   // 스탬프 출력 함수
   useEffect(() => {
     setStampImages(createStampImages());
-  }, [userData.stampCount]);
+  }, []);
 
   return (
     <>

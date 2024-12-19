@@ -75,17 +75,6 @@ function Qr() {
           console.log(post);
           // 성공적으로 처리된 후의 동작
           alert(`스탬프 적립 성공!`);
-          if (userData.rendering === false) {
-            setUserData((prev) => ({
-              ...prev,
-              rendering: true, // 이전 값과 동일
-            }));
-          } else {
-            setUserData((prev) => ({
-              ...prev,
-              rendering: false, // 이전 값과 동일
-            }));
-          }
 
           navigate("/stamp");
         } catch (error) {
