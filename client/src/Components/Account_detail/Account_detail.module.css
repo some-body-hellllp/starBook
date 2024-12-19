@@ -11,16 +11,13 @@
   top: 111px;
   border-radius: 5px;
   position: absolute;
+  display: flex; /* flex 컨테이너로 변경 */
+  flex-direction: column;
+  align-items: center; /* 가운데 정렬 */
 }
 
 .proFileImgPosition {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex; /* flex 컨테이너로 변경 */
   flex-direction: column; /* 수직 방향으로 아이템 배치 */
-  align-items: center; /* 가운데 정렬 */
 }
 
 .proFileImg {
@@ -59,10 +56,14 @@
 }
 
 .account_detailBox_Name {
-  padding: 25px 0 0 23px;
   font-weight: 700;
   font-size: 18px;
   color: #1f5f99;
+  display: flex;
+
+  align-content: start;
+  width: 100%;
+  padding: 25px 23px 20px 23px;
 }
 
 .myNickName {
@@ -71,7 +72,6 @@
 .input {
   width: 188px;
   height: 26px;
-  margin-top: 20px;
   font-size: 22px;
   text-align: center;
   border: none;
