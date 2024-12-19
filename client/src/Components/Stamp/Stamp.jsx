@@ -19,17 +19,15 @@ export default function Stamp() {
     if (stampCount < 8) {
       const newStampCount = stampCount + 1;
 
-      // stampCount가 3, 5, 8일 때만 StampInfo를 추가
-      if (newStampCount === 3 || newStampCount === 5 || newStampCount === 8) {
-        setStampInfoList((prev) => [...prev, <StampInfo key={prev.length} />]);
-      }
-
       // stampCount가 8에 도달하면 0으로 리셋
       if (newStampCount === 8) {
         setStampCount(0);
       } else {
         setStampCount(newStampCount);
       }
+
+      // `StampInfo`를 한 번 클릭할 때마다 추가
+      setStampInfoList((prev) => [...prev, <StampInfo key={prev.length} />]);
     }
   };
 

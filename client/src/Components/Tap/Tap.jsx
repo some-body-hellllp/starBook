@@ -42,10 +42,8 @@ function Tap() {
             </div>
             <div>
               <QRIcon
+                page={page}
                 onClick={() => {
-                  // if (userData.isLogin === false) {
-                  //   return alert("로그인이 필요한 기능입니다 로그인해주세요");
-                  // }
                   pageHandler("qr");
                 }}
               />
