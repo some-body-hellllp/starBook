@@ -1,14 +1,17 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
+import { PageData } from "../../provider/PageProvider";
 import jsQR from "jsqr";
 import styles from "./Qr.module.css"; // CSS 모듈 import
 import qrplus from "../../assets/img/qr/qrplus.svg";
-
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 function Qr() {
   const [userLocation, setUserLocation] = useState({});
   const [videoStream, setVideoStream] = useState(null);
   const [permissionGranted, setPermissionGranted] = useState(null);
   const [qrData, setQrData] = useState(null);
-
+  const { userData } = useContext(PageData);
+  const navigate = useNavigate();
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -48,7 +51,32 @@ function Qr() {
   // QR 인식을 하게되면 반응하여 코드 출력 (여기서 QR코드 전송)
   useEffect(() => {
     if (qrData) {
-      alert(`스탬프 적립 성공!`);
+      console.log(qrData);
+      const [storeName, qrType] = qrData.split(",").map((item) => item.trim());
+      const postUrl = import.meta.env.VITE_API_URL;
+
+      const qrFetch = async () => {
+        try {
+          const post = await axios.post(`${postUrl}/auth/visit`, {
+            user_id: userData.userId,
+            location: storeName,
+            qrType: qrType,
+          });
+          console.log(post);
+          // 성공적으로 처리된 후의 동작
+          alert(`스탬프 적립 성공!`);
+          // navigate("/stamp");
+        } catch (error) {
+          if (error.response && error.response.status === 404) {
+            alert("잘못된 QR코드입니다.");
+          }
+          console.error("Error during QR data submission:", error);
+          // 에러 발생 시 알림이나 다른 처리
+          alert("QR 인증에 실패했습니다. 다시 시도해주세요.");
+        }
+      };
+
+      qrFetch();
     }
   }, [qrData]);
 

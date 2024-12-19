@@ -43,15 +43,17 @@ export function useKakaoLogin() {
           "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
         },
       });
+      console.log(response.data);
+      console.log(response.data.properties.profile_image);
       // 사용자 정보로 카카오 로그인 처리
-      await kakaoLogin(response.data.id);
+      await kakaoLogin(response.data.id, response.data.properties.profile_image);
     } catch (error) {
       console.error("사용자 정보 요청 오류:", error);
     }
   }, []);
 
   // 백엔드 로그인 요청
-  const kakaoLogin = useCallback(async (kakaoId) => {
+  const kakaoLogin = useCallback(async (kakaoId, kakaoImg) => {
     try {
       const response = await axios.post(`${postUrl}/auth/login`, {
         id: kakaoId,
@@ -61,11 +63,13 @@ export function useKakaoLogin() {
       window.localStorage.setItem("token", response.data.data.token);
       const userId = response.data.data.user.id;
       const name = response.data.data.user.name;
+      const profile = response.data.data.user.user_profile;
       const stamp = response.data.data.stamps;
+      console.log(response.data.data);
 
       setUserData({
         userId: userId,
-        profile: null, // 프로필 사진 미구현
+        profile: profile, // 프로필 사진 미구현
         nickName: name,
         stamp: stamp,
         stampCount: stamp.length,
@@ -79,7 +83,7 @@ export function useKakaoLogin() {
 
       if (error.response && error.response.status === 404) {
         // 사용자가 없으면 회원가입 페이지로 이동
-        navigate(`/signup?code=${kakaoId}`);
+        navigate(`/signup?code=${kakaoId}&profile=${kakaoImg}`);
       } else if (error.code === "ERR_NETWORK") {
         alert("네트워크에 문제가 발생했습니다. 메인으로 이동합니다.");
         navigate("home");

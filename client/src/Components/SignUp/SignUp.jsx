@@ -9,6 +9,16 @@ export default function SignUp() {
   const [nickName, setNickname] = useState(""); // 닉네임 상태
   const navigate = useNavigate();
   const code = new URL(window.location.href).searchParams.get("code"); // URL에서 'code' 파라미터 가져오기
+  const profileUrl = new URL(window.location.href).searchParams.get("profile"); // URL에서 'profile' 파라미터 가져오기
+  const convertUrl = convertToHttps(profileUrl);
+  // console.log(convertUrl); //url 변경 확인용
+  function convertToHttps(url) {
+    if (url.startsWith("http://")) {
+      return url.replace("http://", "https://");
+    }
+    return url; // 이미 https라면 그대로 반환
+  }
+
   // 닉네임 입력 변경 핸들러
   const handleTextChange = (e) => {
     setNickname(e.target.value); // 입력값을 상태로 설정
@@ -23,6 +33,7 @@ export default function SignUp() {
       .post(`${postUrl}/auth/user`, {
         code: code, //  인증 코드
         nickName: nickName, // 닉네임
+        profile: convertUrl, // 프로필 사진 링크
       })
       .then(function (response) {
         // console.log(response); // 성공 시 응답 로그
