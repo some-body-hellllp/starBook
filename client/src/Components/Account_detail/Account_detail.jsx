@@ -61,13 +61,14 @@ export default function AccountDetail() {
       <Header
         showBackButton={true}
         showSubmitButton={true}
+        backgroundColor={"white"}
         buttonText={isReadOnly ? "수정" : "완료"}
         submitFunction={(e) => {
           // 여기에서 e.preventDefault()가 아니라 onSubmit에서 처리
           isReadOnly ? toggleReadOnly() : formHandler(e);
         }} // toggleReadOnly는 버튼 클릭 시 호출
       >
-        회원 정보
+        {isReadOnly ? "회원 정보" : "회원 정보 수정"}
       </Header>
       <section className={styles.account_detailBox}>
         <form onSubmit={(e) => formHandler(e)}>
@@ -78,11 +79,7 @@ export default function AccountDetail() {
             <div className={styles.account_detailBox_Name}>프로필사진</div>
             <div className={styles.proFileImgPosition}>
               <div className={styles.proFileImg}>
-                <img
-                  src={userData.isLogin === true ? accountdetailimg : dummyImg}
-                  alt="emptyImg"
-                  onClick={() => console.log(userData)}
-                />
+                <img src={userData.isLogin === true ? accountdetailimg : dummyImg} alt="emptyImg" onClick={() => console.log(userData)} />
               </div>
             </div>
             <div className={styles.proFileButtonBox}>
