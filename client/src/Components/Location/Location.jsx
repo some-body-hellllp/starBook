@@ -164,7 +164,6 @@ export default function Location() {
       {
         title: "현재위치",
         latlng: new kakao.maps.LatLng(latitude, longitude),
-        img: chaegbangdadog,
         imgsrc: bagicmarkertest,
       },
     ];
@@ -187,7 +186,7 @@ export default function Location() {
         markerImage = new window.kakao.maps.MarkerImage(imageSrc, imageSize);
       }
 
-      // 마커 생성 로직 (기존과 동일)
+      // 마커 생성 로직
       var marker = new window.kakao.maps.Marker({
         map: map,
         position: position.latlng,
@@ -196,14 +195,31 @@ export default function Location() {
       });
 
       // React 컴포넌트를 문자열로 변환하여 인포윈도우의 content로 설정
-      var infowindowContent = ReactDOMServer.renderToString(<LocationModal img={position.img} title={position.title} adress={position.adress} number={position.number} />);
+      var infowindowContent = ReactDOMServer.renderToString(<LocationModal img={position.img} title={position.title} adress={position.adress} number={position.number} isCurrentLocation={position.title === "현재위치"} />);
 
       var customOverlay = new kakao.maps.CustomOverlay({
         content: infowindowContent,
         zIndex: 2, // 오버레이가 마커 위에 표시되도록 zIndex 설정
       });
 
-      // 클릭 이벤트 리스너
+      // "현재위치"에 대해서는 항상 오버레이 표시
+      // "현재위치"에 대해서는 항상 오버레이 표시
+      if (position.title === "현재위치") {
+        // 마커의 위치 계산
+        var markerPosition = position.latlng;
+        var proj = map.getProjection();
+        var markerPixel = proj.pointFromCoords(markerPosition);
+
+        // 마커 위 350픽셀 위치에 오버레이 표시
+        var overlayPixel = new kakao.maps.Point(markerPixel.x, markerPixel.y - 80);
+        var positionForOverlay = proj.coordsFromPoint(overlayPixel);
+
+        customOverlay.setPosition(positionForOverlay);
+        customOverlay.setMap(map);
+        currentOverlay = customOverlay;
+      }
+
+      // 클릭 이벤트 리스너 (다른 마커들)
       window.kakao.maps.event.addListener(marker, "click", function () {
         if (currentOverlay) {
           currentOverlay.setMap(null);
@@ -218,13 +234,20 @@ export default function Location() {
         // 마커의 픽셀 좌표 계산
         var markerPixel = proj.pointFromCoords(markerPosition);
 
-        // 마커 위쪽 50픽셀 지점의 좌표 계산
-        var overlayPixel = new kakao.maps.Point(markerPixel.x, markerPixel.y - 150);
+        // 현재 위치 마커인 경우와 일반 마커의 경우 오버레이 위치를 다르게 계산
+        var overlayPixel;
+        if (position.title === "현재위치") {
+          // 현재 위치 마커의 경우 마커 위로 더 가깝게 위치
+          overlayPixel = new kakao.maps.Point(markerPixel.x, markerPixel.y - 80);
+        } else {
+          // 일반 마커의 경우 기존 위치 유지
+          overlayPixel = new kakao.maps.Point(markerPixel.x, markerPixel.y - 150);
+        }
 
         // 픽셀 좌표를 다시 지도 좌표로 변환
         var positionForOverlay = proj.coordsFromPoint(overlayPixel);
 
-        // 새로운 오버레이가 열려 있다면 설정
+        // 버레이가 열려 있다면 설정새로운 오
         if (currentOverlay !== customOverlay) {
           customOverlay.setPosition(positionForOverlay);
           customOverlay.setMap(map);
