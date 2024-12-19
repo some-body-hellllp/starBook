@@ -10,11 +10,14 @@ export default function SignUp() {
   const navigate = useNavigate();
   const code = new URL(window.location.href).searchParams.get("code"); // URL에서 'code' 파라미터 가져오기
   const profileUrl = new URL(window.location.href).searchParams.get("profile"); // URL에서 'profile' 파라미터 가져오기
-  const convertUrl = convertToHttps(profileUrl);
+  const convertUrl = null || convertToHttps(profileUrl);
   // console.log(convertUrl); //url 변경 확인용
   function convertToHttps(url) {
     if (url.startsWith("http://")) {
       return url.replace("http://", "https://");
+    }
+    if (url === null) {
+      return;
     }
     return url; // 이미 https라면 그대로 반환
   }
