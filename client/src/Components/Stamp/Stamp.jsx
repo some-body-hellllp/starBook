@@ -14,6 +14,7 @@ export default function Stamp() {
   const [stampInfoList, setStampInfoList] = useState([]); // StampInfo 컴포넌트를 관리하는 상태
   const postUrl = import.meta.env.VITE_API_URL;
   const token = window.localStorage.getItem("token");
+  console.log(token);
   // 스탬프 이미지 배열 생성
   const createStampImages = () => {
     const remainder = stampCount % 8; // 8로 나눈 나머지 계산
@@ -24,31 +25,29 @@ export default function Stamp() {
   useEffect(() => {
     const fetchStamp = async () => {
       const headers = {
-        authorization: `Bearer ${token}`, // 인증 토큰
-        "Content-Type": "application/json", // 요청의 Content-Type
+        Authorization: `Bearer ${token}`,
       };
 
       try {
-        // axios 요청: URL, 요청 데이터 (body), 그리고 설정(config) 순으로 전달
-        const getStamp = await axios.get(
-          `${postUrl}/auth/stamp`,
-          { userId: userData.userId }, // 요청 본문 (body) 데이터
-          { headers } // 설정 (headers)
-        );
+        const getStamp = await axios.get(`${postUrl}/auth/stamp`, {
+          headers: headers,
+          params: { userId: userData.userId },
+        });
 
-        console.log(getStamp); // 서버로부터 받은 응답
-        // setUserData(prevData => ({
-        //   ...prevData, // 기존의 userData를 유지
-        //   stamp: getStamp.stamp,
-        //   stampCount:getStamp.stamp.length//
-        // }));
+        console.log(getStamp);
+
+        setUserData((prevData) => ({
+          ...prevData,
+          stamp: getStamp.data.stamp,
+          stampCount: getStamp.data.stamp.length,
+        }));
       } catch (error) {
         console.error("Error fetching stamp:", error);
       }
     };
 
     fetchStamp();
-  }, []); // 컴포넌트가 처음 렌더링될 때만 실행
+  }, []);
 
   // 스탬프 출력 함수
   useEffect(() => {
