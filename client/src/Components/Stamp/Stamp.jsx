@@ -30,7 +30,7 @@ export default function Stamp() {
 
       try {
         // axios 요청: URL, 요청 데이터 (body), 그리고 설정(config) 순으로 전달
-        const getStamp = await axios.post(
+        const getStamp = await axios.get(
           `${postUrl}/auth/stamp`,
           { userId: userData.userId }, // 요청 본문 (body) 데이터
           { headers } // 설정 (headers)
