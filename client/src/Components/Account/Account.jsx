@@ -42,7 +42,7 @@ export default function Account() {
         </div>
         {/* 프로필 타이틀 */}
         {userData.isLogin === true ? (
-          <AccountTitle nickName={userData.nickName} />
+          <AccountTitle nickName={userData.nickName} stamp={userData.stampCount} />
         ) : (
           <div className={styles.account_title}>로그인이 필요합니다</div>
         )}
