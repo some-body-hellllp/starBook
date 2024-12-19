@@ -10,7 +10,7 @@ const PageProvider = ({ children }) => {
     stamp: null, // 스탬프 현황
     stampCount: null, // 누적 스탬프 갯수
     isLogin: false, // 로그인 확인
-    rendering: null, // 렌더링 용도로 만들어봄
+    rendering: false, // 렌더링 용도로 만들어봄
   });
 
   return <PageData.Provider value={{ userData, setUserData }}>{children}</PageData.Provider>;
