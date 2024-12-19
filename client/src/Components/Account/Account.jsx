@@ -28,14 +28,14 @@ export default function Account() {
     });
     window.localStorage.removeItem("token");
   };
-
+  console.log(userData.profile);
   return (
     <>
       <Header>마이페이지</Header>
       <section className={styles.account}>
         <div className={styles.prifile_img}>
           <img
-            src={userData.isLogin === true ? dummyImg : emptyImg}
+            src={userData.isLogin === true ? userData.profile : emptyImg}
             alt="profileImg"
             onClick={() => console.log(userData)}
           />

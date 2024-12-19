@@ -44,7 +44,6 @@ export function useKakaoLogin() {
         },
       });
       console.log(response.data);
-      console.log(response.data.properties.profile_image);
       // 사용자 정보로 카카오 로그인 처리
       await kakaoLogin(response.data.id, response.data.properties.profile_image);
     } catch (error) {
@@ -63,9 +62,10 @@ export function useKakaoLogin() {
       window.localStorage.setItem("token", response.data.data.token);
       const userId = response.data.data.user.id;
       const name = response.data.data.user.name;
-      const profile = response.data.data.user.user_profile;
+      const profile = response.data.data.user.profile;
       const stamp = response.data.data.stamps;
       console.log(response.data.data);
+      console.log(response.data.data.user.profile);
 
       setUserData({
         userId: userId,
