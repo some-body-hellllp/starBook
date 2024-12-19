@@ -24,10 +24,11 @@ export default function NaverAuth() {
         });
         // console.log(tokenResponse);
         console.log("id :", tokenResponse.data.data.response.id);
-        console.log(tokenResponse.data.data);
+        console.log("image :", tokenResponse.data.data.response.profile_image);
 
         // 네이버 토큰으로 조회한 유저 아이디
         const id = tokenResponse.data.data.response.id;
+        const profile = tokenResponse.data.data.response.profile_image;
 
         try {
           // 로그인 요청
@@ -59,7 +60,7 @@ export default function NaverAuth() {
 
           if (error.response && error.response.status === 404) {
             // 사용자가 없을 경우 회원가입 페이지로 리다이렉트
-            navigate(`/signup?code=${id}`);
+            navigate(`/signup?code=${id}&profile=${profile}`);
           } else if (error.code === "ERR_NETWORK") {
             alert("네트워크에 문제가 발생했습니다. 메인으로 이동합니다.");
             navigate("home");
