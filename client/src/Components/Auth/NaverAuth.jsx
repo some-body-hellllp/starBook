@@ -40,13 +40,14 @@ export default function NaverAuth() {
           // 3. 사용자 정보 처리 및 로컬 저장
           window.localStorage.setItem("token", login.data.data.token);
           const userId = login.data.data.user.id;
+          const profile = response.data.data.user.profile;
           const name = login.data.data.user.name;
           const stamp = login.data.data.stamps;
           console.log("스탬프 개수 :", stamp.length);
 
           setUserData({
             userId: userId,
-            profile: null, // 프로필 사진 미구현
+            profile: profile, // 프로필 사진 미구현
             nickName: name,
             stamp: stamp,
             stampCount: stamp.length,

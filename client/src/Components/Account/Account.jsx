@@ -35,7 +35,7 @@ export default function Account() {
       <section className={styles.account}>
         <div className={styles.prifile_img}>
           <img
-            src={userData.isLogin === true ? userData.profile : emptyImg}
+            src={userData.profile === !null ? userData.profile : emptyImg}
             alt="profileImg"
             onClick={() => console.log(userData)}
           />
