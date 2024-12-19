@@ -36,8 +36,8 @@ export default function Splash() {
       ease: "power3.out",
       onComplete: () => {
         // 로고 애니메이션 완료 후 별들 빠르게 순차적으로 나타나기
-        gsap
-          .timeline()
+        const starTimeline = gsap.timeline();
+        starTimeline
           .to(`.${styles.star1}`, {
             opacity: 1,
             scale: 1,
@@ -56,27 +56,23 @@ export default function Splash() {
           .then(() => {
             // 각 별마다 더 자연스러운 반짝임 효과
             [`.${styles.star1}`, `.${styles.star2}`, `.${styles.star3}`].forEach((starClass, index) => {
-              // 반짝이는 애니메이션
               gsap
                 .timeline({
                   repeat: -1,
                   delay: index * 0.4, // 각 별에 조금씩 지연을 추가
                 })
-                // 반짝임: 커지고 불투명도 증가
                 .to(starClass, {
                   scale: 1.05, // 크기 변화 범위 줄임
                   opacity: 1, // 선명해짐
                   duration: 0.5,
                   ease: "power1.inOut",
                 })
-                // 크기 줄어들면서 흐려짐
                 .to(starClass, {
                   scale: 0.95, // 작아짐 범위 줄임
                   opacity: 0.5, // 흐려짐
                   duration: 0.3,
                   ease: "power1.inOut",
                 })
-                // 원래 크기로 돌아오면서 다시 밝아짐
                 .to(starClass, {
                   scale: 1, // 원래 크기로 돌아옴
                   opacity: 1, // 다시 선명해짐
@@ -84,7 +80,8 @@ export default function Splash() {
                   ease: "elastic.out(1, 0.3)",
                 });
             });
-          });
+          })
+          .then(fetchData); // 모든 애니메이션 완료 후 fetchData 호출
       },
     });
 
@@ -115,8 +112,6 @@ export default function Splash() {
         navigate("/home"); // 로그인 후 홈으로 이동
       }
     };
-
-    fetchData();
   }, []);
 
   return (

@@ -11,10 +11,10 @@ function Qr() {
   const [permissionGranted, setPermissionGranted] = useState(null);
   const [qrData, setQrData] = useState(null);
   const { userData } = useContext(PageData);
+  const token = window.localStorage.getItem("token");
   const navigate = useNavigate();
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
-
   // 카메라 실행시키는 코드
   useEffect(() => {
     const requestCameraPermission = async () => {
@@ -57,11 +57,21 @@ function Qr() {
 
       const qrFetch = async () => {
         try {
-          const post = await axios.post(`${postUrl}/auth/visit`, {
-            user_id: userData.userId,
-            location: storeName,
-            qrType: qrType,
-          });
+          const headers = {
+            Authorization: `Bearer ${token}`, // 인증 토큰
+            "Content-Type": "application/json", // 요청의 Content-Type
+          };
+
+          const post = await axios.post(
+            `${postUrl}/auth/visit`,
+            {
+              user_id: userData.userId,
+              location: storeName,
+              qrType: qrType,
+            },
+            { headers } // 세 번째 인수로 헤더 전달
+          );
+
           console.log(post);
           // 성공적으로 처리된 후의 동작
           alert(`스탬프 적립 성공!`);
