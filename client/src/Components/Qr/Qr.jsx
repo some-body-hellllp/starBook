@@ -10,7 +10,7 @@ function Qr() {
   const [videoStream, setVideoStream] = useState(null);
   const [permissionGranted, setPermissionGranted] = useState(null);
   const [qrData, setQrData] = useState(null);
-  const { userData } = useContext(PageData);
+  const { userData, setUserData } = useContext(PageData);
   const token = window.localStorage.getItem("token");
   const navigate = useNavigate();
   const videoRef = useRef(null);
@@ -75,6 +75,10 @@ function Qr() {
           console.log(post);
           // 성공적으로 처리된 후의 동작
           alert(`스탬프 적립 성공!`);
+          setUserData((prev) => ({
+            ...prev,
+            rendering: null, // 이전 값과 동일
+          }));
           navigate("/stamp");
         } catch (error) {
           if (error.response && error.response.status === 404) {
