@@ -10,12 +10,14 @@ const auth = async (req, res, next) => {
 
   // 헤더의 authorization가 없음
   const authorization = req.headers.authorization; // Bearer {{Token}}
+  console.log("헤더 :", authorization);
   if (!authorization) {
     return res.status(401).json({ status: "error", message: "토큰이 없습니다.", data: null });
   }
 
   // header : authorization 키가 있는 경우인데 토큰이 없음
   const token = authorization.split(" ")[1];
+  console.log("토큰 :", token);
   if (!token) {
     return res.status(401).json({ status: "error", message: "토큰이 없습니다.", data: null });
   }
