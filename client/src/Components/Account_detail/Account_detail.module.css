@@ -15,9 +15,12 @@
 
 .proFileImgPosition {
   position: absolute;
-  top: 50%; /* 부모 높이의 50% */
-  left: 50%; /* 부모 너비의 50% */
-  transform: translate(-50%, -50%); /* 본인의 크기만큼 이동 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex; /* flex 컨테이너로 변경 */
+  flex-direction: column; /* 수직 방향으로 아이템 배치 */
+  align-items: center; /* 가운데 정렬 */
 }
 
 .proFileImg {
@@ -25,15 +28,15 @@
   width: 124px;
   border-radius: 100px;
   display: flex;
-  justify-content: center; /* 수평 중앙 */
-  align-items: center; /* 수직 중앙 */
+  justify-content: center;
+  align-items: center;
 }
 
 .proFileButtonBox {
+  padding-top: 12px; /* 위쪽에 12px 여백 추가 */
   display: flex;
   justify-content: center;
   width: 100%;
-  padding-top: 12px;
 }
 
 .proFileButton {
