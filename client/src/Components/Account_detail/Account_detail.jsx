@@ -3,8 +3,6 @@ import styles from "./Account_detail.module.css";
 
 import dummyImg from "../../assets/img/Account/Generic avatar.svg";
 
-import accountdetailimg from "../../assets/img/Account/accountdetailimg.svg";
-
 import { useContext, useState } from "react";
 import { PageData } from "../../provider/PageProvider";
 import axios from "axios";
@@ -79,7 +77,11 @@ export default function AccountDetail() {
             <div className={styles.account_detailBox_Name}>프로필사진</div>
             <div className={styles.proFileImgPosition}>
               <div className={styles.proFileImg}>
-                <img src={userData.isLogin === true ? accountdetailimg : dummyImg} alt="emptyImg" onClick={() => console.log(userData)} />
+                <img
+                  src={userData.isLogin === true ? userData.profile : dummyImg}
+                  alt="emptyImg"
+                  onClick={() => console.log(userData)}
+                />
               </div>
             </div>
             <div className={styles.proFileButtonBox}>
