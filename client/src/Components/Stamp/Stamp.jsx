@@ -3,9 +3,10 @@ import stampCheck from "../../assets/img/stamp/stampcheck.svg";
 import stampNoneCheck from "../../assets/img/stamp/stampdoncheck.svg";
 import StampInfo from "./StampInfo/StampInfo";
 import Header from "../Header/Header";
-import { useContext, useEffect, useState, useRef } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PageData } from "../../provider/PageProvider";
 import axios from "axios";
+import { useLocation } from "react-router-dom"; // useLocation 임포트
 
 export default function Stamp() {
   const { userData, setUserData } = useContext(PageData); // PageData Context에서 userData 가져오기
@@ -14,44 +15,55 @@ export default function Stamp() {
   const [stampInfoList, setStampInfoList] = useState([]); // StampInfo 컴포넌트를 관리하는 상태
   const postUrl = import.meta.env.VITE_API_URL;
   const token = window.localStorage.getItem("token");
-  // console.log(token);
+  const location = useLocation(); // 현재 URL을 가져옴
+
   // 스탬프 이미지 배열 생성
   const createStampImages = () => {
     const remainder = stampCount % 8; // 8로 나눈 나머지 계산
     // 나머지 만큼 stampCheck, 나머지는 stampNoneCheck
     return Array.from({ length: 8 }, (_, index) => (index < remainder ? stampCheck : stampNoneCheck));
   };
-  const prevStampCount = useRef(userData.stampCount);
-  useEffect(() => {
-    const fetchStamp = async () => {
-      const headers = {
-        Authorization: `Bearer ${token}`,
-      };
 
-      try {
-        const getStamp = await axios.get(`${postUrl}/auth/stamp`, {
-          headers: headers,
-          params: { userId: userData.userId },
-        });
+  // URL 쿼리 파라미터 확인
+  const queryParams = new URLSearchParams(location.search);
+  const isNewStamp = queryParams.get("new"); // "new" 파라미터 확인
 
-        console.log(getStamp);
-        console.log("스탬프 :", getStamp.data.data);
-        setUserData((prevData) => ({
-          ...prevData,
-          stamp: getStamp.data.data,
-          stampCount: getStamp.data.data.length,
-        }));
-      } catch (error) {
-        console.error("Error fetching stamp:", error);
-      }
+  // 스탬프 정보 가져오기
+  const fetchStamp = async () => {
+    const headers = {
+      Authorization: `Bearer ${token}`,
     };
-    fetchStamp();
-  }, [prevStampCount.current !== userData.stampCount]);
+
+    try {
+      const getStamp = await axios.get(`${postUrl}/auth/stamp`, {
+        headers: headers,
+        params: { userId: userData.userId },
+      });
+
+      console.log(getStamp);
+      console.log("스탬프 :", getStamp.data.data);
+      setUserData((prevData) => ({
+        ...prevData,
+        stamp: getStamp.data.data,
+        stampCount: getStamp.data.data.length,
+      }));
+    } catch (error) {
+      console.error("Error fetching stamp:", error);
+    }
+  };
+
+  // useEffect: 쿼리 파라미터에 따라 fetchStamp 호출
+  useEffect(() => {
+    if (isNewStamp) {
+      console.log("새로운 스탬프가 추가되었습니다.");
+      fetchStamp(); // 새로운 스탬프가 추가되었을 때만 호출
+    }
+  }, [isNewStamp]); // isNewStamp 값이 바뀔 때만 실행
 
   // 스탬프 출력 함수
   useEffect(() => {
     setStampImages(createStampImages());
-  }, []);
+  }, [stampCount]); // stampCount 값이 변경될 때마다 실행
 
   return (
     <>
@@ -79,7 +91,9 @@ export default function Stamp() {
           </div>
         </div>
 
-        <section className={styles.stampWrap}>{stampInfoList}</section>
+        <section className={styles.stampWrap}>
+          <StampInfo />
+        </section>
       </section>
     </>
   );

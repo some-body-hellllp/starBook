@@ -76,7 +76,7 @@ function Qr() {
           // 성공적으로 처리된 후의 동작
           alert(`스탬프 적립 성공!`);
 
-          navigate("/stamp");
+          navigate("/stamp?new=true");
         } catch (error) {
           if (error.response && error.response.status === 404) {
             alert("잘못된 QR코드입니다.");
