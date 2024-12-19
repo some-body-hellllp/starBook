@@ -11,6 +11,7 @@
   top: 111px;
   border-radius: 5px;
   position: absolute;
+  position: relative;
 }
 
 .proFileImgPosition {
@@ -36,8 +37,10 @@
 }
 
 .proFileButton {
-  position: fixed;
-  top: 322px;
+  position: absolute;
+  top: 70%; /* 부모 높이의 50% */
+  left: 50%; /* 부모 너비의 50% */
+  transform: translate(-70%, -50%); /* 본인의 크기만큼 이동 */
   border: none;
   width: 65px;
   height: 37px;
