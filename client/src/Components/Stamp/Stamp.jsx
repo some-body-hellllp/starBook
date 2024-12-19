@@ -47,12 +47,12 @@ export default function Stamp() {
     };
 
     fetchStamp();
-  }, []);
+  }, [userData.rendering]);
 
   // 스탬프 출력 함수
   useEffect(() => {
     setStampImages(createStampImages());
-  }, []);
+  }, [userData.stampCount]);
 
   return (
     <>
