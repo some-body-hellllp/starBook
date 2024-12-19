@@ -24,7 +24,7 @@ export default function Stamp() {
   useEffect(() => {
     const fetchStamp = async () => {
       const headers = {
-        Authorization: `Bearer ${token}`, // 인증 토큰
+        authorization: `Bearer ${token}`, // 인증 토큰
         "Content-Type": "application/json", // 요청의 Content-Type
       };
 
