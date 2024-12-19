@@ -25,7 +25,7 @@ const stampCount = async (req, res) => {
       return res.status(404).json({ status: "error", message: "스탬프 정보를 찾을 수 없습니다.", data: null });
     }
 
-    return res.json({ status: "success", message: "QR 인증이 완료되었습니다.", data: stamp });
+    return res.json({ status: "success", message: "스탬프 정보를 전송하였습니다.", data: stamp });
   } catch (error) {
     console.error("DB 쿼리 에러:", error);
     return res.status(500).json({ status: "error", message: "서버 에러", data: null });

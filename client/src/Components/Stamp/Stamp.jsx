@@ -14,7 +14,7 @@ export default function Stamp() {
   const [stampInfoList, setStampInfoList] = useState([]); // StampInfo 컴포넌트를 관리하는 상태
   const postUrl = import.meta.env.VITE_API_URL;
   const token = window.localStorage.getItem("token");
-  console.log(token);
+  // console.log(token);
   // 스탬프 이미지 배열 생성
   const createStampImages = () => {
     const remainder = stampCount % 8; // 8로 나눈 나머지 계산
@@ -35,11 +35,11 @@ export default function Stamp() {
         });
 
         console.log(getStamp);
-
+        console.log("스탬프 :", getStamp.data.data);
         setUserData((prevData) => ({
           ...prevData,
-          stamp: getStamp.data.stamp,
-          stampCount: getStamp.data.stamp.length,
+          stamp: getStamp.data.data,
+          stampCount: getStamp.data.data.length,
         }));
       } catch (error) {
         console.error("Error fetching stamp:", error);
@@ -60,7 +60,7 @@ export default function Stamp() {
       <section className={styles.stampSection}>
         <div className={styles.stampBox}>
           <div className={styles.stampBoxHeader}>
-            <strong className={styles.stampName}>코딩몬스터</strong>님
+            <strong className={styles.stampName}>{userData.nickName || "코딩몬스터"}</strong>님
             <br />
             모으신 스탬프를 확인해보세요
           </div>
