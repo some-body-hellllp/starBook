@@ -75,10 +75,14 @@ function Qr() {
           console.log(post);
           // 성공적으로 처리된 후의 동작
           alert(`스탬프 적립 성공!`);
-          // navigate("/stamp");
+          navigate("/stamp");
         } catch (error) {
           if (error.response && error.response.status === 404) {
             alert("잘못된 QR코드입니다.");
+            setQrData(null);
+          }
+          if (error.response && error.response.status === 409) {
+            alert("이미 방문한 서점입니다.");
             setQrData(null);
           }
           console.error("Error during QR data submission:", error);

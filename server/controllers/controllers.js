@@ -5,9 +5,10 @@ const join = require("./join");
 const login = require("./login");
 // 미들웨어 (토큰인증)
 const auth = require("../middleware/auth");
-// 코스 , 유저 방문 코스
+// 코스 조회, QR 인증, 스탬프 적립 정보 및 카운트 조회
 const course = require("./course");
 const visit = require("./visit");
+const stampCount = require("./stampCount");
 // 네이버 로그인, 네이버 유저 정보 조회
 const naverLogin = require("./naverLogin");
 const naverUser = require("./naverUser");
@@ -38,4 +39,5 @@ module.exports = {
   createComment,
   createLike,
   removeLike,
+  stampCount,
 };

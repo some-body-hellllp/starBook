@@ -32,8 +32,9 @@ router.post("/api/v1/bookmark/like", controllers.createLike);
 router.delete("/api/v1/bookmark/like", controllers.removeLike);
 
 // 코스 리스트 (인증이 필요한 enpoint 주소)
-// 방문한 코스와 방문하지 않은 코스를 구분하여 모두 불러옴
-router.get("/api/v1/auth/course", controllers.auth, controllers.course); // 스탬프 페이지로 들어갈때 사용하면 될듯?
+// 스탬프 정보 갱신용
+router.get("/api/v1/auth/stamp", controllers.auth, controllers.stampCount); // 스탬프 페이지로 들어갈때 사용하면 될듯?
+// router.get("/api/v1/auth/course", controllers.auth, controllers.course); // 스탬프 페이지로 들어갈때 사용하면 될듯?
 
 // QR인증!!
 // QR인증 시 방문 한 코스와 방문하지 않은 코스를 구별

@@ -3,33 +3,57 @@ import stampCheck from "../../assets/img/stamp/stampcheck.svg";
 import stampNoneCheck from "../../assets/img/stamp/stampdoncheck.svg";
 import StampInfo from "./StampInfo/StampInfo";
 import Header from "../Header/Header";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { PageData } from "../../provider/PageProvider";
+import axios from "axios";
 
 export default function Stamp() {
-  const { userData } = useContext(PageData);
-  const [stampCount, setStampCount] = useState(0); // 현재 스탬프 개수
+  const { userData, setUserData } = useContext(PageData); // PageData Context에서 userData 가져오기
+  const [stampCount, setStampCount] = useState(userData.stampCount); // 현재 스탬프 개수 상태
+  const [stampImages, setStampImages] = useState([]); // 스탬프 이미지 배열 상태
   const [stampInfoList, setStampInfoList] = useState([]); // StampInfo 컴포넌트를 관리하는 상태
-
+  const postUrl = import.meta.env.VITE_API_URL;
+  const token = window.localStorage.getItem("token");
   // 스탬프 이미지 배열 생성
-  const stampImages = Array.from({ length: 8 }, (_, index) => (index < stampCount ? stampCheck : stampNoneCheck));
-
-  // 스탬프를 추가하는 함수
-  const addStamp = () => {
-    if (stampCount < 8) {
-      const newStampCount = stampCount + 1;
-
-      // stampCount가 8에 도달하면 0으로 리셋
-      if (newStampCount === 8) {
-        setStampCount(0);
-      } else {
-        setStampCount(newStampCount);
-      }
-
-      // `StampInfo`를 한 번 클릭할 때마다 추가
-      setStampInfoList((prev) => [...prev, <StampInfo key={prev.length} />]);
-    }
+  const createStampImages = () => {
+    const remainder = stampCount % 8; // 8로 나눈 나머지 계산
+    // 나머지 만큼 stampCheck, 나머지는 stampNoneCheck
+    return Array.from({ length: 8 }, (_, index) => (index < remainder ? stampCheck : stampNoneCheck));
   };
+
+  useEffect(() => {
+    const fetchStamp = async () => {
+      const headers = {
+        Authorization: `Bearer ${token}`, // 인증 토큰
+        "Content-Type": "application/json", // 요청의 Content-Type
+      };
+
+      try {
+        // axios 요청: URL, 요청 데이터 (body), 그리고 설정(config) 순으로 전달
+        const getStamp = await axios.post(
+          `${postUrl}/auth/stamp`,
+          { userId: userData.userId }, // 요청 본문 (body) 데이터
+          { headers } // 설정 (headers)
+        );
+
+        console.log(getStamp); // 서버로부터 받은 응답
+        // setUserData(prevData => ({
+        //   ...prevData, // 기존의 userData를 유지
+        //   stamp: getStamp.stamp,
+        //   stampCount:getStamp.stamp.length//
+        // }));
+      } catch (error) {
+        console.error("Error fetching stamp:", error);
+      }
+    };
+
+    fetchStamp();
+  }, []); // 컴포넌트가 처음 렌더링될 때만 실행
+
+  // 스탬프 출력 함수
+  useEffect(() => {
+    setStampImages(createStampImages());
+  }, []);
 
   return (
     <>
@@ -56,10 +80,6 @@ export default function Stamp() {
             </div>
           </div>
         </div>
-
-        <button onClick={addStamp} className={styles.addStampButton}>
-          스탬프 추가
-        </button>
 
         <section className={styles.stampWrap}>{stampInfoList}</section>
       </section>
