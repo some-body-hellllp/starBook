@@ -80,11 +80,11 @@ function Qr() {
         } catch (error) {
           if (error.response && error.response.status === 404) {
             alert("잘못된 QR코드입니다.");
-            setQrData(null);
+            return setQrData(null);
           }
           if (error.response && error.response.status === 409) {
             alert("이미 방문한 서점입니다.");
-            setQrData(null);
+            return setQrData(null);
           }
           console.error("Error during QR data submission:", error);
           // 에러 발생 시 알림이나 다른 처리
