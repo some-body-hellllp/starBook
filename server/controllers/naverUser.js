@@ -14,7 +14,8 @@ const naverUser = async (req, res) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    //   console.log(userResponse.data);
+
+    console.log(userResponse.data);
     console.log(userResponse.data.response.id);
 
     return res.status(200).json({ status: "success", message: "인증 성공", data: userResponse.data });
