@@ -23,6 +23,8 @@ const createComment = require("./createComment");
 // 좋아요, 좋아요 제거
 const createLike = require("./createLike");
 const removeLike = require("./removeLike");
+// 쿠폰 지급, 사용
+const coupon = require("./coupon");
 module.exports = {
   users,
   join,
@@ -40,4 +42,5 @@ module.exports = {
   createLike,
   removeLike,
   stampCount,
+  coupon,
 };

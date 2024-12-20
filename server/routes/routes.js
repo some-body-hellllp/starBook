@@ -40,4 +40,7 @@ router.get("/api/v1/auth/stamp", controllers.auth, controllers.stampCount); // �
 // QR인증 시 방문 한 코스와 방문하지 않은 코스를 구별
 router.post("/api/v1/auth/visit", controllers.auth, controllers.visit);
 
+// 쿠폰 지급, 쿠폰 사용
+router.post("/api/v1/auth/coupon", controllers.coupon);
+
 module.exports = router;
