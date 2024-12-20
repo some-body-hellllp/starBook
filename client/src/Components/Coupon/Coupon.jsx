@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "./Coupon.module.css";
 import Header from "../Header/Header";
+import CouponClick from "../../assets/img/Coupon/CouponClick.svg";
 
 export default function Coupon() {
   // 모달 열림/닫힘 상태를 관리
@@ -89,27 +90,22 @@ export default function Coupon() {
         {isModalOpen && (
           <div className={styles.modalOverlay}>
             <div className={styles.modalContent}>
-              <div className={styles.modalHeader}>5%</div>
-              <div className={styles.modalBody}></div>
-              쿠폰을 사용하시겠습니까?
-              <div className={styles.modalDetail}>
-                버튼은 서점의 담당자만 사용할 수 있습니다
-                <br />
-                확인 후 진행해 주세요
-                <br />
-                사용시 쿠폰을 다시 사용할 수 없습니다
-              </div>
+              <div className={styles.modalHeader}>5% CUPON</div>
+
               <div className={styles.modalButtonBox}>
-                <button
-                  className={styles.modalButton}
+                <div
+                  className={styles.modalbacod}
                   id={styles.useButton}
                   onClick={handleUseCoupon} // 여기를 수정
                 >
-                  사용
-                </button>
-                <button className={styles.modalButton} id={styles.cancellButton} onClick={closeModal}>
-                  취소
-                </button>
+                  <img src={CouponClick} />
+                </div>
+                <div className={styles.modalDetail}>서점의 담당자에게 보여주세요</div>
+                <div className={styles.test}>
+                  <button className={styles.modalButton} id={styles.cancellButton} onClick={closeModal}>
+                    취소
+                  </button>
+                </div>
               </div>
             </div>
           </div>
