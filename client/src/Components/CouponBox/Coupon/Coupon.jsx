@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "../CouponBox.module.css";
 import CouponModal from "../CouponModal/CouponModal";
 
-export default function Coupon({ coupon, userId }) {
+export default function Coupon({ coupon, userId, setSelectedTab }) {
   const [isModalOpen, setIsModalOpen] = useState(false); // 모달 열림/닫힘 상태를 관리
   // console.log(coupon);
   const couponText = convertText(coupon);
@@ -55,6 +55,7 @@ export default function Coupon({ coupon, userId }) {
         onClick={modalHandler}
         coupon_id={coupon.coupon_id}
         userId={userId}
+        setSelectedTab={setSelectedTab}
       />
     </>
   );

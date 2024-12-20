@@ -3,7 +3,7 @@ import styles from "../CouponBox.module.css";
 import CouponClick from "../../../assets/img/Coupon/CouponClick.svg";
 import axios from "axios";
 
-export default function CouponModal({ isModalOpen, coupon, modalHandler, coupon_id, userId }) {
+export default function CouponModal({ isModalOpen, coupon, modalHandler, coupon_id, userId, setSelectedTab }) {
   const [isLoading, setIsLoading] = useState(false); // 로딩 상태 추가
   const postUrl = import.meta.env.VITE_API_URL;
 
@@ -20,6 +20,7 @@ export default function CouponModal({ isModalOpen, coupon, modalHandler, coupon_
       });
       console.log("쿠폰 사용 성공", result);
       alert("쿠폰을 사용하였습니다.");
+      setSelectedTab(false);
       modalHandler();
     } catch (error) {
       console.log("전송 실패:", error);
