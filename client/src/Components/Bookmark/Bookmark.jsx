@@ -1,56 +1,89 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
+import axios from "axios"; // axios 추가
 import Header from "../Header/Header";
 import BookmarkPost from "./BookmarkPost/BookmarkPost";
 import styles from "./Bookmark.module.css";
-import dummyPosts from "./Bookmarkdummy"; // 더미 데이터를 import
+import { PageData } from "../../provider/PageProvider"; // userData를 가져오는 context
+import dummyPosts from "./Bookmarkdummy";
 
 export default function Bookmark() {
-  const [posts, setPosts] = useState(dummyPosts.slice(0, 5)); // 처음에는 7개의 포스트만 보이도록 설정
-  const observerRef = useRef(null); // IntersectionObserver를 위한 ref
+  const { userData } = useContext(PageData); // PageData context에서 userData 가져오기
+  const [posts, setPosts] = useState([]); // 게시글 상태
+  const [loading, setLoading] = useState(false); // 로딩 상태
+  const [offset, setOffset] = useState(0); // 현재 offset
+  const [hasMore, setHasMore] = useState(true); // 더 가져올 게시글 여부
+  const containerRef = useRef(null); // 스크롤 이벤트 대상 ref
 
-  // 스크롤 끝에 도달하면 더 많은 포스트를 추가하는 함수
-  const loadMorePosts = () => {
-    setPosts((prevPosts) => {
-      // 더 많은 포스트를 배열에 추가
-      return [
-        ...prevPosts,
-        ...dummyPosts.slice(prevPosts.length, prevPosts.length + 3), // 한 번에 1개씩 추가
-      ];
-    });
+  const loadPosts = async () => {
+    if (loading || !hasMore) return; // 로딩 중이거나 데이터가 더 이상 없으면 종료
+
+    setLoading(true);
+
+    try {
+      const limit = 5; // 한 번에 가져올 데이터 수
+      const response = await axios.post("http://localhost:5000/posts", {
+        id: userData.userId,
+        limit: limit,
+        offset: offset,
+      });
+
+      // 새 게시글 추가
+      setPosts((prevPosts) => [...prevPosts, ...response.data]);
+
+      // 데이터가 limit보다 적으면 더 이상 로드할 데이터 없음
+      if (response.data.length < limit) {
+        setHasMore(false);
+      }
+
+      // offset 업데이트
+      setOffset((prevOffset) => prevOffset + limit);
+    } catch (error) {
+      console.error("게시글을 불러오는 데 실패했습니다.", error);
+      setHasMore(false); // 오류 발생 시 로드 중지
+    } finally {
+      setLoading(false); // 로딩 상태 해제
+    }
   };
 
-  // IntersectionObserver 설정
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          loadMorePosts(); // 마지막 포스트가 보일 때 새로운 포스트를 로드
-        }
-      });
-    });
+  const handleScroll = () => {
+    if (!containerRef.current) return;
 
-    if (observerRef.current) {
-      observer.observe(observerRef.current); // 마지막 BookmarkPost를 감시
+    const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
+
+    // 스크롤이 바닥에 닿았을 때 데이터 로드
+    if (scrollHeight - scrollTop <= clientHeight * 1.1 && hasMore) {
+      loadPosts();
+    }
+  };
+
+  useEffect(() => {
+    // 초기 데이터 로드
+    loadPosts();
+
+    // 스크롤 이벤트 추가
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener("scroll", handleScroll);
     }
 
-    // clean up the observer on component unmount
     return () => {
-      if (observerRef.current) {
-        observer.unobserve(observerRef.current);
+      if (container) {
+        container.removeEventListener("scroll", handleScroll);
       }
     };
-  }, [posts]); // posts가 변경될 때마다 observer를 새로 설정
+  }, []);
 
   return (
     <>
       <Header showBackButton={true} showWriteButton={true} backgroundColor={"#ffffff"} backButtonFunction={"/home"}>
         책갈피
       </Header>
-      <section className={styles.bookmark}>
-        {posts.map((post) => (
-          <BookmarkPost key={post.id} post={post} id={post.id} />
+      <section ref={containerRef} className={styles.bookmark}>
+        {dummyPosts.map((post, index) => (
+          <BookmarkPost key={index} post={post} />
         ))}
-        <div ref={observerRef} style={{ height: "20px" }}></div> {/* Observer가 감시하는 마지막 요소 */}
+        {loading && <div className={styles.loading}>로딩 중...</div>}
+        {!hasMore && <div className={styles.endMessage}>더 이상 데이터가 없습니다.</div>}
       </section>
     </>
   );
