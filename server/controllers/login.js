@@ -100,7 +100,9 @@ const login = async (req, res) => {
     FROM
         STAMPS
     WHERE
-        user_id = ?`;
+        user_id = ?
+    ORDER BY
+        create_at DESC`;
   const stamps = await db.execute(QUERY2, [user.user_id]).then((result) => result[0]);
 
   console.log("스탬프 : ", stamps);
