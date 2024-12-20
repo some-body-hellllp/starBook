@@ -44,8 +44,9 @@ const coupon = async (req, res) => {
   `;
 
     try {
-      await db.execute(QUERY2, [userId, discount, time]);
+      const result = await db.execute(QUERY2, [userId, discount, time]);
       console.log(`사용자 에게 ${discount}% 할인 쿠폰이 지급되었습니다.`);
+      console.log(result);
       return res.status(409).json({ status: "success", message: "할인 쿠폰이 지급되었습니다." });
     } catch (error) {
       console.error("쿠폰 지급 중 오류 발생:", error);

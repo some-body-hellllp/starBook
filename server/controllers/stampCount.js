@@ -25,7 +25,7 @@ const stampCount = async (req, res) => {
     if (!stamp || stamp.length === 0) {
       return res.status(404).json({ status: "error", message: "스탬프 정보를 찾을 수 없습니다.", data: null });
     }
-
+    console.log("스탬프 정보 전송");
     return res.json({ status: "success", message: "스탬프 정보를 전송하였습니다.", data: stamp });
   } catch (error) {
     console.error("DB 쿼리 에러:", error);
