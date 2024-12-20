@@ -10,7 +10,7 @@ const posts = async (req, res) => {
     const QUERY = `
       SELECT 
         p.post_id,
-        p.post_title,
+        p.post_location,
         p.post_content,
         p.user_name,
         p.create_at,
