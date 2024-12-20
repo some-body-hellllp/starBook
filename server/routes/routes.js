@@ -41,7 +41,7 @@ router.get("/api/v1/auth/stamp", controllers.auth, controllers.stampCount); // �
 router.post("/api/v1/auth/visit", controllers.auth, controllers.visit);
 
 // 쿠폰 확인, 쿠폰 지급, 쿠폰 사용
-router.get("/api/v1/auth/coupon", controllers.getCoupon);
-router.post("/api/v1/auth/coupon", controllers.createCoupon);
+router.get("/api/v1/coupon", controllers.getCoupon);
+router.post("/api/v1/coupon", controllers.createCoupon);
 
 module.exports = router;
