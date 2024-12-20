@@ -13,7 +13,7 @@ export default function Banner() {
     <div className={styles.banner}>
       <Swiper
         modules={[Autoplay]}
-        spaceBetween={0}
+        spaceBetween={30}
         slidesPerView={1}
         autoplay={{
           delay: 3000,

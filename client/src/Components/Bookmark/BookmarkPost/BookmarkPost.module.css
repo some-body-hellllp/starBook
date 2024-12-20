@@ -1,3 +1,7 @@
 .bookmark_post {
   display: flex;
 }
+
+.bookmark_content {
+  flex-grow: 1;
+}
