@@ -11,8 +11,12 @@ export default function BookMark() {
     <div className={styles.bookMark}>
       <Swiper
         spaceBetween={10} // 슬라이드 간의 간격
-        slidesPerView={2.3} // 한 번에 보이는 슬라이드 개수
+        slidesPerView={2.1} // 한 번에 보이는 슬라이드 개수
         pagination={{ clickable: true }} // 페이지네이션 클릭 가능
+        style={{
+          padding: "0 60px 0 0", // 우측 여백 추가
+          overflow: "visible", // 중요: overflow를 visible로 설정
+        }}
       >
         <SwiperSlide className={styles.firstSlide}>
           <div className={styles.bookMark_Btn}>
