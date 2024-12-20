@@ -12,7 +12,7 @@ const getCoupon = async (req, res) => {
   }
 
   const QUERY1 = `
-    SELECT coupon_discount_rate, coupon_state
+    SELECT coupon_id, coupon_discount_rate, coupon_state
     FROM COUPONS
     WHERE user_id = ? 
     ORDER BY create_at DESC

@@ -50,6 +50,7 @@ export default function CouponBox() {
     );
 
     setFilteredCoupons(filtered);
+    console.log(filtered);
   }
 
   return (
@@ -78,7 +79,7 @@ export default function CouponBox() {
         {/* 필터링된 쿠폰 표시 영역 */}
         <div className={styles.eventCouponBox}>
           {filteredCoupons.length > 0 ? (
-            filteredCoupons.map((coupon, index) => <Coupon key={index} coupons={coupon} />)
+            filteredCoupons.map((coupon, index) => <Coupon key={index} coupon={coupon} userId={userData.userId} />)
           ) : (
             <div className={styles.noCoupons}>표시할 쿠폰이 없습니다.</div>
           )}

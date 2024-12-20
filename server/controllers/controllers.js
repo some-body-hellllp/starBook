@@ -26,6 +26,7 @@ const removeLike = require("./removeLike");
 // 쿠폰 조회, 쿠폰 지급, 사용
 const getCoupon = require("./getCoupon");
 const createCoupon = require("./createCoupon");
+const useCoupon = require("./useCoupon");
 module.exports = {
   users,
   join,
@@ -45,4 +46,5 @@ module.exports = {
   stampCount,
   createCoupon,
   getCoupon,
+  useCoupon,
 };
