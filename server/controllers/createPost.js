@@ -4,12 +4,18 @@ const { CurrentTime } = require("../config/date");
 async function createPost(req, res) {
   const time = CurrentTime();
   const { id, title, content, name } = req.body; // 클라이언트로부터 받은 데이터
+  console.log(req);
+  console.log(req.body);
+  console.log("id :", id);
+  console.log("title :", title);
+  console.log("content :", content);
+  console.log("name :", name);
   // console.log(id, title, content, name);
   // 유효성 검사
   if (!id || !title || !content || !name) {
     return res.status(400).json({
       status: "error",
-      message: "제목, 내용, 작성자는 필수 입력 항목입니다.",
+      message: "태그, 내용, 작성자는 필수 입력 항목입니다.",
     });
   }
 
