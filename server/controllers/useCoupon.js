@@ -16,7 +16,7 @@ const useCoupon = async (req, res) => {
   const QUERY = `
     UPDATE COUPONS
     SET coupon_state = 'disable'
-    WHERE user_id = ? AND id = ? AND coupon_state = 'able';
+    WHERE user_id = ? AND coupon_id = ? AND coupon_state = 'able';
   `;
 
   try {
