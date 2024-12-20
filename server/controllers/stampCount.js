@@ -15,8 +15,9 @@ const stampCount = async (req, res) => {
         STAMPS
     WHERE
         user_id=?
-  `;
-
+    ORDER BY
+        create_at DESC
+`;
   try {
     // 데이터베이스에서 stamp 정보를 가져옴
     const [stamp] = await db.execute(QUERY, [userId]);
