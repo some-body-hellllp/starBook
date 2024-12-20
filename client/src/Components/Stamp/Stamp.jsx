@@ -64,10 +64,10 @@ export default function Stamp() {
 
   // 스탬프 출력 함수(스탬프 추가 시)
   useEffect(() => {
+    const remainder = userData.stampCount % 8;
     setStampImages(createStampImages());
     console.log("쿠폰 함수 호출");
     console.log("스탬프 카드 :", remainder);
-    const remainder = userData.stampCount % 8;
 
     if (remainder === 3 || remainder === 5 || remainder === 0) {
       getCoupon(remainder);
