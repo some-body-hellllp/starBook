@@ -51,11 +51,25 @@ async function createPost(req, res) {
     INSERT INTO POSTS (user_id,post_location, post_content, user_name, create_at)
     VALUES (?,?, ?, ?, ?);
   `;
-
+  const QUERY3 = `
+  INSERT INTO POST_IMAGES  (post_id,image_path)
+     VALUES (?,?);
+  `;
   try {
     // 게시글 작성
     const [result] = await db.execute(QUERY2, [id, title, content, name, time]);
     console.log(result);
+
+    try {
+      const [imgResult] = await db.execute(QUERY3, [result.insertId, image]);
+      console.log(imgResult);
+    } catch (error) {
+      console.error("게시글 작성 중 오류:", error);
+      return res.status(500).json({
+        status: "error",
+        message: "게시글 작성 중 오류가 발생했습니다.",
+      });
+    }
     return res.status(201).json({
       status: "success",
       message: "게시글이 성공적으로 작성되었습니다.",

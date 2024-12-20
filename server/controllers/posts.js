@@ -8,24 +8,25 @@ const posts = async (req, res) => {
   try {
     // SQL 쿼리 작성 (페이징 처리)
     const QUERY = `
-      SELECT 
-        p.post_id,
-        p.post_location,
-        p.post_content,
-        p.user_name,
-        p.create_at,
-        IF(l.user_id IS NOT NULL, TRUE, FALSE) AS liked,
-        (SELECT COUNT(*) FROM LIKES l2 WHERE l2.post_id = p.post_id) AS like_count,
-        (SELECT COUNT(*) FROM COMMENTS c2 WHERE c2.post_id = p.post_id) AS comment_count
-      FROM 
-        POSTS p
-      LEFT JOIN 
-        LIKES l ON p.post_id = l.post_id AND l.user_id = ?
-      ORDER BY 
-        p.create_at DESC
-      LIMIT ? OFFSET ?;
+     SELECT 
+    p.post_id,
+    p.post_location,
+    p.post_content,
+    p.user_name,
+    p.create_at,
+    IF(l.user_id IS NOT NULL, TRUE, FALSE) AS liked,
+    (SELECT COUNT(*) FROM LIKES l2 WHERE l2.post_id = p.post_id) AS like_count,
+    (SELECT COUNT(*) FROM COMMENTS c2 WHERE c2.post_id = p.post_id) AS comment_count,
+    (SELECT pi.image_path FROM POST_IMAGES pi WHERE pi.post_id = p.post_id ORDER BY pi.create_at DESC LIMIT 1) AS image_path
+FROM 
+    POSTS p
+LEFT JOIN 
+    LIKES l ON p.post_id = l.post_id AND l.user_id = ?
+ORDER BY 
+    p.create_at DESC
+LIMIT ? OFFSET ?;
     `;
-
+    console.log("게시글 이미지 테스트중");
     // db.execute로 쿼리 실행
     const [posts] = await db.execute(QUERY, [userId, limit, offset]);
 
