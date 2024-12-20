@@ -6,6 +6,7 @@
   position: absolute;
   top: 108px;
   display: flex;
+  margin: 0 auto;
   width: 100%;
 }
 
@@ -87,13 +88,14 @@
   background-color: white;
   padding: 40px;
   border-radius: 10px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
   margin: 0 25px 0 25px;
   height: auto;
+  text-align: center;
 }
 
 .modalHeader {
-  align-items: center;
   font-size: 34px;
   font-weight: 700;
   color: #1f5f99;
@@ -110,14 +112,11 @@
   color: #989898;
   font-size: 14px;
   font-weight: 400;
-  padding-top: 22px;
+  padding-top: 3px;
 }
 
 .modalButtonBox {
-  padding-top: 30px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+  padding-top: 25px;
 }
 
 .modalButton {
@@ -127,20 +126,18 @@
   border-radius: 5px;
 }
 
-#useButton {
-  border: none;
+#cancellButton {
   background-color: #1f5f99;
   color: white;
   font-size: 18px;
   font-weight: 700;
+  border: 1px solid #1f5f99;
+  width: 215px;
+  height: 45px;
 }
 
-#cancellButton {
-  background-color: white;
-  color: #1f5f99;
-  font-size: 18px;
-  font-weight: 700;
-  border: 1px solid #1f5f99;
+.test {
+  padding-top: 25px;
 }
 
 /* eventCouponBox 내 회색 배경 */
