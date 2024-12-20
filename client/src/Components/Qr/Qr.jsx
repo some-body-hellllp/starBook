@@ -83,7 +83,8 @@ function Qr() {
             return setQrData(null);
           }
           if (error.response && error.response.status === 409) {
-            alert("이미 방문한 서점입니다.");
+            console.log(error.response.data.message);
+            alert(`${error.response.data.message}`);
             return setQrData(null);
           }
           console.error("Error during QR data submission:", error);

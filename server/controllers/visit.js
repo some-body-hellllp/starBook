@@ -54,6 +54,10 @@ const visit = async (req, res) => {
     LIMIT 1;
   `;
   const [visitResult] = await db.execute(QUERY2, [loginUserId, course.course_name, courseQrType]);
+  console.log(visitResult[0]);
+  if (visitResult.length > 0 && courseQrType === "buy") {
+    return res.status(409).json({ status: "error", message: "이미 결제한 서점입니다.", data: null });
+  }
 
   if (visitResult.length > 0) {
     console.log("이미 방문한 서점입니다.");
