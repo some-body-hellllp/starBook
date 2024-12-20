@@ -32,7 +32,7 @@ export default function BookMark() {
         <SwiperSlide>
           <Card />
         </SwiperSlide>
-        <SwiperSlide className={styles.lastSlide}>
+        <SwiperSlide>
           <Card />
         </SwiperSlide>
       </Swiper>
