@@ -44,6 +44,19 @@ export default function Stamp() {
       console.error("Error fetching stamp:", error);
     }
   };
+  const getCoupon = async () => {
+    const remainder = userData.stampCount % 8; // 8로 나눈 나머지 계산
+
+    try {
+      const coupon = await axios.post(`${postUrl}/auth/coupon`, {
+        userId: userData.userId,
+        stampCard: remainder,
+      });
+      console.log(coupon);
+    } catch (error) {
+      console.log("쿠폰 에러 :", error);
+    }
+  };
 
   // 스탬프 출력 함수
   useEffect(() => {
@@ -54,6 +67,11 @@ export default function Stamp() {
   // 스탬프 출력 함수(스탬프 추가 시)
   useEffect(() => {
     setStampImages(createStampImages());
+    const remainder = userData.stampCount % 8;
+
+    if (remainder === 3 || remainder === 5 || remainder === 8) {
+      getCoupon();
+    }
   }, [userData.stampCount]);
 
   return (

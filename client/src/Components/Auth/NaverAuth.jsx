@@ -64,14 +64,14 @@ export default function NaverAuth() {
             navigate(`/signup?code=${id}&profile=${profile}`);
           } else if (error.code === "ERR_NETWORK") {
             alert("네트워크에 문제가 발생했습니다. 메인으로 이동합니다.");
-            navigate("home");
+            navigate("/home");
           }
         }
       } catch (error) {
         console.error("에러 :", error);
         if (error.code === "ERR_NETWORK") {
           alert("네트워크에 문제가 발생했습니다. 메인으로 이동합니다.");
-          navigate("home");
+          navigate("/home");
         }
       }
     };
