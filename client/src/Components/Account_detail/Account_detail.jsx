@@ -25,33 +25,51 @@ export default function AccountDetail() {
   };
 
   // 닉네임 변경 함수
-  function formHandler(e) {
-    e.preventDefault(); // preventDefault로 수정
-    if (!userData.userId && userData.isLogin === false) {
-      return alert("로그인 후 사용 가능합니다");
+  async function formHandler(e) {
+    e.preventDefault(); // 기본 동작 방지
+
+    // 로그인 확인
+    if (!userData.userId) {
+      alert("로그인 후 사용 가능합니다.");
+      return;
     }
+
+    // 닉네임 변경 사항 확인
     if (userData.nickName === nickName) {
-      return toggleReadOnly(); // 변경사항이 없다면 현상 유지
+      toggleReadOnly(); // 변경 사항 없으면 읽기 모드로 전환
+      return;
     }
+
     console.log("닉네임 변경 시작");
-    // 변경사항이 있다면 서버에 데이터 전송
-    axios
-      .put(`${postUrl}/auth/user`, {
+
+    try {
+      // 닉네임 변경 요청
+      const response = await axios.put(`${postUrl}/auth/user`, {
         id: userData.userId,
-        currentNickname: userData.nickName, // 닉네임
+        currentNickname: userData.nickName,
         newNickname: nickName,
-      })
-      .then(function (response) {
-        console.log(response); // 성공 시 응답 로그
-        console.log("전송된 데이터", userData.userId, userData.nickName, nickName);
-        // 성공 후 추가 작업 (예: 페이지 이동)
-        alert(`닉네임이 '${nickName}'로 변경되었습니다!`);
-        setIsReadOnly((prev) => !prev); // 상태를 토글
-        setUserData({ ...userData, nickName: nickName });
-      })
-      .catch(function (error) {
-        console.log(error); // 실패 시 에러 로그
       });
+
+      console.log("응답 데이터:", response.data);
+
+      // 닉네임 변경 성공
+      alert(`닉네임이 '${nickName}'(으)로 변경되었습니다!`);
+      setIsReadOnly(true); // 읽기 모드로 전환
+      setUserData((prevData) => ({
+        ...prevData,
+        nickName: nickName,
+      }));
+    } catch (error) {
+      // 닉네임 변경 실패
+      console.error("닉네임 변경 실패:", error);
+
+      // 사용자에게 에러 메시지 표시
+      if (error.response) {
+        alert(`닉네임 변경 실패: ${error.response.data.message || "알 수 없는 오류입니다."}`);
+      } else {
+        alert("네트워크 오류가 발생했습니다. 다시 시도해주세요.");
+      }
+    }
   }
 
   return (
