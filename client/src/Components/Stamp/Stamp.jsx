@@ -83,7 +83,7 @@ export default function Stamp() {
         </div>
 
         <section className={styles.stampWrap}>
-          <StampInfo />
+          {userData.stamp ? userData.stamp.map((stamp, index) => <StampInfo key={index} stamp={stamp} />) : ""}
         </section>
       </section>
     </>

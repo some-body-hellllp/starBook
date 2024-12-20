@@ -43,7 +43,7 @@ export default function Bookmark() {
 
   return (
     <>
-      <Header showBackButton={true} showWriteButton={true} backgroundColor={"#ffffff"} backButtonFunction={"/"}>
+      <Header showBackButton={true} showWriteButton={true} backgroundColor={"#ffffff"} backButtonFunction={"/home"}>
         책갈피
       </Header>
       <section className={styles.bookmark}>
