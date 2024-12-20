@@ -47,7 +47,7 @@ async function createPost(req, res) {
 
   // 게시글 작성 쿼리
   const QUERY2 = `
-    INSERT INTO POSTS (user_id,post_title, post_content, user_name, create_at)
+    INSERT INTO POSTS (user_id,post_location, post_content, user_name, create_at)
     VALUES (?,?, ?, ?, ?);
   `;
 

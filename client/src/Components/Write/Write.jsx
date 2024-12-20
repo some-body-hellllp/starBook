@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import styles from "./Write.module.css";
 import { PageData } from "../../provider/PageProvider";
 import axios from "axios";
+import camera from "../../assets/img/Bookmark/picture.png";
 
 export default function Write() {
   const postUrl = import.meta.env.VITE_API_URL;
@@ -79,7 +80,7 @@ export default function Write() {
           {/* 사진 등록 */}
           <div className={styles.photo}>
             <div className={styles.photo_upload}>
-              <img alt="사진 업로드" />
+              <img src={camera} alt="사진 업로드" />
             </div>
             <div className={styles.photo_uploaded}></div>
           </div>

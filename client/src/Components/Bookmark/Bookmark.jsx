@@ -14,6 +14,7 @@ export default function Bookmark() {
   const [hasMore, setHasMore] = useState(true); // 더 가져올 게시글 여부
   const containerRef = useRef(null); // 스크롤 이벤트 대상 ref
   const postUrl = import.meta.env.VITE_API_URL;
+  console.log(posts);
   const loadPosts = async () => {
     if (loading || !hasMore) return; // 로딩 중이거나 데이터가 더 이상 없으면 종료
 
@@ -79,7 +80,7 @@ export default function Bookmark() {
         책갈피
       </Header>
       <section ref={containerRef} className={styles.bookmark}>
-        {dummyPosts.map((post, index) => (
+        {posts.map((post, index) => (
           <BookmarkPost key={index} post={post} />
         ))}
         {loading && <div className={styles.loading}>로딩 중...</div>}
