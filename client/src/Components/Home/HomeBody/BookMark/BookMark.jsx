@@ -15,7 +15,7 @@ export default function BookMark() {
         pagination={{ clickable: true }} // 페이지네이션 클릭 가능
         style={{
           padding: "0 60px 0 0", // 우측 여백 추가
-          overflow: "visible", // 중요: overflow를 visible로 설정
+          // overflow: "visible", // 중요: overflow를 visible로 설정
         }}
       >
         <SwiperSlide className={styles.firstSlide}>
@@ -36,7 +36,7 @@ export default function BookMark() {
         <SwiperSlide>
           <Card />
         </SwiperSlide>
-        <SwiperSlide className={styles.lastSlide}>
+        <SwiperSlide>
           <Card />
         </SwiperSlide>
       </Swiper>
