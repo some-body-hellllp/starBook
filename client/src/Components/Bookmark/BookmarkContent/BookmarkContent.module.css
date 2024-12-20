@@ -17,8 +17,8 @@
 
 .imgBox {
   width: 100%; /* 가로를 100%로 */
-  height: auto; /* 높이를 자동으로 */
-  object-fit: contain; /* 비율 유지하며 박스에 맞춤 */
+  height: 200px; /* 높이를 자동으로 */
+  object-fit: cover; /* 비율 유지하며 박스에 맞춤 */
 
   border-radius: 10px;
 }

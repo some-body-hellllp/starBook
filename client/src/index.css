@@ -1,7 +1,6 @@
 @font-face {
   font-family: "HakgyoansimChilpanjiugaeTTF-B";
-  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimChilpanjiugaeTTF-B.woff2")
-    format("woff2");
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimChilpanjiugaeTTF-B.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
 }
@@ -17,6 +16,6 @@
   padding: 0;
   list-style: none;
   box-sizing: border-box;
-  word-break: keep-all;
+  /* word-break: keep-all; */
   font-family: "Pretendard-Regular";
 }

@@ -30,6 +30,7 @@
 }
 .proFileImg img {
   border-radius: 100%;
+  overflow: hidden;
 }
 
 .proFileButtonBox {
