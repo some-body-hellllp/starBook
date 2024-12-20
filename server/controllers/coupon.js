@@ -25,7 +25,7 @@ const coupon = async (req, res) => {
     SELECT coupon_discount_rate
     FROM COUPONS
     WHERE user_id = ? AND coupon_discount_rate = ?
-    ORDER BY issued_at DESC
+    ORDER BY create_at DESC
     LIMIT 1;  
 `;
 
