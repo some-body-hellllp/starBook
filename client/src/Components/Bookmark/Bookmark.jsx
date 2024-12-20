@@ -13,7 +13,7 @@ export default function Bookmark() {
   const [offset, setOffset] = useState(0); // 현재 offset
   const [hasMore, setHasMore] = useState(true); // 더 가져올 게시글 여부
   const containerRef = useRef(null); // 스크롤 이벤트 대상 ref
-
+  const postUrl = import.meta.env.VITE_API_URL;
   const loadPosts = async () => {
     if (loading || !hasMore) return; // 로딩 중이거나 데이터가 더 이상 없으면 종료
 
@@ -21,8 +21,7 @@ export default function Bookmark() {
 
     try {
       const limit = 5; // 한 번에 가져올 데이터 수
-      const response = await axios.post("http://localhost:5000/posts", {
-        id: userData.userId,
+      const response = await axios.get(`${postUrl}/bookmark`, {
         limit: limit,
         offset: offset,
       });
@@ -37,6 +36,7 @@ export default function Bookmark() {
 
       // offset 업데이트
       setOffset((prevOffset) => prevOffset + limit);
+      console.log(response);
     } catch (error) {
       console.error("게시글을 불러오는 데 실패했습니다.", error);
       setHasMore(false); // 오류 발생 시 로드 중지
