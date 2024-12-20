@@ -7,44 +7,50 @@ import { PageData } from "../../provider/PageProvider";
 
 export default function CouponBox() {
   const [selectedTab, setSelectedTab] = useState(true); // 탭 상태 관리
-  const [filteredCoupons, setFilteredCoupons] = useState("");
+  const [filteredCoupons, setFilteredCoupons] = useState([]); // 필터링된 쿠폰 리스트
   const { userData } = useContext(PageData);
   const postUrl = import.meta.env.VITE_API_URL;
 
   // 탭 변경 함수
-  const handleTabClick = () => {
-    setSelectedTab((prev) => !prev);
+  const handleTabClick = (tab) => {
+    setSelectedTab(tab);
   };
 
+  // 쿠폰 데이터 가져오기
   useEffect(() => {
-    try {
-      const result = axios.get(`${postUrl}/coupon`, {
-        userId: userData.userId,
-      });
-      console.log(result);
-      // couponFiltering("");
-    } catch (error) {
-      console.log(error);
+    async function fetchCoupons() {
+      try {
+        const { data } = await axios.get(`${postUrl}/coupon`, {
+          params: { userId: userData.userId },
+        });
+
+        if (data?.data) {
+          couponFiltering(data.data); // 가져온 데이터를 필터링
+        } else {
+          console.error("쿠폰 데이터가 비어 있습니다.");
+        }
+      } catch (error) {
+        console.error("쿠폰 데이터를 가져오는 중 에러 발생:", error);
+      }
     }
+
+    fetchCoupons();
   }, []);
+
   // 쿠폰 데이터 필터링 함수
   function couponFiltering(fetchCoupons) {
-    // 배열 확인
     if (!Array.isArray(fetchCoupons)) {
       console.error("fetchCoupons는 배열이어야 합니다.");
-      return [];
+      return;
     }
 
     // 필터링 로직
-    const filteredCoupons = fetchCoupons.filter((coupon) =>
-      selectedTab === "myCoupon" ? coupon.coupon_state === "able" : coupon.coupon_state === "disable"
+    const filtered = fetchCoupons.filter((coupon) =>
+      selectedTab ? coupon.coupon_state === "able" : coupon.coupon_state === "disable"
     );
 
-    return setFilteredCoupons(filteredCoupons);
+    setFilteredCoupons(filtered);
   }
-
-  // 필터링된 쿠폰 리스트
-  // 쿠폰의 상태를 저장하는 스테이트가 변경될때 마다 필터를 사용해서 출력되는 쿠폰을 구분해서 출력함
 
   return (
     <>
@@ -56,14 +62,14 @@ export default function CouponBox() {
         {/* 상단부 탭 */}
         <div className={styles.couponSelect}>
           <div
-            className={`${styles.couponTab} ${selectedTab === true ? styles.active : ""}`}
-            onClick={() => handleTabClick()}
+            className={`${styles.couponTab} ${selectedTab ? styles.active : ""}`}
+            onClick={() => handleTabClick(true)}
           >
             내 쿠폰
           </div>
           <div
-            className={`${styles.couponTab} ${selectedTab === false ? styles.active : ""}`}
-            onClick={() => handleTabClick()}
+            className={`${styles.couponTab} ${!selectedTab ? styles.active : ""}`}
+            onClick={() => handleTabClick(false)}
           >
             만료 쿠폰
           </div>
@@ -71,7 +77,7 @@ export default function CouponBox() {
 
         {/* 필터링된 쿠폰 표시 영역 */}
         <div className={styles.eventCouponBox}>
-          {filteredCoupons?.length > 0 ? (
+          {filteredCoupons.length > 0 ? (
             filteredCoupons.map((coupon, index) => <Coupon key={index} coupons={coupon} />)
           ) : (
             <div className={styles.noCoupons}>표시할 쿠폰이 없습니다.</div>

@@ -39,7 +39,6 @@ export default function Account() {
             alt="profileImg"
             onClick={() => {
               console.log(userData);
-              navigate("/stamp");
             }}
           />
         </div>

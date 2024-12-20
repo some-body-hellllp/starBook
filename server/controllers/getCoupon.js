@@ -1,8 +1,8 @@
 const db = require("../config/db");
 
 const getCoupon = async (req, res) => {
-  const { userId } = req.body;
-
+  const { userId } = req.query;
+  console.log("Received userId:", userId);
   if (!userId) {
     return res.status(400).json({
       status: "error",
