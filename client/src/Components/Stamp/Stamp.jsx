@@ -44,9 +44,7 @@ export default function Stamp() {
       console.error("Error fetching stamp:", error);
     }
   };
-  const getCoupon = async () => {
-    const remainder = userData.stampCount % 8; // 8로 나눈 나머지 계산
-
+  const getCoupon = async (remainder) => {
     try {
       const coupon = await axios.post(`${postUrl}/auth/coupon`, {
         userId: userData.userId,
@@ -69,8 +67,8 @@ export default function Stamp() {
     setStampImages(createStampImages());
     const remainder = userData.stampCount % 8;
 
-    if (remainder === 3 || remainder === 5 || remainder === 8) {
-      getCoupon();
+    if (remainder === 3 || remainder === 5 || remainder === 0) {
+      getCoupon(remainder);
     }
   }, [userData.stampCount]);
 
