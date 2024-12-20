@@ -8,8 +8,9 @@ import camera from "../../assets/img/Bookmark/picture.png";
 export default function Write() {
   const postUrl = import.meta.env.VITE_API_URL;
   const { userData } = useContext(PageData);
+  // console.log(userData);
   const [formData, setFormData] = useState({
-    id: userData.id, // 유저 아이디
+    id: userData.userId, // 유저 아이디
     title: "", // 태그 (독립서점 이름)
     content: "", // 내용
     name: userData.nickName, // 유저 닉네임

@@ -4,7 +4,6 @@ import Header from "../Header/Header";
 import BookmarkPost from "./BookmarkPost/BookmarkPost";
 import styles from "./Bookmark.module.css";
 import { PageData } from "../../provider/PageProvider"; // userData를 가져오는 context
-import dummyPosts from "./Bookmarkdummy";
 
 export default function Bookmark() {
   const { userData } = useContext(PageData); // PageData context에서 userData 가져오기
@@ -14,7 +13,7 @@ export default function Bookmark() {
   const [hasMore, setHasMore] = useState(true); // 더 가져올 게시글 여부
   const containerRef = useRef(null); // 스크롤 이벤트 대상 ref
   const postUrl = import.meta.env.VITE_API_URL;
-  console.log(posts);
+
   const loadPosts = async () => {
     if (loading || !hasMore) return; // 로딩 중이거나 데이터가 더 이상 없으면 종료
 
@@ -23,12 +22,20 @@ export default function Bookmark() {
     try {
       const limit = 5; // 한 번에 가져올 데이터 수
       const response = await axios.get(`${postUrl}/bookmark`, {
-        limit: limit,
-        offset: offset,
+        params: {
+          // GET 요청은 params로 전달
+          limit: limit,
+          offset: offset,
+        },
       });
 
-      // 새 게시글 추가
-      setPosts((prevPosts) => [...prevPosts, ...response.data]);
+      // 새 게시글 추가 (중복된 데이터는 추가하지 않도록 처리)
+      setPosts((prevPosts) => {
+        const newPosts = response.data.filter(
+          (newPost) => !prevPosts.some((post) => post.id === newPost.id) // ID로 중복 검사
+        );
+        return [...prevPosts, ...newPosts]; // 새 게시글을 기존에 추가
+      });
 
       // 데이터가 limit보다 적으면 더 이상 로드할 데이터 없음
       if (response.data.length < limit) {
@@ -37,7 +44,6 @@ export default function Bookmark() {
 
       // offset 업데이트
       setOffset((prevOffset) => prevOffset + limit);
-      console.log(response);
     } catch (error) {
       console.error("게시글을 불러오는 데 실패했습니다.", error);
       setHasMore(false); // 오류 발생 시 로드 중지
@@ -72,7 +78,7 @@ export default function Bookmark() {
         container.removeEventListener("scroll", handleScroll);
       }
     };
-  }, []);
+  }, [offset, hasMore]); // offset과 hasMore 상태가 변경될 때마다 useEffect가 실행
 
   return (
     <>
