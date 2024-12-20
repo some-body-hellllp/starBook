@@ -20,7 +20,7 @@ import Stamp from "./Components/Stamp/Stamp";
 // 마이페이지, 회원정보, 쿠폰
 import Account from "./Components/Account/Account";
 import Account_detail from "./Components/Account_detail/Account_detail";
-import Coupon from "./Components/Coupon/Coupon";
+import CouponBox from "./Components/CouponBox/CouponBox";
 // 로그인과 회원가입
 import Login from "./Components/Login/Login";
 import SignUp from "./Components/SignUp/SignUp";
@@ -50,7 +50,7 @@ function App() {
             <Route path="comment" element={<Comment />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
-            <Route path="coupon" element={<Coupon />} />
+            <Route path="coupon" element={<CouponBox />} />
             <Route path="auth" element={<Auth />} />
             <Route path="naver_auth" element={<NaverAuth />} />
           </Route>

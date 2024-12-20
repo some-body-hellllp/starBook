@@ -34,7 +34,7 @@ export default function Stamp() {
         params: { userId: userData.userId },
       });
 
-      console.log(getStamp);
+      // console.log(getStamp);
       console.log("스탬프 :", getStamp.data.data);
       setUserData((prevData) => ({
         ...prevData,
@@ -52,7 +52,7 @@ export default function Stamp() {
         stampCard: remainder,
       });
       console.log(coupon);
-      alert(coupon.response.data.message);
+      alert(coupon.data.message);
     } catch (error) {
       console.log("쿠폰 에러 :", error);
     } finally {

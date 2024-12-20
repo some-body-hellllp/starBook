@@ -1,6 +1,6 @@
 const db = require("../config/db");
 const { CurrentTime } = require("../config/date");
-const coupon = async (req, res) => {
+const createCoupon = async (req, res) => {
   const { userId, stampCard } = req.body;
   const time = CurrentTime();
   console.log("스탬프 개수 :", stampCard);
@@ -57,4 +57,4 @@ const coupon = async (req, res) => {
   }
 };
 
-module.exports = coupon;
+module.exports = createCoupon;

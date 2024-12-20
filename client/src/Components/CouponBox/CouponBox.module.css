@@ -1,10 +1,8 @@
 .couponBox {
-  position: relative;
+  margin-top: 75px;
 }
 
 .couponSelect {
-  position: absolute;
-  top: 108px;
   display: flex;
   margin: 0 auto;
   width: 100%;
@@ -28,7 +26,11 @@
 }
 
 .eventCouponBox {
+  margin-top: 45px;
   padding: 0 15px 0 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .eventCoupon {
@@ -36,7 +38,7 @@
   top: 202px;
   padding: 20px;
   border: 1px solid #d2d2d2;
-  position: relative;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -61,6 +63,7 @@
   font-size: 14px;
   font-weight: 400;
   color: #989898;
+  margin-top: 4px;
 }
 
 .eventButton {
