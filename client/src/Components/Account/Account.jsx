@@ -37,7 +37,10 @@ export default function Account() {
           <img
             src={userData.profile !== null ? userData.profile : emptyImg}
             alt="profileImg"
-            onClick={() => console.log(userData)}
+            onClick={() => {
+              console.log(userData);
+              navigate("/stamp");
+            }}
           />
         </div>
         {/* 프로필 타이틀 */}

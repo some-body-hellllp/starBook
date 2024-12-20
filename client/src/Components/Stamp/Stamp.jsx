@@ -10,10 +10,11 @@ import axios from "axios";
 export default function Stamp() {
   const { userData, setUserData } = useContext(PageData); // PageData Context에서 userData 가져오기
   const [stampImages, setStampImages] = useState([]); // 스탬프 이미지 배열 상태
-  const [stampInfoList, setStampInfoList] = useState([]); // StampInfo 컴포넌트를 관리하는 상태
+  const [coupon, setCoupon] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const postUrl = import.meta.env.VITE_API_URL;
   const token = window.localStorage.getItem("token");
-
+  console.log(isLoading);
   // 스탬프 이미지 배열 생성
   const createStampImages = () => {
     const remainder = userData.stampCount % 8; // 8로 나눈 나머지 계산
@@ -44,35 +45,44 @@ export default function Stamp() {
       console.error("Error fetching stamp:", error);
     }
   };
-  const getCoupon = async (remainder) => {
+  const getStampReward = async (remainder) => {
     try {
       const coupon = await axios.post(`${postUrl}/auth/coupon`, {
         userId: userData.userId,
         stampCard: remainder,
       });
       console.log(coupon);
+      alert(coupon.response.data.message);
     } catch (error) {
       console.log("쿠폰 에러 :", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
-  // 스탬프 출력 함수
   useEffect(() => {
-    fetchStamp();
-    setStampImages(createStampImages());
+    // IIFE 사용
+    (async () => {
+      await fetchStamp(); // 스탬프 정보 가져오기
+      setStampImages(createStampImages()); // 스탬프 이미지 설정
+      console.log("페이지 시작");
+
+      const remainder = userData.stampCount % 8 || null;
+      console.log("스탬프 카드 :", remainder, "개");
+
+      if (remainder === 3 || remainder === 5 || remainder === 0) {
+        console.log("쿠폰 함수 호출");
+        if (isLoading) return; // 로딩 중이면 실행하지 않음
+
+        setIsLoading(true);
+        console.log("로딩중", true);
+        await getStampReward(remainder); // 쿠폰 받기
+        console.log("쿠폰 함수 종료");
+      }
+
+      setIsLoading(false); // 모든 작업 완료 후 로딩 상태 해제
+    })(); // 즉시 실행
   }, []);
-
-  // 스탬프 출력 함수(스탬프 추가 시)
-  useEffect(() => {
-    // const remainder = userData.stampCount % 8 || null;
-    setStampImages(createStampImages());
-    console.log("쿠폰 함수 호출");
-    console.log("스탬프 카드 :", remainder);
-
-    if (remainder === 3 || remainder === 5 || remainder === 0) {
-      getCoupon(remainder);
-    }
-  }, [userData.stampCount]);
 
   return (
     <>
