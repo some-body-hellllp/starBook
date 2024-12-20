@@ -106,10 +106,14 @@ export default function Splash() {
           stampCount: stamp.length, // 누적 스탬프 갯수
           isLogin: true, // 로그인 확인
         });
-        navigate("/home"); // 로그인 후 홈으로 이동
+        setTimeout(() => {
+          navigate("/home"); // 로그인 후 홈으로 이동
+        }, 1700);
       } catch (error) {
         console.log(error); // 실패 시 에러 로그
-        navigate("/home"); // 로그인 후 홈으로 이동
+        setTimeout(() => {
+          navigate("/home"); // 로그인 후 홈으로 이동
+        }, 1700);
       }
     };
   }, []);
