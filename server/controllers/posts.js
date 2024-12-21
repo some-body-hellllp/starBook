@@ -10,11 +10,6 @@ const posts = async (req, res) => {
     return res.status(409).json({ error: "잘못된 접근입니다." });
   }
 
-  // 조건에 따라 limit 값을 변경
-  if (limit == 5) {
-    limit = 3; // limit이 5일 때 3으로 변경
-  }
-
   try {
     // SQL 쿼리 작성 (페이징 처리)
     const QUERY = `
@@ -41,7 +36,7 @@ const posts = async (req, res) => {
     const [posts] = await db.execute(QUERY, [userId, limit, offset]);
 
     // 결과 반환
-    res.status(200).json({ status: "success", message: "게시글 목록을 가져오지 못했습니다.", data: posts });
+    res.status(200).json({ status: "success", message: "게시글 불러오기 성공", data: posts });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "게시글 목록을 가져오지 못했습니다." });

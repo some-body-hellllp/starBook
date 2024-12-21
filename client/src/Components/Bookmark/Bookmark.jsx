@@ -16,7 +16,7 @@ export default function Bookmark() {
 
   // ref가 화면에 보이는지 감지
   const { ref, inView } = useInView({
-    threshold: 0,
+    threshold: 0.5, // 조금 더 일찍 로드되도록 threshold를 0.5로 설정 (50% 이상 보여졌을 때 로드)
   });
 
   const loadPosts = async () => {
@@ -33,18 +33,19 @@ export default function Bookmark() {
           offset: offset,
         },
       });
-
+      console.log(response.data.data);
       setPosts((prevPosts) => {
-        const newPosts = response.data.filter((newPost) => !prevPosts.some((post) => post.id === newPost.id));
+        const newPosts = response.data.data.filter((newPost) => !prevPosts.some((post) => post.id === newPost.id));
         return [...prevPosts, ...newPosts];
       });
 
-      if (response.data.length < limit) {
+      if (response.data.data.length < limit) {
         setHasMore(false);
       }
 
-      setOffset((prevOffset) => prevOffset + limit);
-      console.log(offset);
+      // offset 업데이트
+      setOffset((prevOffset) => prevOffset + 5); // limit과 동일하게 증가
+
       console.log("성공");
       console.log(response);
       console.log(posts);
@@ -59,14 +60,14 @@ export default function Bookmark() {
   // 초기 데이터 로드
   useEffect(() => {
     loadPosts();
-  }, []);
+  }, []); // 초기 로드 시 실행
 
-  // ref가 화면에 보일 때 추가 데이터 로드
+  // offset 상태 변경 및 inView가 true일 때 로드
   useEffect(() => {
-    if (inView && !loading) {
+    if (inView && !loading && hasMore) {
       loadPosts();
     }
-  }, [inView]);
+  }, [inView, offset]); // offset, inView가 변경될 때마다 loadPosts 호출
 
   return (
     <>
