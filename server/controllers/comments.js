@@ -1,6 +1,6 @@
 const db = require("../config/db.js");
 
-const comments = async () => {
+const comments = async (req, res) => {
   try {
     // SQL 쿼리 작성
     const QUERY = "SELECT * FROM COMMENTS";
