@@ -14,17 +14,14 @@ export default function Bookmark() {
   const [hasMore, setHasMore] = useState(true);
   const postUrl = import.meta.env.VITE_API_URL;
 
-  // ref가 화면에 보이는지 감지
   const { ref, inView } = useInView({
-    threshold: 0.5, // 조금 더 일찍 로드되도록 threshold를 0.5로 설정 (50% 이상 보여졌을 때 로드)
+    threshold: 0,
   });
 
   const loadPosts = async () => {
-    console.log("게시글 호출");
     if (loading || !hasMore) return;
 
     setLoading(true);
-    console.log("로딩 시작");
     try {
       const limit = 5;
       const response = await axios.get(`${postUrl}/bookmark`, {
@@ -33,22 +30,20 @@ export default function Bookmark() {
           offset: offset,
         },
       });
-      console.log(response.data.data);
+
+      const newData = response.data.data; // 서버 응답 구조에 맞춤
+      console.log(newData); // 서버에서 받아온 데이터
+
       setPosts((prevPosts) => {
-        const newPosts = response.data.data.filter((newPost) => !prevPosts.some((post) => post.id === newPost.id));
+        const newPosts = newData.filter((newPost) => !prevPosts.some((post) => post.post_id === newPost.post_id));
+        console.log("newPosts :", newPosts);
         return [...prevPosts, ...newPosts];
       });
-
-      if (response.data.data.length < limit) {
-        setHasMore(false);
+      // offset 값을 갱신해야 하므로 이곳에서 처리
+      setOffset((prevOffset) => prevOffset + 3); // offset 값 갱신
+      if (newData.length < limit) {
+        setHasMore(false); // 더 이상 로드할 데이터가 없으면
       }
-
-      // offset 업데이트
-      setOffset((prevOffset) => prevOffset + 5); // limit과 동일하게 증가
-
-      console.log("성공");
-      console.log(response);
-      console.log(posts);
     } catch (error) {
       console.error("게시글을 불러오는 데 실패했습니다.", error);
       setHasMore(false);
@@ -57,26 +52,24 @@ export default function Bookmark() {
     }
   };
 
-  // 초기 데이터 로드
-  useEffect(() => {
-    loadPosts();
-  }, []); // 초기 로드 시 실행
-
-  // offset 상태 변경 및 inView가 true일 때 로드
+  // inView 상태가 변경될 때만 추가 로드
   useEffect(() => {
     if (inView && !loading && hasMore) {
-      loadPosts();
+      setLoading(true);
+      loadPosts(); // 스크롤이 뷰포트에 도달하면 호출
+      console.log("수정");
+      setLoading(false);
     }
-  }, [inView, offset]); // offset, inView가 변경될 때마다 loadPosts 호출
+  }, [inView, loading, hasMore]); // inView, loading, hasMore 상태에 따라 의존성 변경
 
   return (
     <>
       <Header showBackButton={true} showWriteButton={true} backgroundColor={"#ffffff"} backButtonFunction={"/home"}>
         책갈피
       </Header>
-      <section className={styles.bookmark}>
+      <section className={styles.bookmark} onClick={() => console.log(posts)}>
         {posts.map((post, index) => (
-          <BookmarkPost key={`${post.id}-${index}`} post={post} />
+          <BookmarkPost key={index} post={post} />
         ))}
         {/* 관찰 대상 요소 */}
         {hasMore && (
@@ -84,7 +77,8 @@ export default function Bookmark() {
             {loading ? "로딩 중..." : ""}
           </div>
         )}
-        {!hasMore && <div className={styles.endMessage}>더 이상 데이터가 없습니다.</div>}
+        {!hasMore && posts.length > 0 && <div className={styles.endMessage}>더 이상 데이터가 없습니다.</div>}
+        {!hasMore && posts.length === 0 && <div className={styles.endMessage}>북마크한 게시글이 없습니다.</div>}
       </section>
     </>
   );

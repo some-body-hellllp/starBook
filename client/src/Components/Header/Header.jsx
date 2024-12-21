@@ -1,7 +1,8 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { BackIcon, WriteIcon, CancelIcon } from "../../assets/img/Header/Header_image";
 import styles from "./Header.module.css";
-
+import { PageData } from "../../provider/PageProvider";
+import { useContext } from "react";
 export default function Header({
   children, // 헤더에 들어 갈 글자
   showBackButton = false, // 뒤로가기 버튼을 보여주는 프롭스
@@ -15,7 +16,9 @@ export default function Header({
   backgroundColor = null, // 배경색이 필요하면 사용
   backButtonColor = "#42688B", // 뒤로가기 버튼을 푸른색으로 기본 설정
   backButtonFunction = -1, // 뒤로가기 버튼 함수
+  isLogin = "write", // 비 로그인시에는 알림을 띄우고
 }) {
+  const { userData } = useContext(PageData);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -51,7 +54,18 @@ export default function Header({
         </button>
       )}
 
-      {showWriteButton && <WriteIcon onClick={() => navigate("/write")} />}
+      {showWriteButton && (
+        <WriteIcon
+          onClick={() => {
+            if (userData.isLogin === true) {
+              navigate(`/${isLogin}`);
+            } else {
+              alert("로그인이 필요한 서비스입니다.");
+              navigate("/account");
+            }
+          }}
+        />
+      )}
     </header>
   );
 }

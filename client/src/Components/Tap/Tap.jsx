@@ -32,9 +32,6 @@ function Tap() {
             </div>
             <div
               onClick={() => {
-                // if (userData.isLogin === false) {
-                //   return alert("로그인이 필요한 기능입니다 로그인해주세요");
-                // }
                 pageHandler("location");
               }}
             >
@@ -44,16 +41,23 @@ function Tap() {
               <QRIcon
                 page={page}
                 onClick={() => {
-                  pageHandler("qr");
+                  if (userData.isLogin === false) {
+                    alert("로그인이 필요한 서비스입니다.");
+                    pageHandler("account");
+                  } else {
+                    pageHandler("qr");
+                  }
                 }}
               />
             </div>
             <div
               onClick={() => {
-                // if (userData.isLogin === false) {
-                //   return alert("로그인이 필요한 기능입니다 로그인해주세요");
-                // }
-                pageHandler("stamp");
+                if (userData.isLogin === false) {
+                  alert("로그인이 필요한 서비스입니다.");
+                  pageHandler("account");
+                } else {
+                  pageHandler("stamp");
+                }
               }}
             >
               <StampIcon page={page} />
