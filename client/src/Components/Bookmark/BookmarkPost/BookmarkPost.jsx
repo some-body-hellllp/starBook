@@ -17,7 +17,7 @@ export default function BookmarkPost({ post }) {
           <BookmarkHeader author={post.user_name} location={post.post_location} time={post.create_at} />
           <BookmarkContent content={post.post_content} imageUrl={post.image_path} />
 
-          <BookmarkFooter />
+          <BookmarkFooter postId={post.post_id} />
         </div>
       </article>
     </>

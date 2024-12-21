@@ -1,6 +1,6 @@
 import styles from "./CommentItem.module.css";
 import icon from "../../../assets/img/Bookmark/profile.png";
-export default function CommentItem() {
+export default function CommentItem({ tag = "독립서점", time = "2일전", content = "매장 분위기가 좋아요" }) {
   return (
     <>
       <article className={styles.comment_content}>
@@ -9,10 +9,10 @@ export default function CommentItem() {
         </aside>
         <div className={styles.comment_details}>
           <header className={styles.comment_header}>
-            <div>타이틀</div>
-            <div>2일전</div>
+            <div>{tag}</div>
+            <div>{time}</div>
           </header>
-          <div className={styles.comment_body}>내용</div>
+          <div className={styles.comment_body}>{content}</div>
         </div>
       </article>
     </>
