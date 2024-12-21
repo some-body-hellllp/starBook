@@ -37,7 +37,7 @@ export default function CommentItem({ comment }) {
   return (
     <article className={styles.comment_content}>
       <aside>
-        <img src={icon} alt="프로필 아이콘" />
+        <img src={text.icon} alt="프로필 아이콘" />
       </aside>
       <div className={styles.comment_details}>
         <header className={styles.comment_header}>

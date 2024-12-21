@@ -58,10 +58,12 @@ export default function Bookmark() {
 
   // inView 상태가 변경될 때만 추가 로드
   useEffect(() => {
+    setLoading(true);
     if (inView && !loading && hasMore) {
       loadPosts(); // 스크롤이 뷰포트에 도달하면 호출
       console.log("수정");
     }
+    setLoading(false);
   }, [inView, loading, hasMore]); // inView, loading, hasMore 상태에 따라 의존성 변경
 
   return (
