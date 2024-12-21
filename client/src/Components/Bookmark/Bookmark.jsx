@@ -23,11 +23,12 @@ export default function Bookmark() {
 
     setLoading(true);
     try {
-      const limit = 5;
+      // 첫 번째 요청에서는 5개, 이후 요청에서는 3개씩 불러옴
+      const limit = offset === 0 ? 5 : 3;
       const response = await axios.get(`${postUrl}/bookmark`, {
         params: {
-          limit: limit,
-          offset: offset,
+          limit: limit, // 첫 번째 요청은 5개, 그 이후 요청은 3개
+          offset: offset, // 이전에 불러온 데이터 개수를 기준으로
         },
       });
 
@@ -39,11 +40,14 @@ export default function Bookmark() {
         console.log("newPosts :", newPosts);
         return [...prevPosts, ...newPosts];
       });
-      // offset 값을 갱신해야 하므로 이곳에서 처리
-      setOffset((prevOffset) => prevOffset + 3); // offset 값 갱신
+
+      // 더 이상 데이터가 없으면
       if (newData.length < limit) {
         setHasMore(false); // 더 이상 로드할 데이터가 없으면
       }
+
+      // offset 값을 갱신해야 하므로 이곳에서 처리
+      setOffset((prevOffset) => prevOffset + limit); // offset 값 갱신
     } catch (error) {
       console.error("게시글을 불러오는 데 실패했습니다.", error);
       setHasMore(false);
@@ -55,10 +59,8 @@ export default function Bookmark() {
   // inView 상태가 변경될 때만 추가 로드
   useEffect(() => {
     if (inView && !loading && hasMore) {
-      setLoading(true);
       loadPosts(); // 스크롤이 뷰포트에 도달하면 호출
       console.log("수정");
-      setLoading(false);
     }
   }, [inView, loading, hasMore]); // inView, loading, hasMore 상태에 따라 의존성 변경
 
