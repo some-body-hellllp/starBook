@@ -6,7 +6,7 @@ const comments = async (req, res) => {
     const QUERY = `
       SELECT c.*, u.user_profile 
       FROM COMMENTS c
-      JOIN USERS u ON c.user_id = u.id
+      JOIN USERS u ON c.user_id = u.user_id
     `;
 
     // db.execute로 쿼리 실행
