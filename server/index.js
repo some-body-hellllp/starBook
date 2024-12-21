@@ -6,7 +6,19 @@ const routes = require("./routes/routes");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+const allowedOrigins = ["https://star-books.netlify.app"];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+  })
+);
 
 app.get("/", (req, res) => res.send("linked!"));
 app.use("/", routes);
