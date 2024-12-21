@@ -25,7 +25,7 @@ LEFT JOIN
 ORDER BY 
     p.create_at DESC
 LIMIT ? OFFSET ?;
-LIMIT ? OFFSET ?;
+
     `;
     console.log("게시글 이미지 테스트중");
     // db.execute로 쿼리 실행
