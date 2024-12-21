@@ -1,7 +1,7 @@
 const db = require("../config/db");
 const { CurrentTime } = require("../config/date");
 
-const createComment = async () => {
+const createComment = async (req, res) => {
   const time = CurrentTime();
   const { postId, id, content, name } = req.body; // 클라이언트로부터 받은 데이터
   // console.log(id, title, content, name);
