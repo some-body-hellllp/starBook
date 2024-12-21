@@ -2,8 +2,8 @@ const db = require("../config/db");
 
 const posts = async (req, res) => {
   let userId = req.query.id || null; // 로그인한 유저의 ID
-  let limit = parseInt(req.query.limit) || 5; // 한 번에 로드할 게시글 수, 기본값은 5
-  let offset = parseInt(req.query.offset) || 0; // 현재까지 로드된 게시글 수, 기본값은 0
+  let limit = req.query.limit || 5; // 한 번에 로드할 게시글 수, 기본값은 5
+  let offset = req.query.offset || 0; // 현재까지 로드된 게시글 수, 기본값은 0
   console.log("id", userId, "limit", limit, "offset", offset);
 
   if (!limit || !offset) {
