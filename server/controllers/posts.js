@@ -6,7 +6,7 @@ const posts = async (req, res) => {
   let offset = parseInt(req.query.offset) || 0; // 현재까지 로드된 게시글 수, 기본값은 0
   console.log("id", userId, "limit", limit, "offset", offset);
 
-  if (!userId || !limit || !offset) {
+  if (!limit || !offset) {
     return res.status(409).json({ error: "잘못된 접근입니다." });
   }
 
