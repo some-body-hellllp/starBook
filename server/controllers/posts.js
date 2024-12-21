@@ -17,12 +17,14 @@ const posts = async (req, res) => {
     p.image_path,
     IF(l.user_id IS NOT NULL, TRUE, FALSE) AS liked,
     (SELECT COUNT(*) FROM LIKES l2 WHERE l2.post_id = p.post_id) AS like_count,
-    (SELECT COUNT(*) FROM COMMENTS c2 WHERE c2.post_id = p.post_id) AS comment_count,
+    (SELECT COUNT(*) FROM COMMENTS c2 WHERE c2.post_id = p.post_id) AS comment_count
+FROM 
     POSTS p
 LEFT JOIN 
     LIKES l ON p.post_id = l.post_id AND l.user_id = ?
 ORDER BY 
     p.create_at DESC
+LIMIT ? OFFSET ?;
 LIMIT ? OFFSET ?;
     `;
     console.log("게시글 이미지 테스트중");
