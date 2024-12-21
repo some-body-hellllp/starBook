@@ -14,11 +14,10 @@ const posts = async (req, res) => {
     p.post_content,
     p.user_name,
     p.create_at,
+    p.image_path,
     IF(l.user_id IS NOT NULL, TRUE, FALSE) AS liked,
     (SELECT COUNT(*) FROM LIKES l2 WHERE l2.post_id = p.post_id) AS like_count,
     (SELECT COUNT(*) FROM COMMENTS c2 WHERE c2.post_id = p.post_id) AS comment_count,
-    (SELECT pi.image_path FROM POST_IMAGES pi WHERE pi.post_id = p.post_id ORDER BY pi.create_at DESC LIMIT 1) AS image_path
-FROM 
     POSTS p
 LEFT JOIN 
     LIKES l ON p.post_id = l.post_id AND l.user_id = ?
