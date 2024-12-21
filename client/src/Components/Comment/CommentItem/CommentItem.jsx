@@ -28,7 +28,7 @@ export default function CommentItem({ comment }) {
 
   // 실제로 comment가 있으면 그 값을, 없으면 defaultText를 사용
   const text = {
-    icon: icon ? comment.image_path : defaultText.image_path,
+    icon: comment ? comment.user_profile : defaultText.icon,
     name: comment ? comment.user_name : defaultText.name,
     time: comment ? formatTime(comment.create_at) : defaultText.time,
     content: comment ? comment.comment_content : defaultText.content,

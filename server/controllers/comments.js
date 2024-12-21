@@ -4,7 +4,7 @@ const comments = async (req, res) => {
   try {
     // SQL 쿼리 작성: 댓글과 유저의 프로필 사진을 가져옴
     const QUERY = `
-      SELECT c.*, u.image_path 
+      SELECT c.*, u.user_profile 
       FROM COMMENTS c
       JOIN USERS u ON c.user_id = u.id
     `;
