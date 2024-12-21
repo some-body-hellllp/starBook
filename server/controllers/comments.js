@@ -2,8 +2,12 @@ const db = require("../config/db.js");
 
 const comments = async (req, res) => {
   try {
-    // SQL 쿼리 작성
-    const QUERY = "SELECT * FROM COMMENTS";
+    // SQL 쿼리 작성: 댓글과 유저의 프로필 사진을 가져옴
+    const QUERY = `
+      SELECT c.*, u.image_path 
+      FROM COMMENTS c
+      JOIN USERS u ON c.user_id = u.id
+    `;
 
     // db.execute로 쿼리 실행
     const [comments] = await db.execute(QUERY);

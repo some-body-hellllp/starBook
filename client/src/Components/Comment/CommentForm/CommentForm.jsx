@@ -34,7 +34,7 @@ export default function CommentForm({ setGetComment, postId }) {
     try {
       // Axios로 댓글을 서버에 전송
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/bookmark/comment`, {
-        userId: userData.userId,
+        id: userData.userId,
         postId: postId, // 댓글이 달린 게시글의 ID
         content: comment, // 입력한 댓글 내용
         name: userData.nickName,

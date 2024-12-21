@@ -32,7 +32,7 @@ export default function Comment() {
       fetchComments();
     }
   }, [getComment]); // postId나 getComment 상태가 변경될 때 호출
-
+  console.log(comments);
   return (
     <>
       <Header showCancleButton={true} backgroundColor="#ffffff" />
@@ -40,7 +40,7 @@ export default function Comment() {
         <CommentItem />
         <CommentItem />
         {comments.map((comment) => (
-          <CommentItem key={comment.id} comment={comment} />
+          <CommentItem key={comment.comment_id} comment={comment} />
         ))}
 
         <CommentForm setGetComment={setGetComment} postId={postId} />
