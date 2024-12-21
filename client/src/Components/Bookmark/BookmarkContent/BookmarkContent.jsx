@@ -1,7 +1,7 @@
 import thumnail from "../../../assets/img/Bookmark/thumnail.png";
 import test from "../../../assets/img/Bookmark/test.jpg";
 import styles from "./BookmarkContent.module.css";
-export default function BookmarkContent({ content, imageUrl }) {
+export default function BookmarkContent({ content, imageUrl = null }) {
   return (
     <>
       <p className={styles.text}>{content}</p>
