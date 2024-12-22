@@ -25,7 +25,7 @@ export default function Stamp() {
   // 스탬프 정보 가져오는 함수
   const fetchStamp = async () => {
     const headers = {
-      Authorization: `Bearer ${token}`,
+      Authorization: ` Bearer ${token}`,
     };
 
     try {
@@ -48,7 +48,7 @@ export default function Stamp() {
   // 쿠폰 발급 함수
   const getStampReward = async (remainder) => {
     try {
-      const coupon = await axios.post(`${postUrl}/auth/coupon`, {
+      const coupon = await axios.post(`${postUrl}//coupon`, {
         userId: userData.userId,
         stampCard: remainder,
       });
@@ -65,8 +65,9 @@ export default function Stamp() {
     const fetchData = async () => {
       try {
         await fetchStamp(); // 스탬프 정보 가져오기
+        const remainder = userData.stampCount % 8;
         setStampImages(createStampImages());
-        const remainder = userData.stampCount % 8; // 8로 나눈 나머지 계산
+
         if (remainder === 3 || remainder === 5 || remainder === 0) {
           if (isLoading) return;
           alert("쿠폰 발급 시작");
