@@ -14,7 +14,8 @@
   border-radius: 100%;
 }
 .prifile_img img {
-  width: 100%;
+  width: 124px;
+  height: 124px;
   object-fit: cover;
   border-radius: 100%;
 }

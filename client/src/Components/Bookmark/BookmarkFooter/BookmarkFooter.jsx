@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 // 스타일
 import styles from "./BookmarkFooter.module.css";
-export default function BookmarkFooter({ postId }) {
+export default function BookmarkFooter({ postId, postComments = 1, postLikes = 2 }) {
   const [fill, setFill] = useState(false);
   const navigate = useNavigate();
 
@@ -22,7 +22,9 @@ export default function BookmarkFooter({ postId }) {
             <CommetIcon onClick={() => navigate(`/comment?post=${postId}`)} />
           </button>
         </div>
-        <div className={styles.reactions}>댓글 1 · 좋아요 2</div>
+        <div className={styles.reactions}>
+          댓글 {postComments} · 좋아요 {postLikes}
+        </div>
       </footer>
     </>
   );
