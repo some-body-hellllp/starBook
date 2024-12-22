@@ -45,6 +45,7 @@ export default function Stamp() {
       console.error("Error fetching stamp:", error);
     }
   };
+  // 쿠폰 발급 함수
   const getStampReward = async (remainder) => {
     try {
       const coupon = await axios.post(`${postUrl}/auth/coupon`, {
@@ -61,28 +62,27 @@ export default function Stamp() {
   };
 
   useEffect(() => {
-    // IIFE 사용
-    (async () => {
-      await fetchStamp(); // 스탬프 정보 가져오기
-      setStampImages(createStampImages()); // 스탬프 이미지 설정
-      console.log("페이지 시작");
+    const fetchData = async () => {
+      try {
+        await fetchStamp(); // 스탬프 정보 가져오기
+        const remainder = userData.stampCount % 8;
+        setStampImages(createStampImages());
 
-      const remainder = userData.stampCount % 8 || null;
-      console.log("스탬프 카드 :", remainder, "개");
+        if (remainder === 3 || remainder === 5 || remainder === 0) {
+          if (isLoading) return;
 
-      if (remainder === 3 || remainder === 5 || remainder === 0) {
-        console.log("쿠폰 함수 호출");
-        if (isLoading) return; // 로딩 중이면 실행하지 않음
-
-        setIsLoading(true);
-        console.log("로딩중", true);
-        await getStampReward(remainder); // 쿠폰 받기
-        console.log("쿠폰 함수 종료");
+          setIsLoading(true);
+          await getStampReward(remainder);
+        }
+      } catch (error) {
+        console.error("Error in fetchData:", error);
+      } finally {
+        setIsLoading(false);
       }
+    };
 
-      setIsLoading(false); // 모든 작업 완료 후 로딩 상태 해제
-    })(); // 즉시 실행
-  }, []);
+    fetchData();
+  }, [userData.userId, userData.stampCount]); // 필요한 의존성 추가
 
   return (
     <>
