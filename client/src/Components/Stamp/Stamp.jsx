@@ -48,7 +48,7 @@ export default function Stamp() {
   // 쿠폰 발급 함수
   const getStampReward = async (remainder) => {
     try {
-      const coupon = await axios.post(`${postUrl}//coupon`, {
+      const coupon = await axios.post(`${postUrl}/coupon`, {
         userId: userData.userId,
         stampCard: remainder,
       });
