@@ -3,6 +3,7 @@ const { CurrentTime } = require("../config/date");
 const createCoupon = async (req, res) => {
   const { userId, stampCard } = req.body;
   const time = CurrentTime();
+  console.log("유저 아이디 :", userId);
   console.log("스탬프 개수 :", stampCard);
 
   const getCouponRate = (stampCard) => {
@@ -21,6 +22,7 @@ const createCoupon = async (req, res) => {
     });
   };
   const discount = getCouponRate(stampCard);
+  console.log("할인률 :", discount);
   const QUERY1 = `
     SELECT coupon_discount_rate
     FROM COUPONS
@@ -35,6 +37,7 @@ const createCoupon = async (req, res) => {
 
     // 결과가 있다면 중복된 쿠폰이 존재하는 것
     if (result.length > 0) {
+      console.log("쿠폰 중복");
       return res.status(409).json({ status: "error", message: "이미 같은 쿠폰을 받은 적이 있습니다." });
     }
 
@@ -53,6 +56,7 @@ const createCoupon = async (req, res) => {
     }
   } catch (error) {
     console.error("쿠폰 중복 확인 중 오류 발생:", error);
+    console.log("쿠폰 발급 실패");
     return res.status(409).json({ status: "error", message: "쿠폰 발급 실패" });
   }
 };
