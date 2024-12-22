@@ -13,7 +13,8 @@
   height: 124px;
   border-radius: 100%;
 }
-.prifile_img img {
+
+.prifile_img_element {
   width: 124px;
   height: 124px;
   object-fit: cover;

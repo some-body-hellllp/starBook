@@ -35,6 +35,7 @@ export default function Account() {
       <section className={styles.account}>
         <div className={styles.prifile_img}>
           <img
+            className={styles.prifile_img_element}
             src={userData.profile !== null ? userData.profile : emptyImg}
             alt="profileImg"
             onClick={() => {
