@@ -4,8 +4,8 @@ const { CurrentTime } = require("../config/date");
 async function createPost(req, res) {
   const time = CurrentTime();
   const { id, title, content, name, image, user_profile } = req.body; // 클라이언트로부터 받은 데이터
-  console.log(req);
-  console.log(req.body);
+  // console.log(req);
+  // console.log(req.body);
   console.log("id :", id);
   console.log("title :", title);
   console.log("content :", content);

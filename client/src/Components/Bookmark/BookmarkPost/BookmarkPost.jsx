@@ -8,7 +8,7 @@ import UserProfile from "../UserProfile/UserProfile";
 import styles from "./BookmarkPost.module.css";
 
 export default function BookmarkPost({ post }) {
-  // console.log(post);
+  console.log(post);
   return (
     <>
       <article className={styles.bookmark_post}>

@@ -20,6 +20,7 @@ const posts = async (req, res) => {
       p.user_name,
       p.create_at,
       p.image_path,
+      p.user_profile
       IF(l.user_id IS NOT NULL, TRUE, FALSE) AS liked,
       (SELECT COUNT(*) FROM LIKES l2 WHERE l2.post_id = p.post_id) AS like_count,
       (SELECT COUNT(*) FROM COMMENTS c2 WHERE c2.post_id = p.post_id) AS comment_count
