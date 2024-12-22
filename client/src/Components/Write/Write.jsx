@@ -14,6 +14,7 @@ export default function Write() {
     title: "", // 태그 (독립서점 이름)
     content: "", // 내용
     name: userData.nickName, // 유저 닉네임
+    user_profile: userData.profile,
   });
 
   // Form 데이터 변경 핸들러

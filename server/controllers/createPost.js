@@ -3,7 +3,7 @@ const { CurrentTime } = require("../config/date");
 
 async function createPost(req, res) {
   const time = CurrentTime();
-  const { id, title, content, name, image } = req.body; // 클라이언트로부터 받은 데이터
+  const { id, title, content, name, image, user_profile } = req.body; // 클라이언트로부터 받은 데이터
   console.log(req);
   console.log(req.body);
   console.log("id :", id);
@@ -11,6 +11,7 @@ async function createPost(req, res) {
   console.log("content :", content);
   console.log("name :", name);
   console.log("image :", image);
+  console.log("user_profile :", user_profile);
   // console.log(id, title, content, name);
   // 유효성 검사
   if (!id || !title || !content || !name) {
@@ -48,13 +49,13 @@ async function createPost(req, res) {
 
   // 게시글 작성 쿼리
   const QUERY2 = `
-    INSERT INTO POSTS (user_id,post_location, post_content, user_name, create_at)
-    VALUES (?,?, ?, ?, ?);
+    INSERT INTO POSTS (user_id,post_location, post_content, user_name, create_at,user_profile)
+    VALUES (?,?, ?, ?, ?,?);
   `;
 
   try {
     // 게시글 작성
-    const [result] = await db.execute(QUERY2, [id, title, content, name, time]);
+    const [result] = await db.execute(QUERY2, [id, title, content, name, time, user_profile]);
     console.log(result);
 
     return res.status(201).json({

@@ -12,11 +12,10 @@ export default function BookmarkPost({ post }) {
   return (
     <>
       <article className={styles.bookmark_post}>
-        <UserProfile />
+        <UserProfile post={post.user_profile} />
         <div className={styles.bookmark_content}>
           <BookmarkHeader author={post.user_name} location={post.post_location} time={post.create_at} />
           <BookmarkContent content={post.post_content} imageUrl={post.image_path} />
-
           <BookmarkFooter postId={post.post_id} />
         </div>
       </article>

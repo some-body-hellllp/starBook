@@ -69,7 +69,7 @@ export function useKakaoLogin() {
 
       setUserData({
         userId: userId,
-        profile: profile, // 프로필 사진 미구현
+        profile: profile,
         nickName: name,
         stamp: stamp,
         stampCount: stamp.length,
