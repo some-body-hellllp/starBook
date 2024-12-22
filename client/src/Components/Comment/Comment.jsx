@@ -37,8 +37,6 @@ export default function Comment() {
     <>
       <Header showCancleButton={true} backgroundColor="#ffffff" />
       <section className={styles.comment}>
-        <CommentItem />
-        <CommentItem />
         {comments.map((comment) => (
           <CommentItem key={comment.comment_id} comment={comment} />
         ))}
