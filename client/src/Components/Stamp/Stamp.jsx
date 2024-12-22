@@ -68,7 +68,7 @@ export default function Stamp() {
         await fetchStamp(); // 스탬프 정보 가져오기
 
         const remainder = (userData.stampCount || 0) % 8; // 데이터 없을 때 0 처리
-        alert("스탬프 개수", remainder);
+        alert(`스탬프 개수: ${remainder}`);
         setStampImages(createStampImages());
 
         if ((remainder === 3 || remainder === 5 || remainder === 0) && !isLoading) {
