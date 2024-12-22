@@ -61,24 +61,6 @@ export default function Stamp() {
     }
   };
 
-  // 숫자 변환
-  const getCouponRate = (remainder) => {
-    let discount = 0;
-
-    if (remainder === 3) {
-      discount = 5; // 3일 때 5% 할인
-    } else if (remainder === 5) {
-      discount = 10; // 5일 때 10% 할인
-    } else if (remainder === 0) {
-      discount = 15; // 0일 때 15% 할인
-    } else {
-      // 나머지 조건일 때는 할인 없음 또는 다른 처리를 할 수 있음
-      return null;
-    }
-
-    return discount;
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -88,11 +70,10 @@ export default function Stamp() {
 
         if (remainder === 3 || remainder === 5 || remainder === 0) {
           if (isLoading) return;
-          alert("쿠폰 발급 시작");
           setIsLoading(true);
           await getStampReward(remainder);
-          const discount = getCouponRate(remainder);
-          alert(`${discount}% 할인 쿠폰이 발급 되었습니다.`);
+
+          // alert(`${discount}% 할인 쿠폰이 발급 되었습니다.`);
         }
       } catch (error) {
         console.error("Error in fetchData:", error);
