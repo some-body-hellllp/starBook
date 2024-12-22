@@ -4,10 +4,12 @@ import styles from "./Write.module.css";
 import { PageData } from "../../provider/PageProvider";
 import axios from "axios";
 import camera from "../../assets/img/Bookmark/picture.png";
+import { useNavigate } from "react-router-dom";
 
 export default function Write() {
   const postUrl = import.meta.env.VITE_API_URL;
   const { userData } = useContext(PageData);
+  const navigate = useNavigate();
   // console.log(userData);
   const [formData, setFormData] = useState({
     id: userData.userId, // 유저 아이디
@@ -36,6 +38,7 @@ export default function Write() {
 
       alert("게시글이 성공적으로 등록되었습니다!");
       console.log("응답 데이터:", response.data);
+      navigate("/bookmark");
       // 필요 시 리다이렉트 또는 초기화
       setFormData({ ...formData, title: "", content: "" });
     } catch (error) {
