@@ -63,26 +63,25 @@ export default function Stamp() {
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true); // 로딩 상태 시작
       try {
         await fetchStamp(); // 스탬프 정보 가져오기
-
-        const remainder = (userData.stampCount || 0) % 8; // 데이터 없을 때 0 처리
-        alert(`스탬프 개수: ${remainder}`);
         setStampImages(createStampImages());
-
-        if ((remainder === 3 || remainder === 5 || remainder === 0) && !isLoading) {
+        const remainder = userData.stampCount % 8; // 8로 나눈 나머지 계산
+        if (remainder === 3 || remainder === 5 || remainder === 0) {
+          if (isLoading) return;
           alert("쿠폰 발급 시작");
+          setIsLoading(true);
           await getStampReward(remainder);
         }
       } catch (error) {
         console.error("Error in fetchData:", error);
       } finally {
-        setIsLoading(false); // 로딩 상태 종료
+        setIsLoading(false);
       }
     };
+
     fetchData();
-  }, [userData.userId, userData.stampCount]);
+  }, [userData.userId, userData.stampCount]); // 필요한 의존성 추가
 
   return (
     <>
