@@ -10,7 +10,7 @@ import axios from "axios";
 export default function Stamp() {
   const { userData, setUserData } = useContext(PageData); // PageData Context에서 userData 가져오기
   const [stampImages, setStampImages] = useState([]); // 스탬프 이미지 배열 상태
-  const [coupon, setCoupon] = useState(false);
+  // const [stampCount, setStampCount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const postUrl = import.meta.env.VITE_API_URL;
   const token = window.localStorage.getItem("token");
@@ -83,7 +83,7 @@ export default function Stamp() {
     };
 
     fetchData();
-  }, [userData.userId, userData.stampCount]); // 필요한 의존성 추가
+  }, [userData.stampCount]); // 필요한 의존성 추가
 
   return (
     <>
