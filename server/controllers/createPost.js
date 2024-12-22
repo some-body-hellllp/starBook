@@ -56,7 +56,7 @@ async function createPost(req, res) {
   try {
     // 게시글 작성
     const [result] = await db.execute(QUERY2, [id, title, content, name, time, user_profile]);
-    console.log(result);
+    // console.log(result);
 
     return res.status(201).json({
       status: "success",
