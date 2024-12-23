@@ -14,7 +14,7 @@ export default function Stamp() {
   const [isLoading, setIsLoading] = useState(false);
   const postUrl = import.meta.env.VITE_API_URL;
   const token = window.localStorage.getItem("token");
-  console.log(isLoading);
+
   // 스탬프 이미지 배열 생성
   const createStampImages = () => {
     const remainder = userData.stampCount % 8; // 8로 나눈 나머지 계산
@@ -57,11 +57,15 @@ export default function Stamp() {
     } catch (error) {
       console.log("쿠폰 에러 :", error);
     } finally {
-      setIsLoading(false);
+      console.log("쿠폰 발급 종료");
     }
   };
 
   useEffect(() => {
+    if (isLoading) return;
+    setIsLoading(true);
+    console.log("데이터 호출");
+
     const fetchData = async () => {
       try {
         await fetchStamp(); // 스탬프 정보 가져오기
@@ -69,8 +73,6 @@ export default function Stamp() {
         setStampImages(createStampImages());
         if (userData.stampCount === 0) return;
         if (remainder === 3 || remainder === 5 || remainder === 0) {
-          if (isLoading) return;
-          setIsLoading(true);
           await getStampReward(remainder);
 
           // alert(`${discount}% 할인 쿠폰이 발급 되었습니다.`);
@@ -81,10 +83,10 @@ export default function Stamp() {
         setIsLoading(false);
       }
     };
-
     fetchData();
-  }, [userData.stampCount]); // 필요한 의존성 추가
-
+    // setIsLoading(false);
+  }, []); // 필요한 의존성 추가
+  // [userData.stampCount]
   return (
     <>
       <Header>스탬프</Header>
