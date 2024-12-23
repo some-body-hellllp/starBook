@@ -1,0 +1,62 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 배경 흐리게 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* 주석추가 */
+.modalContent {
+  background-color: white;
+  padding: 30px 18px 30px 18px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 52px 0 52px;
+  height: auto;
+  text-align: center;
+  max-width: 285px;
+}
+
+.modalHeader {
+  font-size: 19px;
+  font-weight: 900;
+  color: #1f5f99;
+  padding-bottom: 30px;
+}
+
+.modalBody {
+  font-size: 18px;
+  font-weight: 700;
+  color: black;
+  padding-top: 16px;
+}
+
+span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+li {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.modalDetail {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.flex {
+  display: flex;
+  padding-top: 5px;
+}
+
+.midlejum {
+  margin-right: 5px;
+}
