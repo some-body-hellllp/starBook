@@ -29,7 +29,9 @@ export default function StampModal({ modalHandler, onClick, isModalOpen }) {
             </div>
             <div className={styles.flex}>
               <span className={styles.midlejum}>·</span>
-              <li className={styles.modalLi}>10% 할인권 : 최대 2,000원까지 할인</li>
+              <li className={styles.modalLi}>
+                <span className={styles.modalSpan}>10% 할인권</span> : 최대 2,000원까지 할인
+              </li>
             </div>
             <div className={styles.flex}>
               <span className={styles.midlejum}>·</span>
