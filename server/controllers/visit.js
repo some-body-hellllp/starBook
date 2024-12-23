@@ -11,7 +11,7 @@ const visit = async (req, res) => {
   const time = CurrentTime();
 
   if (!loginUserId || !courseQr || !courseQrType) {
-    return res.status(400).json({ status: "error", message: "id,qr,type 정보는 필수입니다", data: null });
+    return res.status(400).json({ status: "error", message: "id, qr, type 정보는 필수입니다", data: null });
   }
 
   // QR 정보 유효성 확인
@@ -25,15 +25,35 @@ const visit = async (req, res) => {
     FROM
         COURSES
     WHERE
-        course_QR=?`;
+        course_QR=?
+  `;
   const course = await db.execute(QUERY1, [courseQr]).then((result) => result[0][0]);
 
   if (!course) {
     return res.status(404).json({ status: "error", message: "코스 정보가 없습니다.", data: null });
   }
 
-  // 당일 방문한 코스인지 확인
+  // 하루 방문한 QR 인증 수 확인
   const QUERY2 = `
+    SELECT COUNT(*) as visit_count
+    FROM STAMPS
+    WHERE
+        user_id = ?
+        AND DATE(REPLACE(REPLACE(create_at, '(', ''), ')', '')) = CURDATE()
+  `;
+  const [visitCountResult] = await db.execute(QUERY2, [loginUserId]);
+  const visitCount = visitCountResult[0]?.visit_count || 0;
+
+  if (visitCount >= 4) {
+    return res.status(429).json({
+      status: "error",
+      message: "하루에 스탬프 적립은 최대 4번까지만 가능합니다.",
+      data: null,
+    });
+  }
+
+  // 당일 방문한 코스인지 확인
+  const QUERY3 = `
     SELECT
         user_id,
         stamp_location,
@@ -43,18 +63,15 @@ const visit = async (req, res) => {
         STAMPS
     WHERE
         user_id = ? 
-        AND
-        stamp_location = ? 
-        AND 
-        stamp_type = ?
-        AND
-        DATE(REPLACE(REPLACE(create_at, '(', ''), ')', '')) = CURDATE() -- 괄호 제거 후 날짜 비교
+        AND stamp_location = ? 
+        AND stamp_type = ?
+        AND DATE(REPLACE(REPLACE(create_at, '(', ''), ')', '')) = CURDATE()
     ORDER BY
-        REPLACE(REPLACE(create_at, '(', ''), ')', '') DESC -- 괄호 제거 후 최신 순 정렬
+        REPLACE(REPLACE(create_at, '(', ''), ')', '') DESC
     LIMIT 1;
   `;
-  const [visitResult] = await db.execute(QUERY2, [loginUserId, course.course_name, courseQrType]);
-  console.log(visitResult[0]);
+  const [visitResult] = await db.execute(QUERY3, [loginUserId, course.course_name, courseQrType]);
+
   if (visitResult.length > 0 && courseQrType === "buy") {
     return res.status(409).json({ status: "error", message: "이미 결제한 서점입니다.", data: null });
   }
@@ -65,7 +82,7 @@ const visit = async (req, res) => {
   }
 
   // 스탬프 테이블에 컬럼 추가
-  const QUERY3 = `
+  const QUERY4 = `
     INSERT INTO STAMPS
     (
         user_id,
@@ -83,7 +100,7 @@ const visit = async (req, res) => {
   `;
 
   // 방문한 코스 등록
-  await db.execute(QUERY3, [loginUserId, course.course_name, courseQrType, time]);
+  await db.execute(QUERY4, [loginUserId, course.course_name, courseQrType, time]);
 
   return res.json({ status: "success", message: "QR 인증이 완료되었습니다.", data: null });
 };

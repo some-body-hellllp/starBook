@@ -97,7 +97,7 @@ export default function AccountDetail() {
               <div className={styles.proFileImg}>
                 <img
                   className={styles.proFileImgElement}
-                  src={userData.profile !== null ? userData.profile : emptyImg}
+                  src={userData.profile !== null ? userData.profile : dummyImg}
                   alt="emptyImg"
                   onClick={() => console.log(userData)}
                 />
