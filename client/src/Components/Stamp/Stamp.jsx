@@ -85,7 +85,7 @@ export default function Stamp() {
     };
     fetchData();
     // setIsLoading(false);
-  }, []); // 필요한 의존성 추가
+  }, [userData.stampCount]); // 필요한 의존성 추가
   // [userData.stampCount]
   return (
     <>
