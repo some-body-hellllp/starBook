@@ -10,7 +10,7 @@ import axios from "axios";
 export default function Stamp() {
   const { userData, setUserData } = useContext(PageData); // PageData Context에서 userData 가져오기
   const [stampImages, setStampImages] = useState([]); // 스탬프 이미지 배열 상태
-  // const [stampCount, setStampCount] = useState("");
+  const [stampCount, setStampCount] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const postUrl = import.meta.env.VITE_API_URL;
   const token = window.localStorage.getItem("token");
@@ -41,6 +41,7 @@ export default function Stamp() {
         stamp: getStamp.data.data,
         stampCount: getStamp.data.data.length,
       }));
+      setStampCount(getStamp.data.data.length);
     } catch (error) {
       console.error("Error fetching stamp:", error);
     }
@@ -85,7 +86,7 @@ export default function Stamp() {
     };
     fetchData();
     // setIsLoading(false);
-  }, [userData.stampCount]); // 필요한 의존성 추가
+  }, [stampCount]); // 필요한 의존성 추가
   // [userData.stampCount]
   return (
     <>
