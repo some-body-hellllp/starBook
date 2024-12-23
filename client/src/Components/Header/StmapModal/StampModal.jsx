@@ -22,25 +22,19 @@ export default function StampModal({ modalHandler, onClick, isModalOpen }) {
               </li>
             </div>
             <div className={styles.flex}>
+              <span className={styles.midlejum}>·</span>
               <li className={styles.modalLi}>
-                <span className={styles.midlejum}>·</span>
                 <span className={styles.modalSpan}>5% 할인권</span> : 최대 1,000원까지 할인
               </li>
             </div>
             <div className={styles.flex}>
-              <li className={styles.modalLi}>
-                <span className={styles.modalSpan}>
-                  <span className={styles.midlejum}>·</span>10% 할인권
-                </span>
-                : 최대 2,000원까지 할인
-              </li>
+              <span className={styles.midlejum}>·</span>
+              <li className={styles.modalLi}>10% 할인권 : 최대 2,000원까지 할인</li>
             </div>
             <div className={styles.flex}>
+              <span className={styles.midlejum}>·</span>
               <li className={styles.modalLi}>
-                <span className={styles.modalSpan}>
-                  <span className={styles.midlejum}>·</span>15% 할인권
-                </span>
-                : 최대 3,000원까지 할인
+                <span className={styles.modalSpan}>15% 할인권</span>: 최대 3,000원까지 할인
               </li>
             </div>
           </div>
