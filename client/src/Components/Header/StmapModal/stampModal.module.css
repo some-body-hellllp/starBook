@@ -36,12 +36,12 @@
   padding-top: 16px;
 }
 
-span {
+.modalSpan {
   font-size: 14px;
   font-weight: 600;
 }
 
-li {
+.modalLi {
   font-size: 14px;
   font-weight: 300;
 }
