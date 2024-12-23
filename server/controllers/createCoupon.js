@@ -28,9 +28,11 @@ const createCoupon = async (req, res) => {
 
   // 이미 동일한 쿠폰이 발급되었는지 확인하는 쿼리
   const QUERY1 = `
-    SELECT * 
+      SELECT * 
     FROM COUPONS 
-    WHERE user_id = ? AND coupon_discount_rate = ?
+    WHERE user_id = ? 
+      AND coupon_discount_rate = ? 
+      AND DATE(create_at) = CURDATE()
     ORDER BY create_at DESC
     LIMIT 1;
   `;
