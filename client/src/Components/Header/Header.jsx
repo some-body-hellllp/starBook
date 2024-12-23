@@ -2,7 +2,10 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { BackIcon, WriteIcon, CancelIcon } from "../../assets/img/Header/Header_image";
 import styles from "./Header.module.css";
 import { PageData } from "../../provider/PageProvider";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import caution from "../../assets/img/Header/caution.svg";
+import StapmModal from "./StmapModal/StampModal";
+
 export default function Header({
   children, // 헤더에 들어 갈 글자
   showBackButton = false, // 뒤로가기 버튼을 보여주는 프롭스
@@ -17,6 +20,7 @@ export default function Header({
   backButtonColor = "#42688B", // 뒤로가기 버튼을 푸른색으로 기본 설정
   backButtonFunction = -1, // 뒤로가기 버튼 함수
   isLogin = "write", // 비 로그인시에는 알림을 띄우고
+  stampCaution = false, // 해더 스탬프 모달 알림
 }) {
   const { userData } = useContext(PageData);
   const location = useLocation();
@@ -26,7 +30,7 @@ export default function Header({
   const page = location.pathname; // 현재 경로
 
   // 배열에 들어간 url들은 헤더에 하나의 요소(타이틀)만 들어있음
-  const validPages = new Set(["/", "/location", "/stamp", "/account"]);
+  const validPages = new Set(["/", "/location", "/account"]);
 
   // 헤더 클래스 조건부 설정
   const headerClass = validPages.has(page) ? styles.header_content : styles.header_contents;
@@ -34,6 +38,12 @@ export default function Header({
   // 뒤로 가기 버튼 클릭 처리
   const handleBackClick = (path) => {
     navigate(path); // 페이지로 이동
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  // 모달 열고 닫는 함수
+  const modalHandler = () => {
+    setIsModalOpen((prev) => !prev);
   };
 
   return (
@@ -66,6 +76,15 @@ export default function Header({
           }}
         />
       )}
+      {stampCaution && (
+        <img
+          src={caution}
+          onClick={() => {
+            modalHandler();
+          }}
+        />
+      )}
+      <StapmModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} modalHandler={modalHandler} onClick={modalHandler} />
     </header>
   );
 }

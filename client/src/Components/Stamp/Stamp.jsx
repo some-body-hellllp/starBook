@@ -88,9 +88,12 @@ export default function Stamp() {
     // setIsLoading(false);
   }, [stampCount]); // 필요한 의존성 추가
   // [userData.stampCount]
+
   return (
     <>
-      <Header>스탬프</Header>
+      <Header stampCaution={true}>
+        <div style={{ paddingLeft: "40px" }}>{null}</div>스탬프{" "}
+      </Header>
       <section className={styles.stampSection}>
         <div className={styles.stampBox}>
           <div className={styles.stampBoxHeader}>
@@ -114,9 +117,7 @@ export default function Stamp() {
           </div>
         </div>
 
-        <section className={styles.stampWrap}>
-          {userData.stamp ? userData.stamp.map((stamp, index) => <StampInfo key={index} stamp={stamp} />) : ""}
-        </section>
+        <section className={styles.stampWrap}>{userData.stamp ? userData.stamp.map((stamp, index) => <StampInfo key={index} stamp={stamp} />) : ""}</section>
       </section>
     </>
   );
