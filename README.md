@@ -138,7 +138,123 @@
 
 ## 🖥 프로젝트 구조
 ```
-
+📦src
+ ┣ 📂assets
+ ┃ ┣ 📂img
+ ┣ 📂Components
+ ┃ ┣ 📂Account
+ ┃ ┃ ┣ 📂AccountBtn
+ ┃ ┃ ┃ ┣ 📜AccountBtn.jsx
+ ┃ ┃ ┃ ┗ 📜AccountBtn.module.css
+ ┃ ┃ ┣ 📂AccountTitle
+ ┃ ┃ ┃ ┣ 📜AccountTitle.jsx
+ ┃ ┃ ┃ ┗ 📜AccountTitle.module.css
+ ┃ ┃ ┣ 📜Account.jsx
+ ┃ ┃ ┗ 📜Account.module.css
+ ┃ ┣ 📂Account_detail
+ ┃ ┃ ┣ 📜Account_detail.jsx
+ ┃ ┃ ┗ 📜Account_detail.module.css
+ ┃ ┣ 📂Auth
+ ┃ ┃ ┣ 📜Auth.jsx
+ ┃ ┃ ┗ 📜NaverAuth.jsx
+ ┃ ┣ 📂Bookmark
+ ┃ ┃ ┣ 📂BookmarkContent
+ ┃ ┃ ┃ ┣ 📜BookmarkContent.jsx
+ ┃ ┃ ┃ ┗ 📜BookmarkContent.module.css
+ ┃ ┃ ┣ 📂BookmarkFooter
+ ┃ ┃ ┃ ┣ 📜BookmarkFooter.jsx
+ ┃ ┃ ┃ ┗ 📜BookmarkFooter.module.css
+ ┃ ┃ ┣ 📂BookmarkHeader
+ ┃ ┃ ┃ ┣ 📜BookmarkHeader.jsx
+ ┃ ┃ ┃ ┗ 📜BookmarkHeader.module.css
+ ┃ ┃ ┣ 📂BookmarkPost
+ ┃ ┃ ┃ ┣ 📜BookmarkPost.jsx
+ ┃ ┃ ┃ ┗ 📜BookmarkPost.module.css
+ ┃ ┃ ┣ 📂UserProfile
+ ┃ ┃ ┃ ┣ 📜UserProfile.jsx
+ ┃ ┃ ┃ ┗ 📜UserProfile.module.css
+ ┃ ┃ ┣ 📜Bookmark.jsx
+ ┃ ┃ ┣ 📜Bookmark.module.css
+ ┃ ┃ ┗ 📜Bookmarkdummy.js
+ ┃ ┣ 📂Comment
+ ┃ ┃ ┣ 📂CommentForm
+ ┃ ┃ ┃ ┣ 📜CommentForm.jsx
+ ┃ ┃ ┃ ┗ 📜CommentForm.module.css
+ ┃ ┃ ┣ 📂CommentItem
+ ┃ ┃ ┃ ┣ 📜CommentItem.jsx
+ ┃ ┃ ┃ ┗ 📜CommentItem.module.css
+ ┃ ┃ ┣ 📜Comment.jsx
+ ┃ ┃ ┗ 📜Comment.module.css
+ ┃ ┣ 📂CouponBox
+ ┃ ┃ ┣ 📂Coupon
+ ┃ ┃ ┃ ┗ 📜Coupon.jsx
+ ┃ ┃ ┣ 📂CouponModal
+ ┃ ┃ ┃ ┗ 📜CouponModal.jsx
+ ┃ ┃ ┣ 📜CouponBox.jsx
+ ┃ ┃ ┗ 📜CouponBox.module.css
+ ┃ ┣ 📂Header
+ ┃ ┃ ┣ 📂StmapModal
+ ┃ ┃ ┃ ┣ 📜StampModal.jsx
+ ┃ ┃ ┃ ┗ 📜stampModal.module.css
+ ┃ ┃ ┣ 📜Header.jsx
+ ┃ ┃ ┗ 📜Header.module.css
+ ┃ ┣ 📂Home
+ ┃ ┃ ┣ 📂HomeBody
+ ┃ ┃ ┃ ┣ 📂Banner
+ ┃ ┃ ┃ ┃ ┣ 📜Banner.jsx
+ ┃ ┃ ┃ ┃ ┗ 📜Banner.module.css
+ ┃ ┃ ┃ ┣ 📂BookMark
+ ┃ ┃ ┃ ┃ ┣ 📂Card
+ ┃ ┃ ┃ ┃ ┃ ┣ 📜Card.jsx
+ ┃ ┃ ┃ ┃ ┃ ┗ 📜Card.module.css
+ ┃ ┃ ┃ ┃ ┣ 📜BookMark.jsx
+ ┃ ┃ ┃ ┃ ┗ 📜BookMark.module.css
+ ┃ ┃ ┃ ┣ 📜HomeBody.jsx
+ ┃ ┃ ┃ ┗ 📜HomeBody.module.css
+ ┃ ┃ ┣ 📂HomeHeader
+ ┃ ┃ ┃ ┣ 📜HomeHeader.jsx
+ ┃ ┃ ┃ ┗ 📜HomeHeader.module.css
+ ┃ ┃ ┗ 📜Home.jsx
+ ┃ ┣ 📂Location
+ ┃ ┃ ┣ 📂LocationModal
+ ┃ ┃ ┃ ┣ 📜LocationModal.jsx
+ ┃ ┃ ┃ ┗ 📜LocationModal.module.css
+ ┃ ┃ ┣ 📜Location.jsx
+ ┃ ┃ ┗ 📜Location.module.css
+ ┃ ┣ 📂Login
+ ┃ ┃ ┣ 📜Login.jsx
+ ┃ ┃ ┗ 📜Login.module.css
+ ┃ ┣ 📂Qr
+ ┃ ┃ ┣ 📜Qr.jsx
+ ┃ ┃ ┗ 📜Qr.module.css
+ ┃ ┣ 📂SignUp
+ ┃ ┃ ┣ 📜SignUp.jsx
+ ┃ ┃ ┗ 📜SignUp.module.css
+ ┃ ┣ 📂Splash
+ ┃ ┃ ┣ 📜Splash.jsx
+ ┃ ┃ ┗ 📜Splash.module.css
+ ┃ ┣ 📂Stamp
+ ┃ ┃ ┣ 📂StampInfo
+ ┃ ┃ ┃ ┣ 📜StampInfo.jsx
+ ┃ ┃ ┃ ┗ 📜StampInfo.module.css
+ ┃ ┃ ┣ 📜Stamp.jsx
+ ┃ ┃ ┗ 📜Stamp.module.css
+ ┃ ┣ 📂StarBook
+ ┃ ┃ ┗ 📜Starbook.jsx
+ ┃ ┣ 📂Tap
+ ┃ ┃ ┣ 📜Tap.jsx
+ ┃ ┃ ┗ 📜Tap.module.css
+ ┃ ┗ 📂Write
+ ┃ ┃ ┣ 📜Write.jsx
+ ┃ ┃ ┗ 📜Write.module.css
+ ┣ 📂hook
+ ┃ ┗ 📜getKakaoLogin.jsx
+ ┣ 📂provider
+ ┃ ┗ 📜PageProvider.jsx
+ ┣ 📜App.css
+ ┣ 📜App.jsx
+ ┣ 📜index.css
+ ┗ 📜main.jsx
 ```
 
 <br>
@@ -173,7 +289,13 @@
 <br>
 
 ## 🏃‍♂️ 추후 개발 예정
-
+### 이미지  업로드
+* 커뮤니티 글 등록 시 이미지 업로드
+* 유저 프로필 사진 수정
+### 좋아요 기능 연결
+* 하트를 누를 시 좋아요 +1추가
+### 앱 최적화
+* QR스캔 페이지에 들어 갈 때 마다 앱이 느려지는 문제점 보완  
 
 
 <br>
@@ -182,27 +304,34 @@
 ## 🗨 프로젝트 자체평가 및 소감
 ### 📙 김환
 #### 자체평가
-
+기획도 엎어지고 방향성도 안 잡히던 프로젝트지만 완성했다는 것에 의미가 있다고 생각합니다. 
+3명이 작업 하다 보니 작업이 한번 어긋나면 시간적인 타격이 컸는데 그래도 끝까지 해낸 걸 보니 잘 해낸 거 같습니다. 프로젝트 진행 과정에서 아쉬웠던 건 퍼블리싱에 시간을 많이 투자하게 되니 그만큼 다른 작업에 시간을 제대로 투자 하지 못한 거 같아 아쉬움이 남습니다
 #### 소감
-
-
-<br>
-
-### 📕 박정선
-#### 자체평가
-
-#### 소감
-
+여러모로 자원이 부족한 프로젝트였다고 생각합니다. 개발기간은 짧고 기획도 한번 갈아엎고 개발에 투입할 인원도 적어서 정말 시간에 쫓긴다는 생각을 들게 하는 프로젝트였습니다. 
+거기에 개발에서도 생각 한 대로는 진행되지 않고 버그도 계속해서 생기고 구조를 바꿔야 하는 코드도 생기니 머리가 아파지는 일이 많았지만 결국 마무리는 지어진 걸 보니 열심히는 한거 같습니다
+끝까지 작업 해 주신 팀원들에게 감사를 표합니다
 
 <br>
 
 ### 📘 김동규
 #### 자체평가
-
+기획 과정에서 어려움도 있었지만 팀원들과 기획을 다시하면서 나온 의견들이 잘 반영 되고, 기능적으로도 좋은 결과를 얻었다고 생각합니다.
+추후에 관리자 기능 페이지를 추가하여 문화체육관광부와 같은 기관에서 활용할 수 있을 것으로 기대합니다.
 #### 소감
-
+지금까지 디자인과 웹 퍼블리셔를 주로 맡아 진행한 프로젝트
+에서 처음으로 프론트 엔드를 담당하게 되어 작업에 어려움이 있었지만, 팀원들의 많은 도움 덕분에 완성도 높은 결과물을 만들어낸 것 같아 뿌듯합니다.
+아직 부족한 점이 느껴지지만, 사용하는 언어와 API에 대한 이해도를 높여 성장할 수 있는 개발자가 되도록 노력하겠습니다.
 
 <br>
+
+### 📕 박정선
+#### 자체평가
+주제를 선정할 때부터 어려움을 겪었습니다. 
+중간에 주제를 변경해야 했을 때는 막막했지만, 마음을 다잡고 새로운 주제를 선정한 후, 인터뷰를 진행하며 기획에 힘을 쏟았습니다. 
+처음으로 앱 디자인을 작업하게 되어 처음엔 방향을 잡기 어려웠지만, 평소에 사용하는 앱들을 참고하며 조금씩 완성도를 높여 나갔습니다. 결국 끝까지 작업을 마칠 수 있었습니다.
+#### 소감
+3번의 프로젝트 중 가장 힘들었던 프로젝트였던 것 같습니다. 진행하는 모든 과정이 순탄하지 않아 두통과 위통이 생기기도 했습니다. 힘든 순간들이 많았지만, 지금 소감을 적고 있다는 것은 끝낼 수 없을 것 같았던 프로젝트를 마무리하고 있다는 뜻이기에 잘 끝냈구나싶습니다. 
+모두 고생하셨습니다.
 
 
 <br>
