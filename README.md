@@ -3,7 +3,7 @@
 ![목업1](https://github.com/user-attachments/assets/44db7630-5f7c-4397-8c40-97582b472007)
 
 
- [  [별책부록 PPT]()  ]  [  [별책부록 시연영상](https://drive.google.com/file/d/1Ky1yeO7ONOY7KKobw-UB0jQX0WUUTdNz/view?usp=sharing)  ]
+ [  [별책부록 배포](https://play.google.com/store/apps/details?id=com.starbook.book&hl=ko)  ] [  [별책부록 PPT](https://drive.google.com/file/d/1fKw0igDc4uFwz1DReA9sH34XUX09ZiVU/view?usp=sharing)  ]  [  [별책부록 시연영상](https://drive.google.com/file/d/1Ky1yeO7ONOY7KKobw-UB0jQX0WUUTdNz/view?usp=sharing)  ]
 
 
 <br>
