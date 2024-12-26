@@ -3,8 +3,7 @@
 ![목업1](https://github.com/user-attachments/assets/44db7630-5f7c-4397-8c40-97582b472007)
 
 
-
-[  [별책부록 URL]()  ] [  [별책부록 PPT]()  ]  [  [별책부록 시연영상]()  ]
+ [  [별책부록 PPT]()  ]  [  [별책부록 시연영상](https://drive.google.com/file/d/1Ky1yeO7ONOY7KKobw-UB0jQX0WUUTdNz/view?usp=sharing)  ]
 
 
 <br>
